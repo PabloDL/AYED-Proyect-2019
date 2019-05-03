@@ -19,6 +19,13 @@ int main( int argc, char* argv[]){
     leerArchivoParametros(lector);
     eliminarLector(lector);
 
+    cout << "lectura Minas" << endl;
+    Lector lectorMinas;
+    crearLector(lectorMinas);
+    abrirArchivo(lectorMinas, "minas.txt");
+    leerArchivoMinas(lectorMinas);
+    eliminarLector(lectorMinas);
+
         if(SDL_Init(SDL_INIT_EVERYTHING)>=0){
             SDL_ShowSimpleMessageBox(
             SDL_MESSAGEBOX_INFORMATION,

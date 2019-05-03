@@ -48,7 +48,37 @@ PRE: Lector creado y archivo abierto
 Post: se devuelve linea siguiente de archivo, o EOF en caso de fin de archivo  /// ACA TIENE Q DEVOLVER UNA LISTA
 */
 Mina leerArchivoMinas(Lector & lector){
+    Mina mina;
+    string posX,posY,codItem,IP,seq1,seq2,seq3,seq4,seq5;
+
+    if (lector.ficheroEntrada.is_open()) {
+        while (!lector.ficheroEntrada.eof()){
+            getline(lector.ficheroEntrada,posX, ';');
+            getline(lector.ficheroEntrada,posY, ';');
+            getline(lector.ficheroEntrada,codItem, ';');
+            getline(lector.ficheroEntrada,IP, ';');
+            getline(lector.ficheroEntrada,seq1, ';');
+            getline(lector.ficheroEntrada,seq2, ';');
+            getline(lector.ficheroEntrada,seq3, ';');
+            getline(lector.ficheroEntrada,seq4, ';');
+            getline(lector.ficheroEntrada,seq5);
+            stringstream  issPosX(posX); issPosX >> mina.posX;
+            stringstream  issPosY(posY); issPosY >> mina.posY;
+            stringstream  issCod(codItem); issCod >> mina.codItem;
+            stringstream  issIP(IP); issIP >> mina.IP;
+            stringstream  issSeq1(seq1); issSeq1 >> mina.seq1;
+            stringstream  issSeq2(seq2); issSeq2 >> mina.seq2;
+            stringstream  issSeq3(seq3); issSeq3 >> mina.seq3;
+            stringstream  issSeq4(seq4); issSeq4 >> mina.seq4;
+            stringstream  issSeq5(seq5); issSeq5 >> mina.seq5;
+
+            cout << "PosX: " << mina.posX << "PosY: " << mina.posY <<"coditem: " << mina.codItem
+                << "SEQ: " << mina.seq1 << ";" <<mina.seq2<<";"<<mina.seq3<<";"<<mina.seq3<<";" << mina.seq4 << ";" << mina.seq5<< endl;
+        }
+    }
+    return mina;
 }
+
 /*
 PRE: Lector creado y archivo abierto
 Post: devuelve true si es fin o false caso contrario

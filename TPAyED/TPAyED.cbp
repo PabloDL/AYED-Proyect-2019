@@ -31,8 +31,12 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Comanda.cpp" />
+		<Unit filename="Comanda.h" />
 		<Unit filename="LecturaArchivos.cpp" />
 		<Unit filename="LecturaArchivos.h" />
+		<Unit filename="Mina.cpp" />
+		<Unit filename="Mina.h" />
 		<Unit filename="Parametros.cpp" />
 		<Unit filename="Parametros.h" />
 		<Unit filename="main.cpp" />
