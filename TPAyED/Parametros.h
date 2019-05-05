@@ -5,19 +5,60 @@
 
 using namespace std;
 
+/*
+    Definicicion de tipo de dato Parametro para cargar items de archivo
+    Atributos:
+    s, p, a, PosXE, posYE,iM, vM, iB, vB, iP
+
+    Axiomas
+    * codItem > 0, existente
+    * cantidad < 100
+*/
+
+/* Tipo de estructura de Comanda */
+
+
 typedef struct Parametros{
-    string s;
-    string p;
-    string a;
-    string posXE;
-    string posYE;
-    string iM;
-    string vM;
-    string iB;
-    string vB;
-    string iP;
+    int s;
+    int p;
+    int a;
+    int posXE;
+    int posYE;
+    int iM;
+    int vM;
+    int iB;
+    int vB;
+    int iP;
 }Parametros;
 
-string toString(Parametros &parametros);
+/************GETTERS AND SETTERS*********************/
+int getS(Parametros &parametros);
+int getP(Parametros &parametros);
+int getA(Parametros &parametros);
+int getPosXE(Parametros &parametros);
+int getPosYE(Parametros &parametros);
+int getIm(Parametros &parametros);
+int getVm(Parametros &parametros);
+int getIb(Parametros &parametros);
+int getVb(Parametros &parametros);
+int getIp(Parametros &parametros);
+
+void setS(Parametros &parametros, int s);
+void setP(Parametros &parametros, int p);
+void setA(Parametros &parametros, int a);
+void setPosXE(Parametros &parametros, int posYE);
+void setPOSYE(Parametros &parametros, int posXE);
+void setIm(Parametros &parametros, int im);
+void setVm(Parametros &parametros, int vm);
+void setIb(Parametros &parametros, int ib);
+void setIp(Parametros &parametros, int ip);
+
+/***************************************************/
+
+/*
+PRE: Mina existente y cargada
+Post: Muestra por pantalla los atributos
+*/
+void toString(Parametros &parametros);
 
 #endif // __PARAMETROS_H__

@@ -1,11 +1,21 @@
 #include "LecturaArchivos.h"
-
+/* Implementcion de primitivs */
 
 void crearLector(Lector & lector){
 }
 
-void abrirArchivo(Lector & lector, string nombreArchivo){
+bool abrirArchivo(Lector & lector, string nombreArchivo){
+    bool res = true;
     lector.ficheroEntrada.open(nombreArchivo, ios::in);
+    if (!lector.ficheroEntrada){
+        return false;
+    }
+    return res;
+
+}
+
+void cerrarArchivo(Lector & lector){
+    lector.ficheroEntrada.close();
 }
 
 Parametros leerArchivoParametros(Lector & lector){
@@ -15,16 +25,27 @@ Parametros leerArchivoParametros(Lector & lector){
     if (lector.ficheroEntrada.is_open()) {
         while (!lector.ficheroEntrada.eof()){
         getline(lector.ficheroEntrada,parametro, '=');
+
         getline(lector.ficheroEntrada,dato);
-        cout << "Parametro: " << parametro << " dato : " << dato << endl;
+        stringstream  issDato(dato);
+        //LEO PARAMETRO Y DECIDO CUAL ES
+        if (parametro == "s") issDato >> parametros.s;
+        else if (parametro == "p") issDato >> parametros.p;
+        else if (parametro == "a") issDato >> parametros.a;
+        else if (parametro == "posXE") issDato >> parametros.posXE;
+        else if (parametro == "posYE") issDato >> parametros.posYE;
+        else if (parametro == "iM") issDato >> parametros.iM;
+        else if (parametro == "vM") issDato >> parametros.vM;
+        else if (parametro == "iB") issDato >> parametros.iB;
+        else if (parametro == "vB") issDato >> parametros.vB;
+        else if (parametro == "iP") issDato >> parametros.iP;
+
         }
     }
+    toString(parametros);
     return parametros;
 }
-/*
-PRE: Lector creado y archivo abierto  /// ACA TIENE Q DEVOLVER UNA LISTA
-Post: se devuelve linea siguiente de archivo, o EOF en caso de fin de archivo
-*/
+
 Comanda leerArchivoComandas(Lector & lector){
     Comanda comanda;
     string codItem;
@@ -38,15 +59,13 @@ Comanda leerArchivoComandas(Lector & lector){
             issCod >> comanda.codItem;
             stringstream iss (cantidad);
             iss >> comanda.cantidad;
-            cout << "coditem: " << codItem << " cantidad : " << cantidad << endl;
+            toString(comanda);
+            // SE CARGA NUEVO ITEM EN LISTA DE COMANDAS
         }
     }
     return comanda;
 }
-/*
-PRE: Lector creado y archivo abierto
-Post: se devuelve linea siguiente de archivo, o EOF en caso de fin de archivo  /// ACA TIENE Q DEVOLVER UNA LISTA
-*/
+
 Mina leerArchivoMinas(Lector & lector){
     Mina mina;
     string posX,posY,codItem,IP,seq1,seq2,seq3,seq4,seq5;
@@ -72,26 +91,16 @@ Mina leerArchivoMinas(Lector & lector){
             stringstream  issSeq4(seq4); issSeq4 >> mina.seq4;
             stringstream  issSeq5(seq5); issSeq5 >> mina.seq5;
 
-            cout << "PosX: " << mina.posX << "PosY: " << mina.posY <<"coditem: " << mina.codItem
-                << "SEQ: " << mina.seq1 << ";" <<mina.seq2<<";"<<mina.seq3<<";"<<mina.seq3<<";" << mina.seq4 << ";" << mina.seq5<< endl;
+            toString(mina);
         }
     }
     return mina;
 }
 
-/*
-PRE: Lector creado y archivo abierto
-Post: devuelve true si es fin o false caso contrario
-*/
 bool esFinDeArchivo(Lector &lector){
     bool fin = (lector.ficheroEntrada).eof();
     return fin;
 }
 
-/*
-PRE: Lector existente
-Post: se libera memoria para lector
-*/
 void eliminarLector(Lector & lector){
-    lector.ficheroEntrada.close(); //EN REALIDAD VA EN LECTOR
 }

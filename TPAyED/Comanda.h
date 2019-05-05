@@ -5,11 +5,39 @@
 
 using namespace std;
 
+/*
+    Definicicion de tipo de dato Comanda para cargar items de archivo
+    Atributos:
+    * codItem
+    * cantidad
+
+    Axiomas
+    * codItem > 0, existente
+    * cantidad < 100
+*/
+
+/* Tipo de estructura de Comanda */
+
 typedef struct Comanda{
     string codItem;
     int cantidad;
 }Comanda;
 
-string toString(Comanda &comanda);
+/************GETTERS AND SETTERS*********************/
+string getCodItem(Comanda &comanda);
+
+int getCantidad(Comanda &comanda);
+
+void setCodItem(Comanda &comanda, string codItem);
+
+void setCantidad(Comanda &comanda, int cantidad);
+
+/***************************************************/
+
+/*
+PRE: Mina existente y cargada
+Post: Muestra por pantalla los atributos
+*/
+void toString(Comanda &comanda);
 
 #endif // __PARAMETROS_H__

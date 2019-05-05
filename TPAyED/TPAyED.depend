@@ -5,13 +5,13 @@
 	<SDL_image.h>
 	"LecturaArchivos.h"
 
-1556724693 source:c:\users\nicolas\algoritmos\testlibreria\tpayed\parametros.cpp
+1557027603 source:c:\users\nicolas\algoritmos\testlibreria\tpayed\parametros.cpp
 	"Parametros.h"
 
-1556848734 source:c:\users\nicolas\algoritmos\testlibreria\tpayed\lecturaarchivos.cpp
+1557027538 source:c:\users\nicolas\algoritmos\testlibreria\tpayed\lecturaarchivos.cpp
 	"LecturaArchivos.h"
 
-1556729916 c:\users\nicolas\algoritmos\testlibreria\tpayed\lecturaarchivos.h
+1557020092 c:\users\nicolas\algoritmos\testlibreria\tpayed\lecturaarchivos.h
 	<iostream>
 	<fstream>
 	<sstream>
@@ -19,18 +19,18 @@
 	"Comanda.h"
 	"Mina.h"
 
-1556724685 c:\users\nicolas\algoritmos\testlibreria\tpayed\parametros.h
+1557027622 c:\users\nicolas\algoritmos\testlibreria\tpayed\parametros.h
 	<iostream>
 
-1556727417 source:c:\users\nicolas\algoritmos\testlibreria\tpayed\comanda.cpp
+1557021509 source:c:\users\nicolas\algoritmos\testlibreria\tpayed\comanda.cpp
 	"Comanda.h"
 
-1556728259 c:\users\nicolas\algoritmos\testlibreria\tpayed\comanda.h
+1557027939 c:\users\nicolas\algoritmos\testlibreria\tpayed\comanda.h
 	<iostream>
 
-1556727715 c:\users\nicolas\algoritmos\testlibreria\tpayed\mina.h
+1557027689 c:\users\nicolas\algoritmos\testlibreria\tpayed\mina.h
 	<iostream>
 
-1556727853 source:c:\users\nicolas\algoritmos\testlibreria\tpayed\mina.cpp
+1557027778 source:c:\users\nicolas\algoritmos\testlibreria\tpayed\mina.cpp
 	"Mina.h"
 
