@@ -6,7 +6,8 @@
 using namespace std;
 
 /*
-    Definicicion de tipo de dato Comanda para cargar items de archivo
+    Definicion de tipo de dato Comanda para cargar items de archivo
+    Cada comanda va a representar un reto a vencer en el juego
     Atributos:
     * codItem
     * cantidad
@@ -33,9 +34,18 @@ void setCodItem(Comanda &comanda, string codItem);
 void setCantidad(Comanda &comanda, int cantidad);
 
 /***************************************************/
-
 /*
-PRE: Mina existente y cargada
+PRE:
+Post: inicializa parametros de comanda, codIten="", cantidad=0
+*/
+void crearComanda(Comanda &comanda);
+/*
+PRE: comada creada
+Post: libera recursos solicitados por comanda
+*/
+void eliminarComanda(Comanda &comanda);
+/*
+PRE: Comanda existente y cargada
 Post: Muestra por pantalla los atributos
 */
 void toString(Comanda &comanda);
