@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+#include "Cajas.h"
+
 using namespace std;
 
 /*
