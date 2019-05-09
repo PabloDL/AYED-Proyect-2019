@@ -5,6 +5,10 @@
 
 using namespace std;
 
+/*
+Definicion de tipo de dato mina para representar estructura en donde se crean las cajas de item
+*/
+
 typedef struct Mina{
     int posX;
     int posY;
@@ -16,6 +20,11 @@ typedef struct Mina{
     int seq4;
     int seq5;
 }Mina;
+
+/*
+AXIOMAS
+Los item pueden ser: oro, plata, bronce, platino, roca y carbón.
+La secuencia esta establecida por 5 numeros enteros del 1 al 5 inclusive
 
 /************GETTERS AND SETTERS*********************/
 int getPosX(Mina &mina);
@@ -39,6 +48,25 @@ void setSeq4(Mina &mina, int seq4);
 void setSeq5(Mina &mina, int seq5);
 
 /***************************************************/
+
+/*
+PRE:
+POST: Inicializar los parametros de la mina
+*/
+void crearMina (Mina &mina);
+
+/*
+PRE: Mina creada
+POST: Eliminar recursos solicitados por la mina 
+*/
+void eliminarMina (Mina &mina);
+
+/*
+PRE: Mina creada
+POST: Devuelve cola de cajas
+*/
+void crearcaja (Mina &mina, Cajas &cajas);
+
 /*
 PRE: Mina existente y cargada
 Post: Muestra por pantalla los atributos
