@@ -7,6 +7,14 @@
 
 using namespace std;
 
+/*Declaracion de cola de cajas */
+
+typedef Colacaja{
+    cajas caja;
+    struct nodo *sgte;
+};Colacaja;
+
+ 
 /*
 Definicion de tipo de dato mina para representar estructura en donde se crean las cajas de item
 */
@@ -21,6 +29,7 @@ typedef struct Mina{
     int seq3;
     int seq4;
     int seq5;
+    Colacaja colacaja;
 }Mina;
 
 /*
@@ -67,7 +76,7 @@ void eliminarMina (Mina &mina);
 PRE: Mina creada
 POST: Devuelve cola de cajas
 */
-void crearcaja (Mina &mina, Cajas &cajas);
+void crearcaja (Mina &mina);
 
 /*
 PRE: Mina existente y cargada
