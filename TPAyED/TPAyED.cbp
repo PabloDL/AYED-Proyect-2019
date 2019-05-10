@@ -39,6 +39,9 @@
 		<Unit filename="Mina.h" />
 		<Unit filename="Parametros.cpp" />
 		<Unit filename="Parametros.h" />
+		<Unit filename="Terreno.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
