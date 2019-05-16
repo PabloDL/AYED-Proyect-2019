@@ -9,12 +9,12 @@ using namespace std;
 
 /*Declaracion de cola de cajas */
 
-typedef Colacaja{
-    cajas caja;
+typedef struct Colacaja{
+    Cajas caja;
     struct nodo *sgte;
-};Colacaja;
+}Colacaja;
 
- 
+
 /*
 Definicion de tipo de dato mina para representar estructura en donde se crean las cajas de item
 */
@@ -37,7 +37,7 @@ AXIOMAS
 Los item pueden ser: oro, plata, bronce, platino, roca y carbón.
 La secuencia esta establecida por 5 numeros enteros del 1 al 5 inclusive
 
-/************GETTERS AND SETTERS*********************/
+/***********GETTERS AND SETTERS*********************/
 int getPosX(Mina &mina);
 int getPosY(Mina &mina);
 int getCodItem(Mina &mina);
@@ -68,7 +68,7 @@ void crearMina (Mina &mina);
 
 /*
 PRE: Mina creada
-POST: Eliminar recursos solicitados por la mina 
+POST: Eliminar recursos solicitados por la mina
 */
 void eliminarMina (Mina &mina);
 
