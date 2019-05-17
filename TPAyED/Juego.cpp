@@ -7,7 +7,7 @@ void salirJuego(Juego &juego){
     SDL_DestroyWindow(juego.ventana);
     SDL_DestroyRenderer(juego.renderizador);
     SDL_Quit();
-    std::cout << "Se salió del Juego" << std::endl;
+    std::cout << "Se salio del Juego" << std::endl;
 }
 
 void inicializar(Juego &juego, const char* title, int xpos, int ypos, int width, int height, bool fullscreen){
@@ -24,7 +24,7 @@ void inicializar(Juego &juego, const char* title, int xpos, int ypos, int width,
         }
         juego.renderizador = SDL_CreateRenderer(juego.ventana, -1, 0);
         if(juego.renderizador){
-            SDL_SetRenderDrawColor(juego.renderizador, 255, 255, 255, 255);
+            SDL_SetRenderDrawColor(juego.renderizador, 101, 255, 100, 255);
             std::cout << "Renderizador creado..." << std::endl;
         }
         juego.estaCorriendo = true;

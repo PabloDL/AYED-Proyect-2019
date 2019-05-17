@@ -1,6 +1,5 @@
 #include <iostream>
 #include <SDL.h>
-
 #include <SDL_image.h>
 #include "LecturaArchivos.h"
 #include "Juego.h"
@@ -37,6 +36,9 @@ int main( int argc, char* argv[]){
 //        }
 
     //-------------------------------------------------------------------------------------------
+        const int FPS = 60;
+        const int FrameDelay = 100/FPS;
+
         Juego juego;
         crearJuego(juego);
         inicializar(juego, "Juego", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);

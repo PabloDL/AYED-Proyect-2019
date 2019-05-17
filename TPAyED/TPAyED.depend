@@ -58,7 +58,7 @@
 	<iostream>
 	"Cajas.h"
 
-1558061348 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\main.cpp
+1558062904 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -74,10 +74,10 @@
 1557887116 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\cajas.h
 	<iostream>
 
-1558061424 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\juego.h
+1558065245 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\juego.h
 	"SDL.h"
 	<iostream>
 
-1558061201 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\juego.cpp
+1558062175 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\juego.cpp
 	"Juego.h"
 
