@@ -10,9 +10,13 @@ void salirJuego(Juego &juego){
     std::cout << "Se salió del Juego" << std::endl;
 }
 
-void inicializar(Juego &juego, const char* title, int xpos, int ypos, int width, int height){
+void inicializar(Juego &juego, const char* title, int xpos, int ypos, int width, int height, bool fullscreen){
+    juego.counter = 0;
     int flags = 0;
-    if(SDL_Init(SDL_INIT_EVERYTHING) == 0){
+    if(fullscreen){
+        flags = SDL_WINDOW_FULLSCREEN;
+    }
+    if(SDL_Init(SDL_INIT_EVERYTHING) >= 0){
         std::cout << "subsistemas inicializados..." << std::endl;
         juego.ventana = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
         if(juego.ventana){
@@ -25,14 +29,16 @@ void inicializar(Juego &juego, const char* title, int xpos, int ypos, int width,
         }
         juego.estaCorriendo = true;
     }
-    juego.estaCorriendo = false;
+    else{
+        juego.estaCorriendo = false;
+    }
 }
 
 void manejarEventos(Juego &juego){
     SDL_Event evento;
     SDL_PollEvent(&evento);
     switch (evento.type){
-        case (SDL_Quit):
+        case SDL_QUIT:
             juego.estaCorriendo = false;
             break;
         default:
@@ -41,10 +47,14 @@ void manejarEventos(Juego &juego){
 }
 
 void actualizar(Juego &juego){
+    juego.counter++;
+    //AGREGAR FUNCIONES PARA ACTUALIZAR OBJETOS
+
+    std::cout << juego.counter << std::endl;
 }
 
 void renderizar(Juego &juego){
-    SDL_RenderClear(juego.renderizador)
+    SDL_RenderClear(juego.renderizador);
     //AGREGAR FUNCIONES PARA RENDERIZAR OBJETOS
     SDL_RenderPresent(juego.renderizador);
 }

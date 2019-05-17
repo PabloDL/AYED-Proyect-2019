@@ -39,32 +39,13 @@ int main( int argc, char* argv[]){
     //-------------------------------------------------------------------------------------------
         Juego juego;
         crearJuego(juego);
-        inicializar(juego,"Juego", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600);
+        inicializar(juego, "Juego", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
 
         while(corriendo(juego)){
             manejarEventos(juego);
             actualizar(juego);
             renderizar(juego);
         }
-
-
-
-    //const char WindowTitle []= "Game";
-        SDL_Init(SDL_INIT_EVERYTHING);
-
-        SDL_Window *window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
-        SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
-
-        SDL_SetRenderDrawColor(renderer, 150, 100, 100, 255);
-
-        SDL_RenderClear(renderer);
-
-        SDL_Delay(5000);
-
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,"OK","SDL esta ok",NULL);
-
-
-
-
+        salirJuego(juego);
     return 0;
 }
