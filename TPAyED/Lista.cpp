@@ -5,9 +5,10 @@
 /* Implementación de Primitivas */
 /*------------------------------*/
 
-void crearLista(Lista &lista, PFComparacion funcComparacion) {
+void crearLista(Lista &lista, PFComparacion funcComparacion, PFDestructor funcDestruye) {
   lista.primero = finLista();
   lista.compara = funcComparacion;
+  lista.destruye = funcDestruye;
 }
 
 /*----------------------------------------------------------------------------*/
@@ -237,7 +238,7 @@ void reordenar(Lista &lista) {
 
   Lista temp = lista;
   PtrNodoLista ptrCursor = primero(temp);
-  crearLista(lista, temp.compara);
+  crearLista(lista, temp.compara, temp.destruye);
   while ( ptrCursor != finLista() ) {
         PtrDato ptrDato;
         ptrDato = ptrCursor ->ptrDato;

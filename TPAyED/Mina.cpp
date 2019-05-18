@@ -36,6 +36,10 @@ void crearMina (Mina &mina){
 
 }
 
+void eliminarMina (Mina &mina){
+    //ACA VA DESTRUCTOR DE LA MINA
+}
+
 void toString(Mina &mina){
     cout << mina.posX << "|" << mina.posY << "|"  << mina.codItem << "|" << mina.IP << "|" << mina.seq1 << "|"
         << mina.seq2 << "|" << mina.seq3 << "|" << mina.seq3 << "|" << mina.seq4 << "|"

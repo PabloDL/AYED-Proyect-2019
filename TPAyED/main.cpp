@@ -34,7 +34,7 @@ int main( int argc, char* argv[]){
     cout << "***************** prueba de lista de minas -> " << endl;
     Lista listaMinas;
     //CREO LISTA
-    crearLista(listaMinas, compararListaMinas);
+    crearLista(listaMinas, compararListaMinas, eliminarMinasDeLista);
     //agrego elemento a lista
     Mina* m = new Mina;
     crearMina((*m));

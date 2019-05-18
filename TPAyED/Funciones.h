@@ -7,6 +7,9 @@
 //COMPARADORES
 ResultadoComparacion compararListaMinas(PtrDato ptrDato1, PtrDato ptrDato2);
 
+//DESTRUCTORES
+void eliminarMinasDeLista(PtrDato ptrDato);
+
 //IMPRESION
 void imprimirListaMinas(Lista &l);
 

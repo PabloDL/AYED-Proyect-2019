@@ -14,6 +14,12 @@ ResultadoComparacion compararListaMinas(PtrDato ptrDato1, PtrDato ptrDato2) {
     }
 }
 
+void eliminarMinasDeLista(PtrDato ptrDato) {
+    Mina minaAEliminar = *((Mina*) ptrDato);
+    eliminarMina(minaAEliminar);
+}
+
+
 void imprimirListaMinas(Lista &l){
         /// Recorro la lista
      if(!listaVacia(l)){

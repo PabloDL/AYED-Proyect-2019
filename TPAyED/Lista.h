@@ -31,10 +31,13 @@ typedef NodoLista* PtrNodoLista;
 
 typedef ResultadoComparacion (*PFComparacion)(PtrDato , PtrDato);
 
+typedef void (*PFDestructor)(PtrDato);
+
 /* Tipo de Estructura de la Lista */
 struct Lista{
     PtrNodoLista primero;      // puntero al primer nodo de la lista
     PFComparacion compara;
+    PFDestructor destruye;
 };
 
 /******************************************************************************/
@@ -47,7 +50,7 @@ struct Lista{
 
   lista : estructura de datos a ser creado.
 */
-void crearLista(Lista &lista, PFComparacion funcComparacion);
+void crearLista(Lista &lista, PFComparacion funcComparacion, PFDestructor funcDestruye);
 
 /*----------------------------------------------------------------------------*/
 /*
