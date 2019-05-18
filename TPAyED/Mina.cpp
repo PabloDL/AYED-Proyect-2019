@@ -22,6 +22,20 @@ void setSeq5(Mina &mina, int seq5){mina.seq5 = seq5;}
 
 /***************************************************/
 
+void crearMina (Mina &mina){
+    mina.codItem = 1;
+
+    mina.IP = 1;
+    mina.posX = 1;
+    mina.posY = 1;
+    mina.seq1 = 1;
+    mina.seq2 = 1;
+    mina.seq3 = 1;
+    mina.seq4 = 1;
+    mina.seq5 = 1;
+
+}
+
 void toString(Mina &mina){
     cout << mina.posX << "|" << mina.posY << "|"  << mina.codItem << "|" << mina.IP << "|" << mina.seq1 << "|"
         << mina.seq2 << "|" << mina.seq3 << "|" << mina.seq3 << "|" << mina.seq4 << "|"
