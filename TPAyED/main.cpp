@@ -1,8 +1,12 @@
 #include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
+
 #include "LecturaArchivos.h"
 #include "Juego.h"
+#include "Lista.h"
+#include "Funciones.h"
+#include "Mina.h"
 
 int main( int argc, char* argv[]){
 
@@ -27,15 +31,7 @@ int main( int argc, char* argv[]){
     leerArchivoMinas(lectorMinas);
     eliminarLector(lectorMinas);
 
-//        if(SDL_Init(SDL_INIT_EVERYTHING)>=0){
-//            SDL_ShowSimpleMessageBox(
-//            SDL_MESSAGEBOX_INFORMATION,
-//            "OK",
-//            "SDL esta ok",
-//            NULL);
-//        }
-
-    //-------------------------------------------------------------------------------------------
+//<<<<<<< Desarrollo-Pablo
         const int FPS = 60;
         const int FrameDelay = 100/FPS;
 
@@ -49,5 +45,32 @@ int main( int argc, char* argv[]){
             renderizar(juego);
         }
         salirJuego(juego);
+//=======
+
+    cout << "***************** prueba de lista de minas -> " << endl;
+    Lista listaMinas;
+    //CREO LISTA
+    crearLista(listaMinas, compararListaMinas, eliminarMinasDeLista);
+    //agrego elemento a lista
+    Mina* m = new Mina;
+    crearMina((*m));
+    adicionarPrincipio(listaMinas, m);
+    adicionarPrincipio(listaMinas, m);
+    adicionarPrincipio(listaMinas, m);
+    adicionarPrincipio(listaMinas, m);
+    imprimirListaMinas(listaMinas);
+
+
+    if(SDL_Init(SDL_INIT_EVERYTHING)>=0){
+        SDL_ShowSimpleMessageBox(
+        SDL_MESSAGEBOX_INFORMATION,
+        "OK",
+        "SDL esta ok",
+        NULL);
+    }
+
+
+
+//>>>>>>> master
     return 0;
 }
