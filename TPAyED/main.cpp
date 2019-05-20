@@ -3,12 +3,13 @@
 #include <SDL_image.h>
 
 #include "LecturaArchivos.h"
+#include "Juego.h"
 #include "Lista.h"
 #include "Funciones.h"
 #include "Mina.h"
 
-
 int main( int argc, char* argv[]){
+
     cout << "lectura Comanda" << endl;
     Lector lectorComanda;
     crearLector(lectorComanda);
@@ -30,6 +31,21 @@ int main( int argc, char* argv[]){
     leerArchivoMinas(lectorMinas);
     eliminarLector(lectorMinas);
 
+//<<<<<<< Desarrollo-Pablo
+        const int FPS = 60;
+        const int FrameDelay = 100/FPS;
+
+        Juego juego;
+        crearJuego(juego);
+        inicializar(juego, "Juego", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
+
+        while(corriendo(juego)){
+            manejarEventos(juego);
+            actualizar(juego);
+            renderizar(juego);
+        }
+        salirJuego(juego);
+//=======
 
     cout << "***************** prueba de lista de minas -> " << endl;
     Lista listaMinas;
@@ -55,5 +71,6 @@ int main( int argc, char* argv[]){
 
 
 
+//>>>>>>> master
     return 0;
 }

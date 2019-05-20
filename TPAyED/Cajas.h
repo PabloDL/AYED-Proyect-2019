@@ -10,10 +10,10 @@ using namespace std;
 
 /*
 
-    Axiomas 
-    
+    Axiomas
+
     No puede contener mas de 5 item.
-    
+
 */
 
 
@@ -23,11 +23,9 @@ using namespace std;
 
 
 typedef struct Cajas{
-
    int cantitem;
    string codItem;
-
-};
+} Cajas;
 
 
 
@@ -36,7 +34,7 @@ typedef struct Cajas{
 
 /*PRE: Que la caja existe
 
-Post: Devuelve cantidad de item 
+Post: Devuelve cantidad de item
 
 */
 
@@ -54,7 +52,7 @@ void crearCaja(Cajas &cajas);
 
 /*PRE: Que la caja existe
 
-Post: Devuelve cantidad de item 
+Post: Devuelve cantidad de item
 
 */
 

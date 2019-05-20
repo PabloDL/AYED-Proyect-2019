@@ -37,7 +37,7 @@
 1557191498 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\comanda.cpp
 	"Comanda.h"
 
-1557191498 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\comanda.h
+1557208880 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\comanda.h
 	<iostream>
 
 1557191498 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\lecturaarchivos.cpp
@@ -54,18 +54,30 @@
 1557191498 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\parametros.h
 	<iostream>
 
-1557191498 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\mina.h
+1557546826 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\mina.h
 	<iostream>
+	"Cajas.h"
 
-1557191498 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\main.cpp
+1558062904 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	"LecturaArchivos.h"
+	"Juego.h"
 
 1557191498 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\mina.cpp
 	"Mina.h"
 
 1557191498 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\parametros.cpp
 	"Parametros.h"
+
+1557887116 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\cajas.h
+	<iostream>
+
+1558065245 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\juego.h
+	"SDL.h"
+	<iostream>
+
+1558062175 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\juego.cpp
+	"Juego.h"
 
