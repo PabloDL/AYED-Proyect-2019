@@ -15,6 +15,9 @@ typedef struct Terreno{
     Lista estaciones;
     Lista moneda;
     Lista bandidos;
+    /* la matriz tiene:
+    E=ESTACION, M=MINAS, L=LOCOMOTORA,B=BANDIDOS, m=MONEDAS,T=TERRENO VACIO  */
+    char matrizJuego[800][600];
 }Terreno;
 
 
@@ -58,5 +61,7 @@ void aparecerBandido(Terreno& terreno);
 //pre:Terreno tiene que estar creado e inicializado
 //post: se devuelve nueva produccion de mina
 void nuevaProduccionMina(Terreno& terreno);
+
+void actualizarTerreno(Terreno& terreno, int sentido);
 
 #endif // TERRENO_H__
