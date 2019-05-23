@@ -1,3 +1,6 @@
+#ifndef _LOCOMOTORA_H__
+#define _LOCOMOTORA_H__
+
 #include "posicion.h"
 //#include "pila.h" para cuando se agreguen los vagones a la locomotora
 
