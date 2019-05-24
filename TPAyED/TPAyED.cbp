@@ -33,24 +33,37 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Bandido.h" />
 		<Unit filename="Cajas.h" />
+		<Unit filename="Cola.cpp" />
+		<Unit filename="Cola.h" />
 		<Unit filename="Comanda.cpp" />
 		<Unit filename="Comanda.h" />
+		<Unit filename="Estacion.cpp" />
 		<Unit filename="Estacion.h" />
+		<Unit filename="Funciones.cpp" />
+		<Unit filename="Funciones.h" />
 		<Unit filename="Juego.cpp" />
 		<Unit filename="Juego.h" />
 		<Unit filename="LecturaArchivos.cpp" />
 		<Unit filename="LecturaArchivos.h" />
+		<Unit filename="Lista.cpp" />
+		<Unit filename="Lista.h" />
 		<Unit filename="Mina.cpp" />
 		<Unit filename="Mina.h" />
+		<Unit filename="Minas.cpp" />
+		<Unit filename="Moneda.h" />
 		<Unit filename="Parametros.cpp" />
 		<Unit filename="Parametros.h" />
+		<Unit filename="Pila.cpp" />
+		<Unit filename="Pila.h" />
+		<Unit filename="Posicion.cpp" />
 		<Unit filename="Posicion.h" />
-		<Unit filename="Terreno.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
+		<Unit filename="Terreno.cpp" />
+		<Unit filename="Terreno.h" />
 		<Unit filename="locomotora.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="vagon.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

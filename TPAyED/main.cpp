@@ -31,21 +31,27 @@ int main( int argc, char* argv[]){
     leerArchivoMinas(lectorMinas);
     eliminarLector(lectorMinas);
 
-//<<<<<<< Desarrollo-Pablo
-        const int FPS = 60;
-        const int FrameDelay = 100/FPS;
+    const int FPS = 60;
+    const int FrameDelay = 100/FPS;
+    Uint32 frameStart;
+    int frameTime;
 
-        Juego juego;
-        crearJuego(juego);
-        inicializar(juego, "Juego", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
+    Juego juego;
+    crearJuego(juego, "Juego", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
 
-        while(corriendo(juego)){
-            manejarEventos(juego);
-            actualizar(juego);
-            renderizar(juego);
+    while(corriendo(juego)){
+        frameStart = SDL_GetTicks();
+
+        manejarEventos(juego);
+        actualizar(juego);
+        renderizar(juego);
+
+        frameTime = SDL_GetTicks() - frameStart;
+        if(FrameDelay > frameTime){
+            SDL_Delay(FrameDelay - frameTime);
         }
-        salirJuego(juego);
-//=======
+    }
+    salirJuego(juego);
 
     cout << "***************** prueba de lista de minas -> " << endl;
     Lista listaMinas;

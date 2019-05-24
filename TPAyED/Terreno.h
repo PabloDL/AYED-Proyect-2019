@@ -1,25 +1,25 @@
-#ifndef _TERRENO_H__
-#define _TERRENO_H__
+#ifndef Terreno_h
+#define Terreno_h
 
 #include <iostream>
 
 using namespace std;
 
 typedef struct Terreno{
+    int ancho;
+    int alto;
     Locomotora locomotora;
     Lista minas;
     Lista estaciones;
     Lista moneda;
     Lista bandidos;
 }Terreno;
+/*******************GETTERS Y SETTERS*******************/
 
-
-/************GETTERS AND SETTERS*********************/
-
-//getters y setters
-void setLocoomotora(Vagon& vagon,int pesoMaximo);
-int getPesoMaximo(Vagon& vagon);
-
+int getAncho(Terreno& terreno)
+void setAncho(Terreno& terreno)
+int getAlto(Terreno& terreno)
+void setAlto(Terreno& terreno)
 
 /***********************PRIMITIVAS*********************/
 //pre:
@@ -51,4 +51,4 @@ void aparecerMoneda(Terreno& terreno);
 //post: se posiciona una moneda checkeando si es posible en el terreno
 void aparecerBandido(Terreno& terreno);
 
-#endif // TERRENO_H__
+#endif // Terreno_h

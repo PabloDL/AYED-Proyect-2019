@@ -15,21 +15,15 @@ typedef struct Juego{
 
 /*
 PRE: Juego no existe
-Post:
+Post:  se inicializan los atributos del juego
 */
-void crearJuego(Juego &juego);
+void crearJuego(Juego &juego, const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
 
 /*
 PRE: el juego tiene que estar inicializado
 Post: libera la memoria al destruir los tda
 */
 void salirJuego(Juego &juego);
-
-/*
-PRE: juego creado
-Post: se inicializan los atributos del juego
-*/
-void inicializar(Juego &juego, const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
 
 /*
 PRE: Juego inicializado

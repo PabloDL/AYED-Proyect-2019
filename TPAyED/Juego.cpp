@@ -1,16 +1,7 @@
 
 #include "Juego.h"
 
-void crearJuego(Juego &juego){}
-
-void salirJuego(Juego &juego){
-    SDL_DestroyWindow(juego.ventana);
-    SDL_DestroyRenderer(juego.renderizador);
-    SDL_Quit();
-    std::cout << "Se salio del Juego" << std::endl;
-}
-
-void inicializar(Juego &juego, const char* title, int xpos, int ypos, int width, int height, bool fullscreen){
+void crearJuego(Juego &juego, const char* title, int xpos, int ypos, int width, int height, bool fullscreen){
     juego.counter = 0;
     int flags = 0;
     if(fullscreen){
@@ -32,6 +23,13 @@ void inicializar(Juego &juego, const char* title, int xpos, int ypos, int width,
     else{
         juego.estaCorriendo = false;
     }
+}
+
+void salirJuego(Juego &juego){
+    SDL_DestroyWindow(juego.ventana);
+    SDL_DestroyRenderer(juego.renderizador);
+    SDL_Quit();
+    std::cout << "Se salio del Juego" << std::endl;
 }
 
 void manejarEventos(Juego &juego){
