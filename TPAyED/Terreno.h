@@ -6,6 +6,7 @@
 #include "Lista.h"
 #include "vagon.h"
 #include "Mina.h"
+#include "Moneda.h"
 
 using namespace std;
 
@@ -18,6 +19,7 @@ typedef struct Terreno{
     /* la matriz tiene:
     E=ESTACION, M=MINAS, L=LOCOMOTORA,B=BANDIDOS, m=MONEDAS,T=TERRENO VACIO  */
     char matrizJuego[800][600];
+    int intervaloActual; //cada vez entro a actualizarTerreno incremento intervalo actual
 }Terreno;
 
 
@@ -42,7 +44,7 @@ void eliminarTerreno(Terreno& terreno);
 //post: se posiciona la locomotora en el terreno
 void aparecerLocomotora(Terreno& terreno);
 
-//pre:Terreno tiene que estar creado e inicializado
+//pre: Terreno tiene que estar creado e inicializado
 //post: se posiciona una mina en el terreno
 void aparecerMina(Terreno& terreno);
 
@@ -62,6 +64,19 @@ void aparecerBandido(Terreno& terreno);
 //post: se devuelve nueva produccion de mina
 void nuevaProduccionMina(Terreno& terreno);
 
+//PRE: Terreno Creado y inicializado
+//POST: Terreno actualizado, con movimientos de locomotora yproducciones de minas, monedas  y bandidos
 void actualizarTerreno(Terreno& terreno, int sentido);
+
+//PRE: Terreno Creado y inicializado
+//POST: Matriz actualizada con nuvos movimientos
+void actualizarMatrizJuego(Terreno &terreno);
+
+//PRE: Terreno Creado y inicializado
+//POST: Avanza locomotora y sus vagones, verifica si algun vagon o la locomotora tienn una intercepciopn
+//y en tal caso efectua accion
+void avanzarLocomotora(Terreno &terreno, int sentido);
+
+
 
 #endif // TERRENO_H__
