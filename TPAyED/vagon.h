@@ -2,6 +2,8 @@
 #define _vagon_h_
 
 #include "posicion.h"
+#include "Cajas.h"
+
 enum item{//ITEMS
     ORO,PLATA,BRONCE,
     PLATINO,ROCA,CARBON,
@@ -44,7 +46,7 @@ void avanzar(Vagon& vagon,Posicion& posicion);
 //pre: vagon creado y con capMaxima total disponible o el (tipoVagon tiene que ser el mismo que caja
 //     y tener suficiente capacidad para poder almacenarlo)
 //post: guarda una caja en un vagon,si no se cumple ni una de las 2 condiciones anteriores no hace nada
-void almacenarItem(Vagon& vagon,Caja& caja);
+void almacenarItem(Vagon& vagon,Cajas& caja);
 
 //pre:Vagon creado
 //post; devuelve '1' si el vagon esta vacio osea si no tiene ni un item o '0' si no esta vacio

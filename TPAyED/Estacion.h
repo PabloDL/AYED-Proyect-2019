@@ -25,7 +25,8 @@ typedef struct Estacion{
 }Estacion;
 
 /************GETTERS AND SETTERS*********************/
-
+Posicion getPosicion(Estacion &estacion);
+void setPosicion(Estacion &estacion, Posicion posicion);
 /***************************************************/
 /*
 PRE:

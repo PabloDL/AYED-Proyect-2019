@@ -30,11 +30,13 @@ typedef struct Mina{
     int seq4;
     int seq5;
     Colacaja colacaja;
+
+    int seqActual;
 }Mina;
 
 /*
 AXIOMAS
-Los item pueden ser: oro, plata, bronce, platino, roca y carbÃ³n.
+Los item pueden ser: oro, plata, bronce, platino, roca y carbón.
 La secuencia esta establecida por 5 numeros enteros del 1 al 5 inclusive
 
 /***********GETTERS AND SETTERS*********************/
@@ -62,7 +64,7 @@ void setSeq5(Mina &mina, int seq5);
 
 /*
 PRE:
-POST: Inicializar los parametros de la mina
+POST: Inicializar los parametros de la mina, seqActual=1
 */
 void crearMina (Mina &mina);
 
@@ -74,14 +76,15 @@ void eliminarMina (Mina &mina);
 
 /*
 PRE: Mina creada
-POST: Devuelve cola de cajas
+POST: agrega caja a mina, segun corresponda sequencia actual (SeqActual = 1;)
 */
-void crearcaja (Mina &mina);
+void crearCaja (Mina &mina);
 
 /*
 PRE: Mina existente y cargada
 Post: Muestra por pantalla los atributos
 */
 void toString(Mina &mina);
+
 
 #endif // __PARAMETROS_H__

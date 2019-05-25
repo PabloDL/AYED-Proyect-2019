@@ -34,14 +34,40 @@ void crearMina (Mina &mina){
     mina.seq4 = 1;
     mina.seq5 = 1;
 
+    mina.seqActual=1;
+
 }
 
 void eliminarMina (Mina &mina){
     //ACA VA DESTRUCTOR DE LA MINA
 }
 
+//TIENE Q DEVOLVER STRING ESTA CONCEPTUALMENTE MAL
 void toString(Mina &mina){
     cout << mina.posX << "|" << mina.posY << "|"  << mina.codItem << "|" << mina.IP << "|" << mina.seq1 << "|"
         << mina.seq2 << "|" << mina.seq3 << "|" << mina.seq3 << "|" << mina.seq4 << "|"
         << mina.seq5 << endl;
+}
+
+void crearCaja (Mina &mina){
+    //dependiendo de la seguencia actual agrego lo que corresponda
+    switch (mina.seqActual){
+        case 1:
+            //encolar(mina.colacaja,
+            break;
+        case 2:
+            //encolar(mina.colacaja,
+            break;
+        case 3:
+        //    encolar(mina.colacaja,
+            break;
+        case 4:
+          //  encolar(mina.colacaja,
+            break;
+        case 5:
+    //        encolar(mina.colacaja,
+            break;
+    }
+    mina.seqActual++;
+
 }

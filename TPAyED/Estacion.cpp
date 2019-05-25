@@ -1,6 +1,6 @@
 #include "Estacion.h"
 
-void getPosicion(Estacion &estacion){
+Posicion getPosicion(Estacion &estacion){
     return getPosicion(estacion);
 }
 void setPosicion(Estacion &estacion, Posicion posicion){
@@ -18,5 +18,3 @@ void eliminarEstacion(Estacion &estacion){
 int entregarVagon(Estacion &estacion, int cantidadMonedas){
     return COFICIENTE_PESO_VAGON * cantidadMonedas;
 }
-
-

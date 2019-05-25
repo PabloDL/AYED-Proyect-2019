@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+#include "Posicion.h"
+
 using namespace std;
 
 /*
