@@ -32,3 +32,10 @@ void moverPosicion(Posicion &posicion, int x, int y){
 bool esValidaPosicion(Posicion &posicion){ // ES DE TERRENO AL PARECER
 }
 
+bool mismaPosicion(Posicion &posA, Posicion &posB){
+    bool igual = false;
+    if (posA.x == posB.x && posA.y == posB.y)
+        igual = true;
+
+    return igual;
+}

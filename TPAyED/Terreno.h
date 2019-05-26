@@ -7,8 +7,16 @@
 #include "vagon.h"
 #include "Mina.h"
 #include "Moneda.h"
+#include "Estacion.h"
+
+#define ANCHO_TERRENO 20
+#define ALTO_TERRENO 20
 
 using namespace std;
+
+enum Estados{
+    JUGABLE, GAMEOVER, LOCOMOTORADETENIDA
+};
 
 typedef struct Terreno{
     //int ancho;
@@ -16,12 +24,13 @@ typedef struct Terreno{
     Locomotora locomotora;
     Lista minas;
     Lista estaciones;
-    Lista moneda;
+    Lista monedas;
     Lista bandidos;
     /* la matriz tiene:
     E=ESTACION, M=MINAS, L=LOCOMOTORA,B=BANDIDOS, m=MONEDAS,T=TERRENO VACIO  */
-    char matrizJuego[800][600];
+    char matrizJuego[ANCHO_TERRENO][ALTO_TERRENO];
     int intervaloActual; //cada vez entro a actualizarTerreno incremento intervalo actual
+    Estados estadoJuego;
 }Terreno;
 /*******************GETTERS Y SETTERS*******************/
 
@@ -64,19 +73,28 @@ void aparecerBandido(Terreno& terreno);
 //pre:Terreno tiene que estar creado e inicializado
 //post: se devuelve nueva produccion de mina
 void nuevaProduccionMina(Terreno& terreno);
-
-//PRE: Terreno Creado y inicializado
-//POST: Terreno actualizado, con movimientos de locomotora yproducciones de minas, monedas  y bandidos
+/*
+PRIMERO SE ACTUALIZAN TODOS LOS COMPONENTES, SE ACTUALIZA JUEGO Y LUEGO SE AVANZA LOCOMOTORA PARA
+CHEQUEAR SI CAMBIA ALGUN CONDICION DEL JUEGO Y SE MODIFICA SEGUN ESO
+PRE: Terreno Creado y inicializado
+POST: Terreno actualizado, con movimientos de locomotora yproducciones de minas, monedas  y bandidos
+      SI ALGUNA DE LAS CONDICIONES DEL JUEGO CAMBIA MODIFICA VARIABLE ESTADO
+*/
 void actualizarTerreno(Terreno& terreno, int sentido);
 
 //PRE: Terreno Creado y inicializado
-//POST: Matriz actualizada con nuvos movimientos
+//POST: Recore listas y redibuja si es necesario,
+//      Matriz actualizada con nuevos movimientos, revisa colisiones y de ser necesario aplica cambios
 void actualizarMatrizJuego(Terreno &terreno);
 
 //PRE: Terreno Creado y inicializado
 //POST: Avanza locomotora y sus vagones, verifica si algun vagon o la locomotora tienn una intercepciopn
 //y en tal caso efectua accion
 void avanzarLocomotora(Terreno &terreno, int sentido);
+
+//PRE: Terreno Creado y inicializado, se debe llamar de actualizar terreno
+//POST: verifica colisiones y actualiza estado matriz y actua en efecto
+void chequearColisiones(Terreno& terreno);
 
 #endif // Terreno_h
 

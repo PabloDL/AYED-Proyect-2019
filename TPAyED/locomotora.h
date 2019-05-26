@@ -5,6 +5,7 @@
 //#include "pila.h" para cuando se agreguen los vagones a la locomotora
 
 #define velocidad      5//macro
+
 enum sentido{//para definir los eventos del teclado
     IZQUIERDA,DERECHA,ARRIBA,ABAJO
 };
@@ -69,4 +70,7 @@ void obtenerMoneda(Locomotora& locomotora);
 //post: se le resta cantMonedas al campo monedasAdquiridas de locomotora y devuelve el nuevo total de monedasAdquiridas disponibles
 //      si no se cumple con la cantMonedas a pagar retorna 0
 int gastarMonedas(Locomotora& locomotora,int cantMonedas);
+
+void agregarVagon(Locomotora& locomotora,int capacidad);
+
 #endif // _locomotora_h_

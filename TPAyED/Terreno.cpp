@@ -1,6 +1,6 @@
 #include "Terreno.h"
 
-namespace std;
+using namespace std;
 
 /************GETTERS AND SETTERS*********************/
 
@@ -21,8 +21,8 @@ void crearTerreno(Terreno& terreno){
     //INICIALIZO MATRIZ DE JUEGO
     terreno.intervaloActual = 0;
 
-    for(int i=0; i++; i<800){
-        for(int j=0; j++; j<800){
+    for(int i=0; i++; i< ANCHO_TERRENO){
+        for(int j=0; j++; j< ALTO_TERRENO){
             terreno.matrizJuego[i][j] = 'T';
         }
     }
@@ -41,12 +41,24 @@ void crearTerreno(Terreno& terreno){
 }
 
 void actualizarMatrizJuego(Terreno &terreno){
+
+}
+
+void eliminarTerreno(Terreno& terreno){}
+
+void aparecerLocomotora(Terreno& terreno){}
+
+void aparecerMina(Terreno& terreno){}
+
+void aparecerEstacion(Terreno& terreno){}
+
+void aparecerMoneda(Terreno& terreno){
     //obtengo moneda si corresponde en intervalo, la agrego a la matriz e elimino
-    NodoLista * ptrNodo = primero(terreno.moneda);
+    NodoLista * ptrNodo = primero(terreno.monedas);
     bool eliminarNodoMoneda = false;
      //Como la lista de monedas tiene orden en la aparicion la que aparecera va a ser la primera siempre
      //PERO TENGO Q RECORRER PARA SABER CUANDO SE LLEGA AL FINAL DEL TIEMPO
-    while(!listaVacia(terreno.moneda) && ptrNodo != finLista()){
+    while(!listaVacia(terreno.monedas) && ptrNodo != finLista()){
         Moneda * ptrMonedaActual = (Moneda*) ptrNodo->ptrDato;
         if ((getAparicion(*ptrMonedaActual)) == terreno.intervaloActual){
             Posicion p = getPosicion(*ptrMonedaActual);
@@ -59,24 +71,13 @@ void actualizarMatrizJuego(Terreno &terreno){
                eliminarNodoMoneda = true;
         }
         NodoLista * ptrNodoActual = ptrNodo;
-        ptrNodo = siguiente(terreno.moneda, ptrNodo);
+        ptrNodo = siguiente(terreno.monedas, ptrNodo);
         if (eliminarNodoMoneda){
-            eliminarNodo(terreno.moneda, ptrNodoActual);
+            eliminarNodo(terreno.monedas, ptrNodoActual);
             eliminarNodoMoneda = false;
         }
     }
-    //HACER LO MISMO PARA BANDIDO
 }
-
-void eliminarTerreno(Terreno& terreno){}
-
-void aparecerLocomotora(Terreno& terreno){}
-
-void aparecerMina(Terreno& terreno){}
-
-void aparecerEstacion(Terreno& terreno){}
-
-void aparecerMoneda(Terreno& terreno){}
 
 void aparecerBandido(Terreno& terreno){}
 
@@ -91,14 +92,20 @@ void nuevaProduccionMinas(Terreno& terreno){
     }
 }
 
+//YA esta todo cargado, hay q actualizar
 void actualizarTerreno(Terreno& terreno, int sentido){
     //Actualizar minas
+    nuevaProduccionMinas(terreno);
     //actualizar bandido //chequea si tiene q aparecer un bandido (el primero de lalista)
+    aparecerBandido(terreno);
     //actualizar monedas //chequea si tiene q aparecer una moneda (el primero de lalista)
+    aparecerMoneda(terreno);
+    //avanzarLocomotora -> ACTUAR SI POSICION DE LOCOMOTORA O VAGONES ESTA EN ZONA DE CONFLI
+    actualizarMatrizJuego(terreno);
     ////ACTUALIZAR EN MATRIZ SI APARECIO BANDIDO O MONEDA
-    //avanzarLocomotora -> ACTUAR SI POSICION DE LOCOMOTORA O VAGONES ESTA EN ZONA DE CONFLICTO
-    //VER EN MATRIZ Q HAY EN POSICION
-    //ACTUALIZAR MATRIZ CON NUEVAS POSICION DE LOCOMOTORA -> TENER EN CUENTA EL TIPO POSICION
+    avanzarLocomotora(terreno, sentido);
+    //REVISAR CAMBIOS
+    chequearColisiones(terreno);
 }
 
 void avanzarLocomotora(Terreno &terreno, int sentido){
@@ -106,3 +113,48 @@ void avanzarLocomotora(Terreno &terreno, int sentido){
     //
 
 }
+
+void chequearColisiones(Terreno & terreno){
+    Posicion posLocomotora = getPosicion(terreno.locomotora);
+    if (getX(posLocomotora) > ANCHO_TERRENO || getY(posLocomotora) > ALTO_TERRENO){
+        terreno.estadoJuego = GAMEOVER; // SI SALGO DEL CUADRADO TERMINA JUEGO
+    }
+    else{
+        //VERIFICO INTERSECCION
+        //E=ESTACION, M=MINAS, L=LOCOMOTORA,B=BANDIDOS, m=MONEDAS,T=TERRENO VACIO
+        if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'E'){
+            NodoLista * ptrNodo = primero(terreno.estaciones);;
+            Estacion * estacionActual = (Estacion*) ptrNodo->ptrDato;
+            while(! listaVacia(terreno.estaciones) && ptrNodo != finLista()){
+                Posicion posEstacion = getPosicion(*estacionActual);
+                if (mismaPosicion(posEstacion, posLocomotora)){
+            //SI ES MISMA ESTACION -> VENDO VAGON
+                    int capacidadVagon = entregarVagon((*estacionActual), getMonedasAdquiridas(terreno.locomotora));
+                    if (capacidadVagon > 0){
+                    agregarVagon(terreno.locomotora, capacidadVagon);
+                }
+            }
+            ptrNodo = siguiente(terreno.estaciones, ptrNodo);
+            Estacion * estacionActual = (Estacion*) ptrNodo->ptrDato;
+            terreno.estadoJuego = LOCOMOTORADETENIDA; // DETENGO LOCOMOTORA
+        }
+
+        }
+        else if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'M'){
+            //obtengo minas si es posible o eliminoproduccion si no tengo capacidad
+        }
+        else if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'B'){
+            //Peleo contra bandido
+        }
+        else if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'm'){
+            //obtengo monedas
+        }
+        else if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'T'){
+            //no tengoque hacer nada ya avanzo locomotora
+            //PENSAR SI VA ACA O AFUERA -> TIene q ir afuera para que cuando en el juego
+            //se toca la tecla para avanzar avance antes de verificar posicion
+        }
+    }
+
+}
+

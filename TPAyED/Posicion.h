@@ -57,4 +57,6 @@ Post: verifica si la posicion es valida en el juego, es
 */
 bool esValidaPosicion(Posicion &posicion);
 
+bool mismaPosicion(Posicion &posA, Posicion &posB);
+
 #endif // __PARAMETROS_H__
