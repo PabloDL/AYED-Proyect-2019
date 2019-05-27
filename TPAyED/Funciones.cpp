@@ -1,5 +1,6 @@
 #include "Funciones.h"
 #include "Mina.h"
+#include "Terreno.h"
 
 ResultadoComparacion compararListaMinas(PtrDato ptrDato1, PtrDato ptrDato2) {
     int dato1 = ((Mina*) ptrDato1)->codItem;
@@ -19,7 +20,6 @@ void eliminarMinasDeLista(PtrDato ptrDato) {
     eliminarMina(minaAEliminar);
 }
 
-
 void imprimirListaMinas(Lista &l){
         /// Recorro la lista
      if(!listaVacia(l)){
@@ -32,3 +32,59 @@ void imprimirListaMinas(Lista &l){
 
     }
 }
+//
+//ResultadoComparacion compararListaEstaciones(PtrDato ptrDato1, PtrDato ptrDato2) {
+//    int dato1 = ((Estacion*) ptrDato1)->id;
+//    int dato2 = ((Estacion*) ptrDato2)->id;
+//
+//    if (dato1 < dato2) {
+//        return MENOR;
+//    }else if (dato1 > dato2) {
+//        return MAYOR;
+//    }else{
+//        return IGUAL;
+//    }
+//}
+//
+//void eliminarEstacionDeLista(PtrDato ptrDato) {
+//    Estacion estacionAEliminar = *((Estacion*) ptrDato);
+//    eliminarEstacion(estacionAEliminar);
+//}
+//
+//ResultadoComparacion compararListaMonedas(PtrDato ptrDato1, PtrDato ptrDato2) {
+//    int dato1 = ((Moneda*) ptrDato1)->id;
+//    int dato2 = ((Moneda*) ptrDato2)->id;
+//
+//    if (dato1 < dato2) {
+//        return MENOR;
+//    }else if (dato1 > dato2) {
+//        return MAYOR;
+//    }else{
+//        return IGUAL;
+//    }
+//}
+//
+//void eliminarMonedaDeLista(PtrDato ptrDato) {
+//    Moneda monedaAEliminar = *((Moneda*) ptrDato);
+//    eliminarMoneda(monedaAEliminar);
+//}
+//
+//
+//ResultadoComparacion compararListaBandidos(PtrDato ptrDato1, PtrDato ptrDato2) {
+//    int dato1 = ((Bandido*) ptrDato1)->id;
+//    int dato2 = ((Bandido*) ptrDato2)->id;
+//
+//    if (dato1 < dato2) {
+//        return MENOR;
+//    }else if (dato1 > dato2) {
+//        return MAYOR;
+//    }else{
+//        return IGUAL;
+//    }
+//}
+//
+//void eliminarBandidoDeLista(PtrDato ptrDato) {
+//    Bandido bandidoAEliminar = *((Bandido*) ptrDato);
+//    eliminarBandido(bandidoAEliminar);
+//}
+

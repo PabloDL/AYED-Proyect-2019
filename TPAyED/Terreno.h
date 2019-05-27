@@ -9,6 +9,9 @@
 #include "Moneda.h"
 #include "Estacion.h"
 
+#include <SDL_image.h>
+
+
 #define ANCHO_TERRENO 20
 #define ALTO_TERRENO 20
 
@@ -31,6 +34,8 @@ typedef struct Terreno{
     char matrizJuego[ANCHO_TERRENO][ALTO_TERRENO];
     int intervaloActual; //cada vez entro a actualizarTerreno incremento intervalo actual
     Estados estadoJuego;
+    SDL_Texture *Texturas[10];
+    SDL_Rect rectImag;
 }Terreno;
 /*******************GETTERS Y SETTERS*******************/
 
@@ -95,6 +100,9 @@ void avanzarLocomotora(Terreno &terreno, int sentido);
 //PRE: Terreno Creado y inicializado, se debe llamar de actualizar terreno
 //POST: verifica colisiones y actualiza estado matriz y actua en efecto
 void chequearColisiones(Terreno& terreno);
+
+
+void renderizarTerreno(Terreno& terreno,SDL_Renderer &renderizador);
 
 #endif // Terreno_h
 

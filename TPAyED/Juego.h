@@ -3,15 +3,22 @@
 
 #include "SDL.h"
 #include <iostream>
+//---------------------
+#include "Terreno.h"
 
 using namespace std;
 
 typedef struct Juego{
+    Terreno *terreno;
     bool estaCorriendo;
     SDL_Window *ventana;
     SDL_Renderer *renderizador;
     int counter;
 }Juego;
+/*GETTERS Y SETTERS*/
+
+Terreno getTerreno(Juego& juego);
+
 
 /*
 PRE: Juego no existe
@@ -48,5 +55,8 @@ PRE: Juego inicializado
 Post: retorna el estado activo o no del juego
 */
 bool corriendo(Juego &juego);
+
+
+void cargarTexturas(Juego &juego);
 
 #endif // Game_h

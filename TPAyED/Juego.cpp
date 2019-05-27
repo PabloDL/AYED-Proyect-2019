@@ -1,7 +1,13 @@
 
 #include "Juego.h"
+#include "Terreno.h"
+/*GETTERS Y SETTERS*/
+Terreno getTerreno(Juego& juego){
+   // return juego.terreno
+}
 
-void crearJuego(Juego &juego, const char* title, int xpos, int ypos, int width, int height, bool fullscreen){
+/*-----------------------------*/
+void crearJuego(Juego& juego, const char* title, int xpos, int ypos, int width, int height, bool fullscreen){
     juego.counter = 0;
     int flags = 0;
     if(fullscreen){
@@ -19,20 +25,23 @@ void crearJuego(Juego &juego, const char* title, int xpos, int ypos, int width, 
             std::cout << "Renderizador creado..." << std::endl;
         }
         juego.estaCorriendo = true;
+
+
+        crearTerreno(*juego.terreno);
     }
     else{
         juego.estaCorriendo = false;
     }
 }
 
-void salirJuego(Juego &juego){
+void salirJuego(Juego& juego){
     SDL_DestroyWindow(juego.ventana);
     SDL_DestroyRenderer(juego.renderizador);
     SDL_Quit();
     std::cout << "Se salio del Juego" << std::endl;
 }
 
-void manejarEventos(Juego &juego){
+void manejarEventos(Juego& juego){
     SDL_Event evento;
     SDL_PollEvent(&evento);
     switch (evento.type){
@@ -44,19 +53,29 @@ void manejarEventos(Juego &juego){
     }
 }
 
-void actualizar(Juego &juego){
+void actualizar(Juego& juego){
     juego.counter++;
     //AGREGAR FUNCIONES PARA ACTUALIZAR OBJETOS
 
     std::cout << juego.counter << std::endl;
 }
 
-void renderizar(Juego &juego){
+void renderizar(Juego& juego){
+    cargarTexturas(juego);
     SDL_RenderClear(juego.renderizador);
     //AGREGAR FUNCIONES PARA RENDERIZAR OBJETOS
+
+
     SDL_RenderPresent(juego.renderizador);
 }
 
-bool corriendo(Juego &juego){
+bool corriendo(Juego& juego){
     return juego.estaCorriendo;
 }
+
+
+void cargarTexturas(Juego& juego){
+    cargarTexturas( *juego.terreno, &juego.renderizador);
+}
+
+

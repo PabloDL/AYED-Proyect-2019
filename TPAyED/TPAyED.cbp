@@ -61,6 +61,7 @@
 		<Unit filename="Posicion.h" />
 		<Unit filename="Terreno.cpp" />
 		<Unit filename="Terreno.h" />
+		<Unit filename="locomotora.cpp" />
 		<Unit filename="locomotora.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="vagon.h" />

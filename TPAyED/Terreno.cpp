@@ -21,11 +21,22 @@ void crearTerreno(Terreno& terreno){
     //INICIALIZO MATRIZ DE JUEGO
     terreno.intervaloActual = 0;
 
+
+
+
     for(int i=0; i++; i< ANCHO_TERRENO){
         for(int j=0; j++; j< ALTO_TERRENO){
-            terreno.matrizJuego[i][j] = 'T';
+            terreno.matrizJuego[i][j] = rand()% 10;
+            //necesito numeros aleatorios para poder cargar texturas distintas en el fondo
         }
     }
+
+/*
+    juego.locomotora.rectImag.y=juego.locomotora.f* 50;//coordenada de dibujo y
+    juego.locomotora.rectImag.x= juego.locomotora.c* 50;//coordenada de dibujo x
+    juego.locomotora.rectImag.w= 50;//ancho
+    juego.locomotora.rectImag.h= 50;//alto
+*/
     //Crea minas segun archivo Minas.h
     aparecerMina(terreno);
     //APARECERESTACION
@@ -158,3 +169,29 @@ void chequearColisiones(Terreno & terreno){
 
 }
 
+void cargarTexturas(Terreno& terreno, SDL_Renderer& renderizador){
+    terreno.Texturas[0] = IMG_LoadTexture(renderizador, "assets/img/suelo_0.png");
+    terreno.Texturas[1] = IMG_LoadTexture(renderizador, "assets/img/suelo_1.png");
+    terreno.Texturas[2] = IMG_LoadTexture(renderizador, "assets/img/suelo_2.png");
+    terreno.Texturas[3] = IMG_LoadTexture(renderizador, "assets/img/suelo_3.png");
+    terreno.Texturas[4] = IMG_LoadTexture(renderizador, "assets/img/suelo_4.png");
+    terreno.Texturas[5] = IMG_LoadTexture(renderizador, "assets/img/suelo_5.png");
+    terreno.Texturas[6] = IMG_LoadTexture(renderizador, "assets/img/suelo_6.png");
+    terreno.Texturas[7] = IMG_LoadTexture(renderizador, "assets/img/suelo_7.png");
+    terreno.Texturas[8] = IMG_LoadTexture(renderizador, "assets/img/suelo_8.png");
+    terreno.Texturas[9] = IMG_LoadTexture(renderizador, "assets/img/suelo_9.png");
+
+}
+
+
+void renderizarTerreno(Terreno& terreno,SDL_Renderer& renderizador){
+    for(int c=0;c<ANCHO_TERRENO;c++){
+        for(int d=0;d<ALTO_TERRENO;d++){
+            terreno.rectImag.x=c*50;
+            terreno.rectImag.y=d*50;
+            terreno.rectImag.w=50;
+            terreno.rectImag.h=50;
+            SDL_RenderCopy(renderer, textureList[r], NULL, &displayRect);
+        }
+    }
+}

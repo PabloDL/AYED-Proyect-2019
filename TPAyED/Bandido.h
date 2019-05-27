@@ -23,6 +23,7 @@ Definicion de tipo de dato Bandido para representar el rival del juego
 /* Tipo de estructura de Bandido */
 
 typedef struct Bandido{
+    int id;
     int cantidad;
     Posicion posicion;
     int tiempoVida;
@@ -30,11 +31,13 @@ typedef struct Bandido{
 }Bandido;
 
 /************GETTERS AND SETTERS*********************/
+int getId(Bandido &bandido);
 int getCantidad(Bandido &bandido);
 int getPosicion(Bandido &bandido);
 int getTiempoVida(Bandido &bandido);
 int getIntervaloHastaAparicion(Bandido &bandido);
 
+void setId(Bandido &Bandido)
 void setCantidad(Bandido &bandido, int cantidad);
 void setCantidad(Bandido &bandido, Posicion posicion);
 void setCantidad(Bandido &bandido, int tiempoVida);
