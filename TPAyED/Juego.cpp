@@ -75,7 +75,8 @@ bool corriendo(Juego& juego){
 
 
 void cargarTexturas(Juego& juego){
-    cargarTexturas( *juego.terreno, &juego.renderizador);
+    cargarTexturas( *juego.terreno,
+                    *juego.renderizador);
 }
 
 

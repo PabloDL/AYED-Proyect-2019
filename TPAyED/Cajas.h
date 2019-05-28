@@ -20,14 +20,10 @@ using namespace std;
 
 /* Tipo de estructura de Cajas */
 
-
-
 typedef struct Cajas{
    int cantitem;
    string codItem;
 } Cajas;
-
-
 
 /************************************************/
 
