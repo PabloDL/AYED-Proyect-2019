@@ -170,7 +170,7 @@ void chequearColisiones(Terreno & terreno){
 
 }
 
-void cargarTexturas(Terreno& terreno, SDL_Renderer& renderizador){
+void cargarTexturasTerreno(Terreno& terreno, SDL_Renderer& renderizador){
     terreno.texturas[0] = IMG_LoadTexture(&renderizador, "assets/img/suelo_0.png");
     terreno.texturas[1] = IMG_LoadTexture(&renderizador, "assets/img/suelo_1.png");
     terreno.texturas[2] = IMG_LoadTexture(&renderizador, "assets/img/suelo_2.png");

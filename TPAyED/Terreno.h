@@ -102,6 +102,7 @@ void avanzarLocomotora(Terreno &terreno, int sentido);
 //POST: verifica colisiones y actualiza estado matriz y actua en efecto
 void chequearColisiones(Terreno& terreno);
 
+void cargarTexturasTerreno(Terreno& terreno, SDL_Renderer& renderizador);
 
 void renderizarTerreno(Terreno& terreno,SDL_Renderer &renderizador);
 
