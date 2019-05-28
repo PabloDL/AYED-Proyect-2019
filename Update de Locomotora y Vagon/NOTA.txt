@@ -1,0 +1,10 @@
+Para mi Caja deberia tener 3 campos:
+capMaxima(que seria la capacidad maxima de lingotes de dicha caja) , cantItem(que seria la cantidad actual de lingotes en base a la capacidad maxima) , codItem (el tipo de item que puede almacenar la caja)
+
+teniendo en cuenta que la caja se crea con una cantidad de lingotes establecidos por ende la cantItem y capMaxima tendrian el mismo valor al crearse
+
+getCodItem seria una primitiva de CAJA que me devolveria el tipo de items que puede almacenar una caja (ORO, BRONCE, PLATA ,ETC)
+
+getCapMaxima seria una primitiva de CAJA que me devolveria la capacidad maxima de lingostes que puede tener una caja
+
+getCantItem seria una primitiva de CAJA que me devolveria la cantidad actual de lingotes que tiene una caja dependiendo de su respectiva capacidad
