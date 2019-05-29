@@ -155,7 +155,27 @@ void chequearColisiones(Terreno & terreno){
             //obtengo minas si es posible o eliminoproduccion si no tengo capacidad
         }
         else if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'B'){
-            //Peleo contra bandido
+                //chequeo colision con bandido ACA HAY Q REVISAR Y HACER ALGUNA FUNCION DE RADAR DE BANDIDO
+            NodoLista * ptrNodo = primero(terreno.bandidos);;
+            Bandido * bandidoActual = (Bandido*) ptrNodo->ptrDato;
+            bool encontrado = false;
+            while(! listaVacia(terreno.bandidos) && ptrNodo != finLista() && !encontrado){
+                Posicion posBandido = getPosicion(*bandidoActual);
+                if (mismaPosicion(posBandido, posLocomotora)){
+                    //SACO MONEDAS
+                    gastarMonedas(terreno.locomotora, getCantidad(*bandidoActual));
+                    encontrado = true;
+                }
+                if (encontrado){
+                    //ELIMINO BANDIDO Y ELIMINO DATO DE MATRIZ
+                    eliminarNodo(terreno.bandidos, ptrNodo);
+                    terreno.matrizJuego[getX(posBandido)][getY(posBandido)] = 'T';
+                }
+                else{
+                    ptrNodo = siguiente(terreno.bandidos, ptrNodo);
+                    Bandido * bandidoActual = (Bandido*) ptrNodo->ptrDato;
+                }
+            }
         }
         else if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'm'){
             //obtengo monedas
@@ -165,9 +185,11 @@ void chequearColisiones(Terreno & terreno){
             //PENSAR SI VA ACA O AFUERA -> TIene q ir afuera para que cuando en el juego
             //se toca la tecla para avanzar avance antes de verificar posicion
         }
+
     }
 
 }
+
 
 void cargarTexturas(Terreno& terreno, SDL_Renderer& renderizador){
     terreno.Texturas[0] = IMG_LoadTexture(renderizador, "assets/img/suelo_0.png");
