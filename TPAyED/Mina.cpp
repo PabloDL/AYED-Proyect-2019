@@ -1,4 +1,5 @@
 #include "Mina.h"
+#include "Cola.h"
 /************GETTERS AND SETTERS*********************/
 int getPosX(Mina &mina) {return mina.posX;};
 int getPosY(Mina &mina) {return mina.posY;};
@@ -35,11 +36,11 @@ void crearMina (Mina &mina){
     mina.seq5 = 1;
 
     mina.seqActual=1;
-
+    crearcola();
 }
 
 void eliminarMina (Mina &mina){
-    //ACA VA DESTRUCTOR DE LA MINA
+    eliminarCola();
 }
 
 //TIENE Q DEVOLVER STRING ESTA CONCEPTUALMENTE MAL
@@ -51,23 +52,34 @@ void toString(Mina &mina){
 
 void crearCaja (Mina &mina){
     //dependiendo de la seguencia actual agrego lo que corresponda
+    
     switch (mina.seqActual){
         case 1:
-            //encolar(mina.colacaja,
+            encolar (mina.colacaja, seq1);
+             mina.seqActual++;
+            
             break;
         case 2:
-            //encolar(mina.colacaja,
+             encolar (mina.colacaja, seq2);
+             mina.seqActual++;
+           
             break;
         case 3:
-        //    encolar(mina.colacaja,
+             encolar (mina.colacaja, seq3);
+             mina.seqActual++;
+        
             break;
         case 4:
-          //  encolar(mina.colacaja,
+            encolar (mina.colacaja, seq4);
+             mina.seqActual++;
+         
             break;
         case 5:
-    //        encolar(mina.colacaja,
+            encolar (mina.colacaja, seq5);
+             mina.seqActual = 1;
+    
             break;
     }
-    mina.seqActual++;
+   
 
 }

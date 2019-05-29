@@ -34,8 +34,9 @@ typedef struct Terreno{
     char matrizJuego[ANCHO_TERRENO][ALTO_TERRENO];
     int intervaloActual; //cada vez entro a actualizarTerreno incremento intervalo actual
     Estados estadoJuego;
-    SDL_Texture *Texturas[10];
+    SDL_Texture *texturas[10];
     SDL_Rect rectImag;
+    int textureMap[ANCHO_TERRENO][ALTO_TERRENO];
 }Terreno;
 /*******************GETTERS Y SETTERS*******************/
 
@@ -101,6 +102,7 @@ void avanzarLocomotora(Terreno &terreno, int sentido);
 //POST: verifica colisiones y actualiza estado matriz y actua en efecto
 void chequearColisiones(Terreno& terreno);
 
+void cargarTexturasTerreno(Terreno& terreno, SDL_Renderer& renderizador);
 
 void renderizarTerreno(Terreno& terreno,SDL_Renderer &renderizador);
 

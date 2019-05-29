@@ -36,7 +36,7 @@ typedef struct Mina{
 
 /*
 AXIOMAS
-Los item pueden ser: oro, plata, bronce, platino, roca y carbón.
+Los item pueden ser: oro, plata, bronce, platino, roca y carbÃ³n.
 La secuencia esta establecida por 5 numeros enteros del 1 al 5 inclusive
 
 /***********GETTERS AND SETTERS*********************/
@@ -79,6 +79,13 @@ PRE: Mina creada
 POST: agrega caja a mina, segun corresponda sequencia actual (SeqActual = 1;)
 */
 void crearCaja (Mina &mina);
+
+/*
+PRE: Caja creada
+Post: libera recursos solicitados por para caja
+*/
+
+void eliminarCaja(Cajas &cajas);
 
 /*
 PRE: Mina existente y cargada
