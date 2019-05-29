@@ -16,7 +16,7 @@ using namespace std;
 
 typedef struct Cajas{
    int cantitem;
-   string codItem;
+   int codItem;
    int capMaxima;
    int capActual;
 } Cajas;
