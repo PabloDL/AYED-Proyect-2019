@@ -15,7 +15,6 @@ using namespace std;
 /* Tipo de estructura de Cajas */
 
 typedef struct Cajas{
-   int cantitem;
    int codItem;
    int capMaxima;
    int capActual;
