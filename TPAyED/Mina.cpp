@@ -36,11 +36,11 @@ void crearMina (Mina &mina){
     mina.seq5 = 1;
 
     mina.seqActual=1;
-    crearcola();
+    crearCola(Cajas &cajas);
 }
 
 void eliminarMina (Mina &mina){
-    eliminarCola();
+    eliminarCola(Cajas &cajas);
 }
 
 //TIENE Q DEVOLVER STRING ESTA CONCEPTUALMENTE MAL
@@ -50,34 +50,40 @@ void toString(Mina &mina){
         << mina.seq5 << endl;
 }
 
-void crearCaja (Mina &mina){
+void crearCaja (Mina &mina, Cajas &cajas){
+    cajas.codItem = mina.codItem;
     //dependiendo de la seguencia actual agrego lo que corresponda
     
     switch (mina.seqActual){
         case 1:
             encolar (mina.colacaja, seq1);
-             mina.seqActual++;
-            
+            mina.seqActual++;
+            cajas.capActual = seq1;
+            cajas.capMaxima = seq1;
             break;
         case 2:
-             encolar (mina.colacaja, seq2);
-             mina.seqActual++;
-           
+            encolar (mina.colacaja, seq2);
+            mina.seqActual++;
+            cajas.capActual = seq2;
+            cajas.capMaxima = seq2;
             break;
         case 3:
-             encolar (mina.colacaja, seq3);
-             mina.seqActual++;
-        
+            encolar (mina.colacaja, seq3);
+            mina.seqActual++;
+            cajas.capActual = seq3;
+            cajas.capMaxima = seq3;
             break;
         case 4:
             encolar (mina.colacaja, seq4);
-             mina.seqActual++;
-         
+            mina.seqActual++;
+            cajas.capActual = seq4;
+            cajas.capMaxima = seq4;
             break;
         case 5:
             encolar (mina.colacaja, seq5);
-             mina.seqActual = 1;
-    
+            mina.seqActual = 1;
+            cajas.capActual = seq5;
+            cajas.capMaxima = seq5;
             break;
     }
    
