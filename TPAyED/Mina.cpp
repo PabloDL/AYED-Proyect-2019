@@ -24,17 +24,15 @@ void setSeq5(Mina &mina, int seq5){mina.seq5 = seq5;}
 /***************************************************/
 
 void crearMina (Mina &mina){
-    mina.codItem = 1;
-
-    mina.IP = 1;
-    mina.posX = 1;
-    mina.posY = 1;
-    mina.seq1 = 1;
-    mina.seq2 = 1;
-    mina.seq3 = 1;
-    mina.seq4 = 1;
-    mina.seq5 = 1;
-
+    setPosX(Mina &mina, int posX);
+    setPosY(Mina &mina, int posY);
+    setCodItem(Mina &mina, int codItem);
+    setIp(Mina &mina, int ip);
+    setSeq1(Mina &mina, int seq1);
+    setSeq2(Mina &mina, int seq2);
+    setSeq3(Mina &mina, int seq3);
+    setSeq4(Mina &mina, int seq4);
+    setSeq5(Mina &mina, int seq5);
     mina.seqActual=1;
     crearCola(Cajas &cajas);
 }
@@ -88,4 +86,8 @@ void crearCaja (Mina &mina, Cajas &cajas){
     }
    
 
+}
+
+void eliminarCaja (Cajas &cajas){
+desencolar (mina.colacaja);
 }
