@@ -78,7 +78,7 @@ void eliminarMina (Mina &mina);
 PRE: Mina creada
 POST: agrega caja a mina, segun corresponda sequencia actual (SeqActual = 1;)
 */
-void crearCaja (Mina &mina);
+void crearCaja (Mina &mina, Cajas &cajas);
 
 /*
 PRE: Caja creada
