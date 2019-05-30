@@ -37,7 +37,7 @@ int getPosicion(Bandido &bandido);
 int getTiempoVida(Bandido &bandido);
 int getIntervaloHastaAparicion(Bandido &bandido);
 
-void setId(Bandido &Bandido)
+void setId(Bandido &Bandido);
 void setCantidad(Bandido &bandido, int cantidad);
 void setCantidad(Bandido &bandido, Posicion posicion);
 void setCantidad(Bandido &bandido, int tiempoVida);
