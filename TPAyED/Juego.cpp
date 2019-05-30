@@ -1,4 +1,3 @@
-
 #include "Juego.h"
 #include "Terreno.h"
 /*GETTERS Y SETTERS*/
@@ -8,6 +7,7 @@ Terreno getTerreno(Juego& juego){
 
 /*-----------------------------*/
 void crearJuego(Juego& juego, const char* title, int xpos, int ypos, int width, int height, bool fullscreen){
+    juego.terreno = new Terreno;
     juego.counter = 0;
     int flags = 0;
     if(fullscreen){
@@ -77,5 +77,3 @@ void cargarTexturas(Juego& juego){
     cargarTexturasTerreno( *juego.terreno,
                     *juego.renderizador);
 }
-
-

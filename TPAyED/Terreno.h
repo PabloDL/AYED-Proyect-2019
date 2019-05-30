@@ -8,6 +8,7 @@
 #include "Mina.h"
 #include "Moneda.h"
 #include "Estacion.h"
+#include "Bandido.h"
 
 #include <SDL_image.h>
 
@@ -107,4 +108,3 @@ void cargarTexturasTerreno(Terreno& terreno, SDL_Renderer& renderizador);
 void renderizarTerreno(Terreno& terreno,SDL_Renderer &renderizador);
 
 #endif // Terreno_h
-
