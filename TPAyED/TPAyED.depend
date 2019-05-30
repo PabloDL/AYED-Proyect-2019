@@ -58,17 +58,18 @@
 	<iostream>
 	"Cajas.h"
 
-1558942193 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\main.cpp
+1559179482 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
+	<time.h>
 	"LecturaArchivos.h"
 	"Juego.h"
 	"Lista.h"
 	"Funciones.h"
 	"Mina.h"
 
-1559087440 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\mina.cpp
+1559177285 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\mina.cpp
 	"Mina.h"
 	"Cola.h"
 
@@ -83,7 +84,7 @@
 	<iostream>
 	"Terreno.h"
 
-1559087370 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\juego.cpp
+1559177290 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\juego.cpp
 	"Juego.h"
 	"Terreno.h"
 
@@ -132,7 +133,7 @@
 1558942193 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\posicion.cpp
 	"Posicion.h"
 
-1559176181 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\terreno.h
+1559177290 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\terreno.h
 	<iostream>
 	"locomotora.h"
 	"Lista.h"
@@ -151,7 +152,7 @@
 	<iostream>
 	"Posicion.h"
 
-1559087555 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\terreno.cpp
+1559179353 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\terreno.cpp
 	"Terreno.h"
 
 1559176303 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\bandido.h

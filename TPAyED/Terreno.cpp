@@ -19,13 +19,11 @@ void crearTerreno(Terreno& terreno){
     //INICIALIZO MATRIZ DE JUEGO
     terreno.intervaloActual = 0;
 
+    for(int i=0; i< ANCHO_TERRENO; i++){
+        for(int j=0; j< ALTO_TERRENO; j++){
+            terreno.matrizJuego[i][j] = 'T';
+            terreno.textureMap[i][j]= rand() % 9 + 0;
 
-
-
-    for(int i=0; i++; i< ANCHO_TERRENO){
-        for(int j=0; j++; j< ALTO_TERRENO){
-            terreno.matrizJuego[i][j] = '-';  //NO IRIA T???
-            terreno.textureMap[i][j]= rand()% 10;
             //necesito numeros aleatorios para poder cargar texturas distintas en el fondo
         }
     }
@@ -64,42 +62,42 @@ void aparecerEstacion(Terreno& terreno){}
 
 void aparecerMoneda(Terreno& terreno){
     //obtengo moneda si corresponde en intervalo, la agrego a la matriz e elimino
-    NodoLista * ptrNodo = primero(terreno.monedas);
-    bool eliminarNodoMoneda = false;
-     //Como la lista de monedas tiene orden en la aparicion la que aparecera va a ser la primera siempre
-     //PERO TENGO Q RECORRER PARA SABER CUANDO SE LLEGA AL FINAL DEL TIEMPO
-    while(!listaVacia(terreno.monedas) && ptrNodo != finLista()){
-        Moneda * ptrMonedaActual = (Moneda*) ptrNodo->ptrDato;
-        if ((getAparicion(*ptrMonedaActual)) == terreno.intervaloActual){
-            Posicion p = getPosicion(*ptrMonedaActual);
-            terreno.matrizJuego[getX(p)][getY(p)] = 'm';
-        }
-        if (getAparicion(*ptrMonedaActual) + getDuracion(*ptrMonedaActual) == terreno.intervaloActual){
-                //Llego al final del tiempo de vida
-                Posicion p = getPosicion(*ptrMonedaActual);
-               terreno.matrizJuego[getX(p)][getY(p)] = 'T';
-               eliminarNodoMoneda = true;
-        }
-        NodoLista * ptrNodoActual = ptrNodo;
-        ptrNodo = siguiente(terreno.monedas, ptrNodo);
-        if (eliminarNodoMoneda){
-            eliminarNodo(terreno.monedas, ptrNodoActual);
-            eliminarNodoMoneda = false;
-        }
-    }
+//    NodoLista * ptrNodo = primero(terreno.monedas);
+//    bool eliminarNodoMoneda = false;
+//     //Como la lista de monedas tiene orden en la aparicion la que aparecera va a ser la primera siempre
+//     //PERO TENGO Q RECORRER PARA SABER CUANDO SE LLEGA AL FINAL DEL TIEMPO
+//    while(!listaVacia(terreno.monedas) && ptrNodo != finLista()){
+//        Moneda * ptrMonedaActual = (Moneda*) ptrNodo->ptrDato;
+//        if ((getAparicion(*ptrMonedaActual)) == terreno.intervaloActual){
+//            Posicion p = getPosicion(*ptrMonedaActual);
+//            terreno.matrizJuego[getX(p)][getY(p)] = 'm';
+//        }
+//        if (getAparicion(*ptrMonedaActual) + getDuracion(*ptrMonedaActual) == terreno.intervaloActual){
+//                //Llego al final del tiempo de vida
+//                Posicion p = getPosicion(*ptrMonedaActual);
+//               terreno.matrizJuego[getX(p)][getY(p)] = 'T';
+//               eliminarNodoMoneda = true;
+//        }
+//        NodoLista * ptrNodoActual = ptrNodo;
+//        ptrNodo = siguiente(terreno.monedas, ptrNodo);
+//        if (eliminarNodoMoneda){
+//            eliminarNodo(terreno.monedas, ptrNodoActual);
+//            eliminarNodoMoneda = false;
+//        }
+//    }
 }
 
 void aparecerBandido(Terreno& terreno){}
 
 void nuevaProduccionMinas(Terreno& terreno){
-    //Recorro las listas de minas y agrego un item a cada elemento
-    NodoLista * ptrNodo = primero(terreno.minas);;
-    Mina * minaActual = (Mina*) ptrNodo->ptrDato;
-    while(! listaVacia(terreno.minas) && ptrNodo != finLista()){
-        crearCaja(*minaActual); //Agrego caja a mina Actual
-        ptrNodo = siguiente(terreno.minas, ptrNodo);
-        Mina * minaActual = (Mina*) ptrNodo->ptrDato;
-    }
+//    //Recorro las listas de minas y agrego un item a cada elemento
+//    NodoLista * ptrNodo = primero(terreno.minas);;
+//    Mina * minaActual = (Mina*) ptrNodo->ptrDato;
+//    while(! listaVacia(terreno.minas) && ptrNodo != finLista()){
+//        crearCaja(*minaActual); //Agrego caja a mina Actual
+//        ptrNodo = siguiente(terreno.minas, ptrNodo);
+//        Mina * minaActual = (Mina*) ptrNodo->ptrDato;
+//    }
 }
 
 //YA esta todo cargado, hay q actualizar

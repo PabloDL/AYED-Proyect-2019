@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <time.h>
 
 #include "LecturaArchivos.h"
 #include "Juego.h"
@@ -9,6 +10,7 @@
 #include "Mina.h"
 
 int main( int argc, char* argv[]){
+    srand(time(NULL));
 
     cout << "lectura Comanda" << endl;
     Lector lectorComanda;
@@ -35,6 +37,9 @@ int main( int argc, char* argv[]){
     const int FrameDelay = 100/FPS;
     Uint32 frameStart;
     int frameTime;
+
+
+
 
     Juego juego;
     crearJuego(juego, "Juego", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
