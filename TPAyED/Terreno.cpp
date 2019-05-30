@@ -24,7 +24,7 @@ void crearTerreno(Terreno& terreno){
 
     for(int i=0; i++; i< ANCHO_TERRENO){
         for(int j=0; j++; j< ALTO_TERRENO){
-            terreno.matrizJuego[i][j] = '-';
+            terreno.matrizJuego[i][j] = '-';  //NO IRIA T???
             terreno.textureMap[i][j]= rand()% 10;
             //necesito numeros aleatorios para poder cargar texturas distintas en el fondo
         }
@@ -168,22 +168,22 @@ void chequearColisiones(Terreno & terreno){
 
 }
 
-void cargarTexturasTerreno(Terreno& terreno, SDL_Renderer& renderizador){
-    terreno.texturas[0] = IMG_LoadTexture(&renderizador, "assets/img/suelo_0.png");
-    terreno.texturas[1] = IMG_LoadTexture(&renderizador, "assets/img/suelo_1.png");
-    terreno.texturas[2] = IMG_LoadTexture(&renderizador, "assets/img/suelo_2.png");
-    terreno.texturas[3] = IMG_LoadTexture(&renderizador, "assets/img/suelo_3.png");
-    terreno.texturas[4] = IMG_LoadTexture(&renderizador, "assets/img/suelo_4.png");
-    terreno.texturas[5] = IMG_LoadTexture(&renderizador, "assets/img/suelo_5.png");
-    terreno.texturas[6] = IMG_LoadTexture(&renderizador, "assets/img/suelo_6.png");
-    terreno.texturas[7] = IMG_LoadTexture(&renderizador, "assets/img/suelo_7.png");
-    terreno.texturas[8] = IMG_LoadTexture(&renderizador, "assets/img/suelo_8.png");
-    terreno.texturas[9] = IMG_LoadTexture(&renderizador, "assets/img/suelo_9.png");
+void cargarTexturasTerreno(Terreno& terreno, SDL_Renderer * renderizador){
+    terreno.texturas[0] = IMG_LoadTexture(renderizador, "assets/img/suelo_0.png");
+    terreno.texturas[1] = IMG_LoadTexture(renderizador, "assets/img/suelo_1.png");
+    terreno.texturas[2] = IMG_LoadTexture(renderizador, "assets/img/suelo_2.png");
+    terreno.texturas[3] = IMG_LoadTexture(renderizador, "assets/img/suelo_3.png");
+    terreno.texturas[4] = IMG_LoadTexture(renderizador, "assets/img/suelo_4.png");
+    terreno.texturas[5] = IMG_LoadTexture(renderizador, "assets/img/suelo_5.png");
+    terreno.texturas[6] = IMG_LoadTexture(renderizador, "assets/img/suelo_6.png");
+    terreno.texturas[7] = IMG_LoadTexture(renderizador, "assets/img/suelo_7.png");
+    terreno.texturas[8] = IMG_LoadTexture(renderizador, "assets/img/suelo_8.png");
+    terreno.texturas[9] = IMG_LoadTexture(renderizador, "assets/img/suelo_9.png");
 
 }
 
 
-void renderizarTerreno(Terreno& terreno,SDL_Renderer& renderizador){
+void renderizarTerreno(Terreno& terreno,SDL_Renderer *renderizador){
     for(int c=0;c<ANCHO_TERRENO;c++){
         for(int d=0;d<ALTO_TERRENO;d++){
             terreno.rectImag.x=c*50;
@@ -191,7 +191,8 @@ void renderizarTerreno(Terreno& terreno,SDL_Renderer& renderizador){
             terreno.rectImag.w=50;
             terreno.rectImag.h=50;
             int texturaActual = terreno.textureMap[c][d];
-            SDL_RenderCopy(&renderizador,terreno.texturas[texturaActual], NULL, &terreno.rectImag);
+            cout << "textura actual " << texturaActual << endl;
+            SDL_RenderCopy(renderizador,terreno.texturas[texturaActual], NULL, &terreno.rectImag);
         }
     }
 }

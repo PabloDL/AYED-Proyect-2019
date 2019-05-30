@@ -64,7 +64,7 @@ void renderizar(Juego& juego){
     cargarTexturas(juego);
     SDL_RenderClear(juego.renderizador);
     //AGREGAR FUNCIONES PARA RENDERIZAR OBJETOS
-
+    renderizarTerreno(*(juego.terreno), juego.renderizador);
     SDL_RenderPresent(juego.renderizador);
 }
 
@@ -75,5 +75,5 @@ bool corriendo(Juego& juego){
 
 void cargarTexturas(Juego& juego){
     cargarTexturasTerreno( *juego.terreno,
-                    *juego.renderizador);
+                    juego.renderizador);
 }
