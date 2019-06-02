@@ -133,7 +133,7 @@
 1558942193 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\posicion.cpp
 	"Posicion.h"
 
-1559177290 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\terreno.h
+1559185160 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\terreno.h
 	<iostream>
 	"locomotora.h"
 	"Lista.h"
@@ -152,7 +152,7 @@
 	<iostream>
 	"Posicion.h"
 
-1559179353 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\terreno.cpp
+1559185028 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\terreno.cpp
 	"Terreno.h"
 
 1559176303 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\bandido.h
