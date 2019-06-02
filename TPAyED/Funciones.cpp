@@ -32,6 +32,8 @@ void imprimirListaMinas(Lista &l){
 
     }
 }
+*/
+
 //
 //ResultadoComparacion compararListaEstaciones(PtrDato ptrDato1, PtrDato ptrDato2) {
 //    int dato1 = ((Estacion*) ptrDato1)->id;
@@ -88,3 +90,76 @@ void imprimirListaMinas(Lista &l){
 //    eliminarBandido(bandidoAEliminar);
 //}
 
+
+/***************************************CAJAS**************************************/
+ResultadoComparacion compararListaCajas(PtrDato ptrDato1, PtrDato ptrDato2) {
+    int dato1 = ((Cajas*) ptrDato1)->capMaxima;
+    int dato2 = ((Cajas*) ptrDato2)->capMaxima;
+
+    if (dato1 < dato2) {
+        return MENOR;
+    }else if (dato1 > dato2) {
+        return MAYOR;
+    }else{
+        return IGUAL;
+    }
+}
+
+void eliminarCajaDeLista(PtrDato ptrDato) {
+    Cajas cajaAEliminar = *((Cajas*) ptrDato);
+    //eliminarCaja(cajaAEliminar);
+}
+
+void imprimirListaCajas(Lista &l){
+        /// Recorro la lista de Cajas
+     if(!listaVacia(l)){
+         int c = 0;
+        PtrNodoLista nodo = primero(l);
+        while(nodo != finLista()){
+            Cajas caja = *((Cajas*)(nodo->ptrDato));
+            cout<<"Caja "<< c << "-> ";
+            cout<< "TipoCaja: "<<caja.codItem << " -> Capacidad: " << caja.capActual << "/" << caja.capMaxima << endl;
+            nodo = siguiente(l, nodo);
+            c++;
+        }
+
+    }
+    else{
+        cout<< "Vagon Vacio"<< endl;
+    }
+}
+
+/*********************************************VAGONES******************************************/
+ResultadoComparacion compararListaVagones(PtrDato ptrDato1 , PtrDato ptrDato2){
+    int dato1 = ((Vagon*) ptrDato1)->capVagon;
+    int dato2 = ((Vagon*) ptrDato2)->capVagon;
+
+    if (dato1 < dato2) {
+        return MENOR;
+    }else if (dato1 > dato2) {
+        return MAYOR;
+    }else{
+        return IGUAL;
+    }
+}
+
+void eliminarVagonesDeLista(PtrDato ptrDato){
+    Vagon vagonAEliminar = *((Vagon*) ptrDato);
+    eliminarVagon(vagonAEliminar);
+}
+
+void imprimirListaVagones(Lista& l){
+    if(!listaVacia(l)){
+            int c = 0; //para ponerle una posicion a cada vagon
+            PtrNodoLista nodo = primero(l);
+            while(nodo != finLista()){
+                cout<< "********************************************\n";
+                Vagon vagon = *((Vagon*)nodo->ptrDato);
+                cout<<"Vagon "<< c <<" -> Tipo Vagon: "<<vagon.tipoVagon << " -> Capacidad: " << vagon.capVagonUsada << "/"<< vagon.capVagon << endl;
+                imprimirListaCajas( vagon.listaCajas );
+                nodo = siguiente(l, nodo);
+                cout<<"\n";
+                c++;
+            }
+    }
+}

@@ -1,41 +1,36 @@
 #ifndef _LOCOMOTORA_H__
 #define _LOCOMOTORA_H__
 
-#include "posicion.h"
-//#include "pila.h" para cuando se agreguen los vagones a la locomotora
+#ifndef velocidad
+#define velocidad    5
+#endif // velocidad
 
-#define velocidad      5//macro
+#include "Lista.h"
+#include "Posicion.h"
+#include "Vagon.h"
+#include "Moneda.h"
 
-enum sentido{//para definir los eventos del teclado
-    IZQUIERDA,DERECHA,ARRIBA,ABAJO
-};
 typedef struct Locomotora{
     int monedasAdquiridas;
     Posicion posicion;
-    sentido movimientoL;
     int velocidadL;
-    //Pila vagones; ?
+    Lista listaVagones;
 }Locomotora;
-
 /************************Axiomas******************/
 //velocidad >= 0
 //la locomotora empieza con 0 monedas
 //la locomotora empieza con velocidad 0 es decir esta quieta
 
-/***********************Primitivas**********************/
 //******************gets y setters********************
 void setMonedasAdquiridas(Locomotora& locomotora,int monedasAdquiridas);
 int getMonedasAdquiridas(Locomotora& locomotora);
 
-void setMovimientoL(Locomotora& locomotora,sentido movimientoL);
-sentido getMovimientoL(Locomotora& locomotora);
+void setVelocidadL(Locomotora& locomotora, int velocidadL);
+int getVelocidadL(Locomotora& locomotora);
 
 void setPosicion(Locomotora& locomotora,Posicion posicion);
 Posicion getPosicion(Locomotora& locomotora);
-
-void setVelocidadL(Locomotora& locomotora,int velocidadL);
-int getVeclodiadL(Locomotora& locomotora);
-
+/***********************Primitivas**********************/
 //pre:
 //post:se inicializan los parametros de locomotora;
 void crearLocomotora(Locomotora& locomotora);
@@ -53,24 +48,39 @@ void frenarLocomotora(Locomotora& locomotora);
 void arrancarLocomotora(Locomotora& locomotora);
 
 //pre:Locomotora creada
-//post:se le suma o resta el 'macro velocidad' a el campo 'x' de posicion
-//     dependiendo del evento del teclado
-void avanzar(Locomotora& locomotora,Posicion& posicion);
-
-//pre:Locomotora creada
-//post: se le suma o resta el 'macro velocidad'  a el campo 'y'  de posicion
-//      dependiendo del evento del teclado
-void girar(Locomotora& locomotora,Posicion& posicion);
-
-//pre:Locomotora creada
 //post: se suma la moneda ontenida a la cantidad total de monedasAdquiridas
-void obtenerMoneda(Locomotora& locomotora);
+void obtenerMoneda(Locomotora& locomotora,Moneda moneda);
 
 //pre:Locomotora creada
-//post: se le resta cantMonedas al campo monedasAdquiridas de locomotora y devuelve el nuevo total de monedasAdquiridas disponibles
-//      si no se cumple con la cantMonedas a pagar retorna 0
-int gastarMonedas(Locomotora& locomotora,int cantMonedas);
+//post: si es posible realizar el pago se le resta cantMonedas al campo monedasAdquiridas de locomotora y
+//      se actualiza con la nueva cnt de monedas adquiridas, luego retorna true ,si no se cumple con la cantMonedas a pagar retorna false
+bool gastarMonedas(Locomotora& locomotora,int cantMonedas);
 
-void agregarVagon(Locomotora& locomotora,int capacidad);
+//pre:Locomotora creada
+//post: se le agrega un nodo con un dato de tipo struct 'Vagon' a pilaVagones de la locomotora
+void agregarVagon(Locomotora& locomotora,int capVagon);
+
+//pre: locomotora creada y con uno o mas vagaones(nodos) agregados a la misma
+//post: elimina el ultimo Vagon(nodo) de la locomotora(listaVagones)
+void sacarVagon(Locomotora& locomotora);
+
+//pre: Locomotora creada y cargada con uno o mas vagones que CUMPLAN CON UNA de las siguentes condiciones:
+//    (1) capacidad total disponible
+//    (2)el tipoVagon tiene que ser el mismo que caja(item)  y tener suficiente capacidad para poder almacenarlo
+//post: guarda una caja en la listaCajas de vagon , si no se cumple ni una de las 2 condiciones anteriores no hace nada
+void almacenarCaja(Locomotora& locomotora,Cajas& caja);
+
+//pre: locomotora creada y cargada con 1 o mas vagones
+//post: devuelve la cantidad de lingotes de un unico tipo(ORO,PLATA,BRONCE,ETC)
+int getCantLingotes(Locomotora& locomotora , string tipoItem);
+
+//pre:  Locomotora creada , cargada con 1 o mas vagones y dichos vagones cargados con 1 o mas cajas para poder realizar la operacion
+//post: empieza siempre con el ULTIMO VAGON ingresado y procede a identificar si ese vagon es del mismo tipo que el tipoItem, si es del mismo tipo empieza
+//      a recorrer su lista de cajas sacando lingotes hasta que se cumpla la cantSolicitada ,
+//      actualizando 'la cant de lingotes actuales de una caja' y 'la capacidad del vagon usada' ,
+//      si ese vagon no logra cumplir con la cant de lingotes solicitados se pasa a recorrer el anterior de la listaVagones hasta cumplir con
+//      la cantSolicitada de lingotes(recuerden que siempre empieza del ultimo vagon y va ir hasta el primero si es necesario)
+//      finalmente devuelve 'la cant de lingotes solicitados si se cumple con la cantSolicitada' , si no es asi devuelve '0'
+int pagarBandido(Locomotora& locomotora , int cantSolicitada , string tipoItem);
 
 #endif // _locomotora_h_

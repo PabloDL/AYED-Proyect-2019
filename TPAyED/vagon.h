@@ -1,36 +1,40 @@
-#ifndef _vagon_h_
-#define _vagon_h_
+#ifndef _VAGON_H_
+#define _VAGON_H_
 
-#include "posicion.h"
+#include "Lista.h"
+#include "Posicion.h"
 #include "Cajas.h"
+#include "Locomotora.h"
 
-enum item{//ITEMS
-    ORO,PLATA,BRONCE,
-    PLATINO,ROCA,CARBON,
-    SIN_DEFINIR
-};
 typedef struct Vagon{
-    int pesoMaximo;
-    item tipoVagon;
+    int capVagon; //capacidad del Vagon
+    int capVagonUsada; //para poder saber cuanto se uso de la capacidadMaxima
+    string tipoVagon; //podra ser ORO,PLATA,BRONCE,ETC
     Posicion posicion;
-    //Lista cajasAlmacenadas ?
+    int velocidadV;
+    Lista listaCajas;//lista cajas
 }Vagon;
+
 /*********************Axiomas********************/
-//el vagon incia con tipoVagon SIN_DEFINIR
-//el vagon inicia con un pesoMaximo definido por 5kg*cantMonedas
-//el vagon solo puede almacenar items de su mismo tipo
+//capacidadVagon = 5kg * cantMonedas
+//el vagon incia con tipoVagon 'SIN DEFINIR' hasta que se le agregue una CAJA
+//el vagon solo puede almacenar CAJAS de su mismo tipo(item)
+/***************getters y setters******************/
+void setCapVagon(Vagon& vagon,int capVagon);
+int getCapVagon(Vagon& vagon);
 
+void setCapVagonUsada(Vagon& vagon,int capVagonUsada);
+int getCapVagonUsada(Vagon& vagon);
+
+void setVelocidadV(Vagon& vagon,int velocidadV);
+int getVelocidadV(Vagon& vagon);
+
+void setTipoVagon(Vagon& vagon,string tipoVagon);
+string getTipoVagon(Vagon& vagon);
+
+void setPosicion(Vagon& vagon,Posicion& posicion);
+Posicion getPosicion(Vagon& vagon);
 /***********************Primitivas*********************/
-//getters y setters
-void setPesoMaximo(Vagon& vagon,int pesoMaximo);
-int getPesoMaximo(Vagon& vagon);
-
-void setTipoVagon(Vagon& vagon,item tipoVagon);
-item getTipoVagon(Vagon& vagon);
-
-void setPosicion(Vagon& vagon,Posicion posicion);
-Posicion getPosicion(Vagon& vagon,Posicion posicion);
-
 //pre:
 //post: se inicializan los parametros de Vagon
 void crearVagon(Vagon& vagon);
@@ -40,20 +44,11 @@ void crearVagon(Vagon& vagon);
 void eliminarVagon(Vagon& vagon);
 
 //pre:vagon creado
-//post:el vagon se movera en base a los eventos que genera la locomotora
-void avanzar(Vagon& vagon,Posicion& posicion);
-
-//pre: vagon creado y con capMaxima total disponible o el (tipoVagon tiene que ser el mismo que caja
-//     y tener suficiente capacidad para poder almacenarlo)
-//post: guarda una caja en un vagon,si no se cumple ni una de las 2 condiciones anteriores no hace nada
-void almacenarItem(Vagon& vagon,Cajas& caja);
-
-//pre:Vagon creado
-//post; devuelve '1' si el vagon esta vacio osea si no tiene ni un item o '0' si no esta vacio
+//post: devuelve true si el vagon esta vacio o false si no esta vacio
 bool vagonVacio(Vagon& vagon);
 
 //pre: vagon creado y asignado con 1 o mas items
 //post: devuelte 1 si el vagon es del tipoItem o 0 si no es del tipoItem
-bool esVagonTipo(Vagon& vagon,item tipoItem);
+bool mismoTipo(Vagon& vagon,string tipoItem);
 
-#endif // _vagon_h_
+#endif // _VAGON_H_
