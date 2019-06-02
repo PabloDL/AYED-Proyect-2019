@@ -30,6 +30,8 @@ int getVelocidadL(Locomotora& locomotora);
 
 void setPosicion(Locomotora& locomotora,Posicion posicion);
 Posicion getPosicion(Locomotora& locomotora);
+
+Lista getListaVagones(Locomotora& locomotora);
 /***********************Primitivas**********************/
 //pre:
 //post:se inicializan los parametros de locomotora;

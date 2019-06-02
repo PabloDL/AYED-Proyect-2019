@@ -23,6 +23,9 @@ int getVelocidadL(Locomotora& locomotora){
     return locomotora.velocidadL;
 }
 
+Lista getListaVagones(Locomotora& locomotora){
+    return locomotora.listaVagones;
+}
 /*******************PRIMITIVAS**************************/
 void crearLocomotora(Locomotora& locomotora){
    locomotora.monedasAdquiridas = 0;
@@ -59,9 +62,16 @@ void agregarVagon(Locomotora& locomotora,int capVagon){
     setCapVagon( *ptrVagon , capVagon ); //se le asigna la capacidad maxima de cajas que podra almacenar el vagon
 
     if( listaVacia(locomotora.listaVagones) ){
+        Posicion posNuevo = getPosicion(locomotora);
+        setX(posNuevo, getX(posNuevo)-1 );
+        setPosicion(*ptrVagon, posNuevo);
         adicionarPrincipio( locomotora.listaVagones , ptrVagon );//se agrega a la lista de vagones
     }
     else{
+
+        Posicion posNuevo = getPosicion(*(Vagon*)(ultimo(locomotora.listaVagones)->ptrDato));
+        setX(posNuevo, getX(posNuevo)-1 );
+        setPosicion(*ptrVagon, posNuevo);
         adicionarFinal( locomotora.listaVagones , ptrVagon  );
     }
 }

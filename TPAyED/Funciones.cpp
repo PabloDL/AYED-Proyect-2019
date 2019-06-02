@@ -32,7 +32,7 @@ void imprimirListaMinas(Lista &l){
 
     }
 }
-*/
+//*/
 
 //
 //ResultadoComparacion compararListaEstaciones(PtrDato ptrDato1, PtrDato ptrDato2) {
@@ -92,6 +92,7 @@ void imprimirListaMinas(Lista &l){
 
 
 /***************************************CAJAS**************************************/
+
 ResultadoComparacion compararListaCajas(PtrDato ptrDato1, PtrDato ptrDato2) {
     int dato1 = ((Cajas*) ptrDato1)->capMaxima;
     int dato2 = ((Cajas*) ptrDato2)->capMaxima;

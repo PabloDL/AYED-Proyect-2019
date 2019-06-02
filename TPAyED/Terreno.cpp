@@ -5,9 +5,10 @@ using namespace std;
 /************GETTERS AND SETTERS*********************/
 
 //getters y setters
-void setLocomotora(Vagon& vagon,int pesoMaximo){}
+void setLocomotora(Terreno & terreno, Locomotora & locomotora){
+    terreno.locomotora = locomotora;
+}
 
-int getPesoMaximo(Vagon& vagon){}
 /*
 crearTerreno(Terreno& terreno, int alto, int ancho){
     aparecerLocomotora(terreno);
@@ -15,6 +16,9 @@ crearTerreno(Terreno& terreno, int alto, int ancho){
 }
 */
 
+Locomotora getLocomotora(Terreno & terreno){return terreno.locomotora;}
+
+/*********************************************************/
 void crearTerreno(Terreno& terreno){
     //INICIALIZO MATRIZ DE JUEGO
     terreno.intervaloActual = 0;
@@ -54,7 +58,9 @@ void actualizarMatrizJuego(Terreno &terreno){
 
 void eliminarTerreno(Terreno& terreno){}
 
-void aparecerLocomotora(Terreno& terreno){}
+void aparecerLocomotora(Terreno& terreno){
+    crearLocomotora(terreno.locomotora);
+}
 
 void aparecerMina(Terreno& terreno){}
 
@@ -117,8 +123,48 @@ void actualizarTerreno(Terreno& terreno, int sentido){
 }
 
 void avanzarLocomotora(Terreno &terreno, int sentido){
-    // veo en posicon q avanza locomotora si tengo algo en matriz
-    //
+    //AVANZO LOCOMOTORA Y VAGONES
+    Posicion nuevaPosicion;
+    crearPosicion(nuevaPosicion);
+    Locomotora locomotora = getLocomotora(terreno);
+    Posicion pTemp = getPosicion(locomotora); //guardo posicion actual locomotora
+
+    switch (sentido){   // IZQUIERDA,DERECHA,ARRIBA,ABAJO
+        case 0: { //VA HACIA IZQUIERDA
+            moverPosicion(nuevaPosicion,getX(pTemp)-1,getY(pTemp));
+            break;
+        }
+        case 1: { //VA HACIA IZQUIERDA
+            moverPosicion(nuevaPosicion,getX(pTemp)+1,getY(pTemp));
+            break;
+        }
+        case 2: { //VA HACIA IZQUIERDA
+            moverPosicion(nuevaPosicion,getX(pTemp),getY(pTemp)-1);
+            break;
+        }
+        case 3: { //VA HACIA IZQUIERDA
+            moverPosicion(nuevaPosicion,getX(pTemp),getY(pTemp)+1);
+            break;
+        }
+    }
+    setPosicion(locomotora, nuevaPosicion);  //SETEO NUEVA POSICION DE LOCOMOTORA
+    setLocomotora(terreno,locomotora); //SETEO LOCOMOTORA actualizada en terreno (ira directamente?)
+    Lista vagones = getListaVagones(locomotora);
+
+    if (!listaVacia(vagones)){
+
+        NodoLista * ptrNodo = primero(vagones);
+
+        while(!listaVacia(vagones) && ptrNodo != finLista()){
+            Vagon * vagonActual = (Vagon*) ptrNodo->ptrDato;
+            Posicion posVagonAnterior = getPosicion(*vagonActual);
+            moverPosicion(vagonActual->posicion, getX(pTemp),getY(pTemp));
+            pTemp = posVagonAnterior;
+
+            ptrNodo = siguiente(vagones, ptrNodo);
+
+        }
+    }
 
 }
 
