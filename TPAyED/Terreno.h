@@ -9,6 +9,7 @@
 #include "Moneda.h"
 #include "Estacion.h"
 #include "Bandido.h"
+#include "Funciones.h"
 
 #include <SDL_image.h>
 
@@ -45,8 +46,11 @@ typedef struct Terreno{
 //void setAncho(Terreno& terreno)
 //int getAlto(Terreno& terreno)
 //void setAlto(Terreno& terreno)
-void setLocomotora(Vagon& vagon,int pesoMaximo);
+void setLocomotora(Terreno & terreno, Locomotora & locomotora);
+Locomotora getLocomotora(Terreno & terreno);
 
+Lista getBandidos(Terreno & terreno);
+void setBandidos(Terreno & terreno, Lista& bandidos);
 /***********************PRIMITIVAS*********************/
 //pre:
 //post: se inicializan los parametros de Terreno
@@ -102,6 +106,14 @@ void avanzarLocomotora(Terreno &terreno, int sentido);
 //PRE: Terreno Creado y inicializado, se debe llamar de actualizar terreno
 //POST: verifica colisiones y actualiza estado matriz y actua en efecto
 void chequearColisiones(Terreno& terreno);
+
+//PRE: Terreno Creado y inicializado, tiene que existir locomotora
+//POST: verifica si hay algun bandido alrededor del tren (locomotora o vagon)
+void locomotoraEnRadarBandido(Terreno& terreno);
+
+//PRE: Terreno Creado y inicializado, tiene que existir locomotora
+//POST: verifica si hay alguna moneda debajo del tren (locomotora o vagon)
+void locomotoraRecoletaMonedas(Terreno& terreno);
 
 void cargarTexturasTerreno(Terreno& terreno, SDL_Renderer* renderizador);
 

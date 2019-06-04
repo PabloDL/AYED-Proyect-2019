@@ -1,5 +1,68 @@
 #include "Pruebas.h"
 
+void testColisionBandido(){
+        cout << "Test Colision locomotora o vagon con bandido" << endl;
+        Terreno t;
+        Locomotora l;
+//ARMO LOCOMOTORA Y VAGON
+        crearLocomotora(l);
+        Posicion ploc;
+        moverPosicion(ploc, 5,5);
+        setPosicion(l,ploc);
+        agregarVagon(l, 5);
+        agregarVagon(l, 3);
+        agregarVagon(l, 6);
+
+        Lista bandidos;
+        crearLista(bandidos,compararListaBandidos,eliminarBandidoDeLista);
+        Bandido * b = new Bandido;
+        crearBandido(*b);
+        moverPosicion(ploc, 7,10);
+        setPosicion(*b,ploc); // LO SETEO EN LA POS DE LA LOCOMOTORA
+        adicionarPrincipio(bandidos, b);
+
+        Bandido * b2 = new Bandido;
+        crearBandido(*b2);
+        moverPosicion(ploc, 1,1);
+        setPosicion(*b2,ploc); // LO SETEO EN LA POS DE LA LOCOMOTORA
+        adicionarPrincipio(bandidos, b2);
+    //Agrego locomotora y lista bandidos terrenos
+        setLocomotora(t,l);
+        setBandidos(t,bandidos);
+
+        cout <<"Locomotora " << "[" << t.locomotora.posicion.x << ";" <<  t.locomotora.posicion.x << "]";
+        Lista vagones = getListaVagones(l);
+        if (!listaVacia(vagones)){
+            NodoLista * ptrNodo = primero(vagones);;
+            while(!listaVacia(vagones) && ptrNodo != finLista()){
+                Vagon * vagonActual = (Vagon*) ptrNodo->ptrDato;
+                Posicion p = getPosicion(*vagonActual);
+                int x = getX(p);
+                int y = getY(p);
+                cout << "[" << x << ";" <<  y << "]";
+                ptrNodo = siguiente(vagones, ptrNodo);
+            }
+        }
+        cout << endl;
+        cout << "BANDIDOS:" ;
+        if (!listaVacia(bandidos)){
+            NodoLista * ptrNodo = primero(bandidos);;
+            while(!listaVacia(bandidos) && ptrNodo != finLista()){
+                Bandido * bandidoActual = (Bandido*) ptrNodo->ptrDato;
+                Posicion p = getPosicion(*bandidoActual);
+                int x = getX(p);
+                int y = getY(p);
+                cout << "[" << x << ";" <<  y << "]";
+                ptrNodo = siguiente(bandidos, ptrNodo);
+            }
+        }
+        cout << endl;
+
+        locomotoraEnRadarBandido(t);
+
+
+}
+
 void testAvanzarLocomotora(){
     cout << "Test de avanzar locomotora" << endl;
         Terreno t;
@@ -15,7 +78,6 @@ void testAvanzarLocomotora(){
         agregarVagon(l, 6);
 
         setLocomotora(t,l);
-    //HASTA ACA ESTAMOS OJOOOOOOO NO AVANZA LOCOMOTORA POSICION
         cout <<"locomotora antes avanzar" << "[" << t.locomotora.posicion.x << ";" <<  t.locomotora.posicion.x << "]";
         Lista vagones = getListaVagones(l);
         if (!listaVacia(vagones)){

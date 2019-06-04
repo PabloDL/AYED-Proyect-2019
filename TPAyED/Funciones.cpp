@@ -164,3 +164,23 @@ void imprimirListaVagones(Lista& l){
             }
     }
 }
+
+
+/*************************************************************************************************/
+ResultadoComparacion compararListaBandidos(PtrDato ptrDato1, PtrDato ptrDato2) {
+    int dato1 = ((Bandido*) ptrDato1)->id;
+    int dato2 = ((Bandido*) ptrDato2)->id;
+
+    if (dato1 < dato2) {
+        return MENOR;
+    }else if (dato1 > dato2) {
+        return MAYOR;
+    }else{
+        return IGUAL;
+    }
+}
+
+void eliminarBandidoDeLista(PtrDato ptrDato) {
+    Bandido bandidoAEliminar = *((Bandido*) ptrDato);
+    eliminarBandido(bandidoAEliminar);
+}

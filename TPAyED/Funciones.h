@@ -11,6 +11,10 @@ ResultadoComparacion compararListaVagones(PtrDato ptrDato1, PtrDato ptrDato2);
 
 ResultadoComparacion compararListaCajas( PtrDato ptrDato1 , PtrDato ptrDato2 );
 
+ResultadoComparacion compararListaBandidos(PtrDato ptrDato1, PtrDato ptrDato2);
+
+void eliminarBandidoDeLista(PtrDato ptrDato);
+
 //DESTRUCTORES
 void eliminarMinasDeLista(PtrDato ptrDato);
 

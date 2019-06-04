@@ -14,11 +14,13 @@ int main( int argc, char* argv[]){
     srand(time(NULL));
 
     /*PRUEBA AVANCE LOCOMOTORA*/
-    testAvanzarLocomotora();
+    //testAvanzarLocomotora();
     /*PRUEBA ARCHIVOS*/
-    testCargaDeArchivos();
+    //testCargaDeArchivos();
     /*PRUEBA LISTA MINAS RECORRER*/
-    testListaMinas();
+    //testListaMinas();
+    /*PRUEBA COLISION CON BANDIDO*/
+    testColisionBandido();
 
  //MAIN PRINCIPAL JUEGO
     /*

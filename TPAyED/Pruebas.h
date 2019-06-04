@@ -11,6 +11,8 @@
 
 using namespace std;
 
+void testColisionBandido();
+
 void testAvanzarLocomotora();
 
 void testCargaDeArchivos();

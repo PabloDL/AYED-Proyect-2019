@@ -18,6 +18,9 @@ crearTerreno(Terreno& terreno, int alto, int ancho){
 
 Locomotora getLocomotora(Terreno & terreno){return terreno.locomotora;}
 
+Lista getBandidos(Terreno & terreno){return terreno.bandidos;}
+
+void setBandidos(Terreno & terreno, Lista& bandidos){terreno.bandidos=bandidos;}
 /*********************************************************/
 void crearTerreno(Terreno& terreno){
     //INICIALIZO MATRIZ DE JUEGO
@@ -170,47 +173,105 @@ void avanzarLocomotora(Terreno &terreno, int sentido){
 
 void chequearColisiones(Terreno & terreno){
     Posicion posLocomotora = getPosicion(terreno.locomotora);
-    if (getX(posLocomotora) > ANCHO_TERRENO || getY(posLocomotora) > ALTO_TERRENO){
+    if (getX(posLocomotora) > ANCHO_TERRENO || getY(posLocomotora) > ALTO_TERRENO
+                || (getX(posLocomotora) < 0) || getY(posLocomotora) < 0 ){
         terreno.estadoJuego = GAMEOVER; // SI SALGO DEL CUADRADO TERMINA JUEGO
     }
     else{
         //VERIFICO INTERSECCION
         //E=ESTACION, M=MINAS, L=LOCOMOTORA,B=BANDIDOS, m=MONEDAS,T=TERRENO VACIO
         if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'E'){
-            NodoLista * ptrNodo = primero(terreno.estaciones);;
-            Estacion * estacionActual = (Estacion*) ptrNodo->ptrDato;
+            terreno.estadoJuego = LOCOMOTORADETENIDA; // DETENGO LOCOMOTORA
+
+            NodoLista * ptrNodo = primero(terreno.estaciones);
             while(! listaVacia(terreno.estaciones) && ptrNodo != finLista()){
+                Estacion * estacionActual = (Estacion*) ptrNodo->ptrDato;
                 Posicion posEstacion = getPosicion(*estacionActual);
                 if (mismaPosicion(posEstacion, posLocomotora)){
             //SI ES MISMA ESTACION -> VENDO VAGON
                     int capacidadVagon = entregarVagon((*estacionActual), getMonedasAdquiridas(terreno.locomotora));
                     if (capacidadVagon > 0){
                     agregarVagon(terreno.locomotora, capacidadVagon);
+                    }
                 }
-            }
             ptrNodo = siguiente(terreno.estaciones, ptrNodo);
-            Estacion * estacionActual = (Estacion*) ptrNodo->ptrDato;
-            terreno.estadoJuego = LOCOMOTORADETENIDA; // DETENGO LOCOMOTORA
-        }
-
+            }
         }
         else if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'M'){
             //obtengo minas si es posible o eliminoproduccion si no tengo capacidad
-        }
-        else if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'B'){
-            //Peleo contra bandido
-        }
-        else if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'm'){
-            //obtengo monedas
         }
         else if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'T'){
             //no tengoque hacer nada ya avanzo locomotora
             //PENSAR SI VA ACA O AFUERA -> TIene q ir afuera para que cuando en el juego
             //se toca la tecla para avanzar avance antes de verificar posicion
         }
+        locomotoraEnRadarBandido(terreno);
+
+        locomotoraRecoletaMonedas(terreno);
+//        else if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'B'){
+//            //Peleo contra bandido
+//        }
+//        else if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'm'){
+//            //obtengo monedas
+//        }
+
     }
 
 }
+
+void locomotoraEnRadarBandido(Terreno& terreno){
+// if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'B'){
+//           //Peleo contra bandido
+//        }
+    bool pelear = false;
+    Lista bandidosAPelear;
+    crearLista(bandidosAPelear, compararListaBandidos, eliminarBandidoDeLista);
+
+    Locomotora l = getLocomotora(terreno);
+    Posicion pLocomotora = getPosicion(l);
+    Lista bandidos = getBandidos(terreno);
+    if (!listaVacia(bandidos)){
+            NodoLista * ptrNodoBandido = primero(bandidos);
+
+            while(!listaVacia(bandidos) && ptrNodoBandido != finLista() && !pelear){
+                Bandido * bandido = (Bandido*) ptrNodoBandido->ptrDato;
+                Posicion pBandido = getPosicion(*bandido);
+                //veo si hay algun tren o vagon esta en esa posicion
+                pelear = enCercanias(pBandido, pLocomotora, getAreaCobertura(*bandido));
+                if (!pelear){
+                    Lista vagones = getListaVagones(terreno.locomotora);
+                    NodoLista * ptrNodo = primero(vagones);
+                    //LO BUSCO EN LOS VAGONES
+                    while(!listaVacia(vagones) && ptrNodo != finLista() && !pelear){
+                        Vagon * vagon = (Vagon*) ptrNodo->ptrDato;
+                        Posicion pVagon = getPosicion(*vagon);
+                        pelear = enCercanias(pBandido, pVagon, getAreaCobertura(*bandido));
+                        ptrNodo = siguiente(vagones, ptrNodo);
+                    }
+                }
+                if(pelear){
+                    adicionarPrincipio(bandidosAPelear,bandido);  //ADICIONO TODOS LOS BANDIDOS Q ESTAN CERCA
+                    pelear=false;
+                }
+                ptrNodoBandido = siguiente(bandidos, ptrNodoBandido);
+            }
+    }
+    //RECORRO LISTA DE BANDIDOS A PELEAR PARA VER CONTRA QUIEN PELEO
+    NodoLista * ptrNodo = primero(bandidosAPelear);
+    while(!listaVacia(bandidosAPelear) && ptrNodo != finLista()){
+        //PELEAR CON BANDIDO SE CUAL ES PORQUE LO DEJE EN EL prtNODO
+        Posicion pB = getPosicion(*(Bandido*)ptrNodo->ptrDato);
+        cout << "ROBO ITEM LOCOMOTORA, bandido pos [" << getX(pB)
+                <<";" <<getY(pB) << "]" << endl;
+        //ACA SEGUIR VER COMO PELEAR CON TREN Y BANDIDO
+        ptrNodo = siguiente(bandidos, ptrNodo);
+    }
+
+    //VER COMO ELIMINAR BANDIDO UNA VEZ PASADO
+    // USAR ?? void eliminarDato(Lista &lista, PtrDato ptrDato);
+}
+
+void locomotoraRecoletaMonedas(Terreno& terreno){}
 
 void cargarTexturasTerreno(Terreno& terreno, SDL_Renderer * renderizador){
     terreno.texturas[0] = IMG_LoadTexture(renderizador, "assets/img/suelo_0.png");
