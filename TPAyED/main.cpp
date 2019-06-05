@@ -19,8 +19,12 @@ int main( int argc, char* argv[]){
     //testCargaDeArchivos();
     /*PRUEBA LISTA MINAS RECORRER*/
     //testListaMinas();
+
     /*PRUEBA COLISION CON BANDIDO*/
-    testColisionBandido();
+    //testColisionBandido();
+
+    /*PRUEBA COLISION CON BANDIDO*/
+    testLocomotoraRecolectarMondenas();
 
  //MAIN PRINCIPAL JUEGO
     /*

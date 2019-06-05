@@ -51,6 +51,9 @@ Locomotora getLocomotora(Terreno & terreno);
 
 Lista getBandidos(Terreno & terreno);
 void setBandidos(Terreno & terreno, Lista& bandidos);
+
+Lista getMonedas(Terreno & terreno);
+void setMonedas(Terreno & terreno, Lista& monedas);
 /***********************PRIMITIVAS*********************/
 //pre:
 //post: se inicializan los parametros de Terreno

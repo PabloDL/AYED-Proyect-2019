@@ -1,5 +1,74 @@
 #include "Pruebas.h"
 
+void testLocomotoraRecolectarMondenas(){
+
+           cout << "Test Colision locomotora o vagon con moneda" << endl;
+        Terreno t;
+        Locomotora l;
+//ARMO LOCOMOTORA Y VAGON
+        crearLocomotora(l);
+        Posicion ploc;
+        moverPosicion(ploc, 5,5);
+        setPosicion(l,ploc);
+        agregarVagon(l, 5);
+        agregarVagon(l, 3);
+        agregarVagon(l, 6);
+
+        Lista monedas;
+        crearLista(monedas,compararListaMonedas,eliminarMonedaDeLista);
+        Moneda * m = new Moneda;
+        crearMoneda(*m);
+        setCantidad(*m, 2);
+        moverPosicion(ploc, 2,5);
+        setPosicion(*m,ploc); // LO SETEO EN LA POS DE LA LOCOMOTORA
+        adicionarPrincipio(monedas, m);
+
+        Moneda * m2 = new Moneda;
+        crearMoneda(*m2);
+        setCantidad(*m2, 10);
+        moverPosicion(ploc, 5,5);
+        setPosicion(*m2,ploc); // LO SETEO EN LA POS DE LA LOCOMOTORA
+        adicionarPrincipio(monedas, m2);
+
+    //Agrego locomotora y lista bandidos terrenos
+        setLocomotora(t,l);
+        setMonedas(t,monedas);
+
+        cout <<"Locomotora " << "[" << t.locomotora.posicion.x << ";" <<  t.locomotora.posicion.x << "]";
+        Lista vagones = getListaVagones(l);
+        if (!listaVacia(vagones)){
+            NodoLista * ptrNodo = primero(vagones);;
+            while(!listaVacia(vagones) && ptrNodo != finLista()){
+                Vagon * vagonActual = (Vagon*) ptrNodo->ptrDato;
+                Posicion p = getPosicion(*vagonActual);
+                int x = getX(p);
+                int y = getY(p);
+                cout << "[" << x << ";" <<  y << "]";
+                ptrNodo = siguiente(vagones, ptrNodo);
+            }
+        }
+        cout << endl;
+        cout << "MONEDAS: " ;
+        if (!listaVacia(monedas)){
+            NodoLista * ptrNodo = primero(monedas);;
+            while(!listaVacia(monedas) && ptrNodo != finLista()){
+                Moneda * monedaActual = (Moneda*) ptrNodo->ptrDato;
+                Posicion p = getPosicion(*monedaActual);
+                int x = getX(p);
+                int y = getY(p);
+                cout << "[" << x << ";" <<  y << "]";
+                ptrNodo = siguiente(monedas, ptrNodo);
+            }
+        }
+        cout << endl << "TREN TIENE AFUERA ANTES DE RECOLET : " << t.locomotora.monedasAdquiridas << endl;
+
+        locomotoraRecoletaMonedas(t);
+
+        cout << endl << "TREN TIENE AFUERA DESPUES DE RECOLET : " << t.locomotora.monedasAdquiridas << endl;
+
+
+}
+
 void testColisionBandido(){
         cout << "Test Colision locomotora o vagon con bandido" << endl;
         Terreno t;

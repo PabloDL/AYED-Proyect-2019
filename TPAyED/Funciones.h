@@ -13,6 +13,8 @@ ResultadoComparacion compararListaCajas( PtrDato ptrDato1 , PtrDato ptrDato2 );
 
 ResultadoComparacion compararListaBandidos(PtrDato ptrDato1, PtrDato ptrDato2);
 
+ResultadoComparacion compararListaMonedas(PtrDato ptrDato1, PtrDato ptrDato2);
+
 void eliminarBandidoDeLista(PtrDato ptrDato);
 
 //DESTRUCTORES
@@ -22,6 +24,7 @@ void eliminarVagonesDeLista(PtrDato ptrDato);
 
 void eliminarCajaDeLista(PtrDato ptrDato);
 
+void eliminarMonedaDeLista(PtrDato ptrDato);
 //IMPRESION
 void imprimirListaMinas(Lista &l);
 

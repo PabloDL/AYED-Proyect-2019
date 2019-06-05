@@ -9,6 +9,11 @@ void setLocomotora(Terreno & terreno, Locomotora & locomotora){
     terreno.locomotora = locomotora;
 }
 
+Lista getMonedas(Terreno & terreno){return terreno.monedas;}
+
+void setMonedas(Terreno & terreno, Lista& monedas){terreno.monedas=monedas;}
+
+
 /*
 crearTerreno(Terreno& terreno, int alto, int ancho){
     aparecerLocomotora(terreno);
@@ -220,9 +225,6 @@ void chequearColisiones(Terreno & terreno){
 }
 
 void locomotoraEnRadarBandido(Terreno& terreno){
-// if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'B'){
-//           //Peleo contra bandido
-//        }
     bool pelear = false;
     Lista bandidosAPelear;
     crearLista(bandidosAPelear, compararListaBandidos, eliminarBandidoDeLista);
@@ -271,7 +273,45 @@ void locomotoraEnRadarBandido(Terreno& terreno){
     // USAR ?? void eliminarDato(Lista &lista, PtrDato ptrDato);
 }
 
-void locomotoraRecoletaMonedas(Terreno& terreno){}
+void locomotoraRecoletaMonedas(Terreno& terreno){
+    Lista monedas = getMonedas(terreno);
+    Locomotora l = getLocomotora(terreno);
+    Posicion pLocomotora = getPosicion(l);
+    bool encontrado = false;
+
+    if (!listaVacia(monedas)){
+        NodoLista * ptrNodoMoneda = primero(monedas);
+
+        while(!listaVacia(monedas) && ptrNodoMoneda != finLista()){
+                Moneda * moneda = (Moneda*) ptrNodoMoneda->ptrDato;
+                Posicion pMoneda = getPosicion(*moneda);
+                //veo si hay algun tren o vagon esta en esa posicion
+                encontrado = mismaPosicion(pMoneda,pLocomotora);
+                if (!encontrado){
+                    Lista vagones = getListaVagones(terreno.locomotora);
+                    NodoLista * ptrNodo = primero(vagones);
+                    //LO BUSCO EN LOS VAGONES
+                    while(!listaVacia(vagones) && ptrNodo != finLista() && !encontrado){
+                        Vagon * vagon = (Vagon*) ptrNodo->ptrDato;
+                        Posicion pVagon = getPosicion(*vagon);
+                        encontrado = mismaPosicion(pMoneda,pVagon);
+                        ptrNodo = siguiente(vagones, ptrNodo);
+                    }
+                }
+                if(encontrado){
+//                    obtenerMoneda(l,*moneda);  //VERIFICAR SI FUNCIONA
+                    obtenerMoneda(terreno.locomotora, (*moneda));  //OJO ESTA MAL HAY Q USAR PUNTEROS
+                    encontrado=false;
+                    //ELIMINAR MONEDAAAAAAAAAAAAAAA
+                    cout << "ENCONTRO MONEDA!! AHORA TIENE: -> " << terreno.locomotora.monedasAdquiridas;
+                }
+                ptrNodoMoneda = siguiente(monedas, ptrNodoMoneda);
+            }
+    }
+
+
+
+}
 
 void cargarTexturasTerreno(Terreno& terreno, SDL_Renderer * renderizador){
     terreno.texturas[0] = IMG_LoadTexture(renderizador, "assets/img/suelo_0.png");

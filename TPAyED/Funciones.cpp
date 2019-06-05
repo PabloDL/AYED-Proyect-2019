@@ -184,3 +184,22 @@ void eliminarBandidoDeLista(PtrDato ptrDato) {
     Bandido bandidoAEliminar = *((Bandido*) ptrDato);
     eliminarBandido(bandidoAEliminar);
 }
+
+/******************MONEDAS **********************/
+ResultadoComparacion compararListaMonedas(PtrDato ptrDato1, PtrDato ptrDato2) {
+    int dato1 = ((Moneda*) ptrDato1)->aparicion;
+    int dato2 = ((Moneda*) ptrDato2)->aparicion;
+
+    if (dato1 < dato2) {
+        return MENOR;
+    }else if (dato1 > dato2) {
+        return MAYOR;
+    }else{
+        return IGUAL;
+    }
+}
+
+void eliminarMonedaDeLista(PtrDato ptrDato) {
+    Moneda monedaAEliminar = *((Moneda*) ptrDato);
+    eliminarMoneda(monedaAEliminar);
+}
