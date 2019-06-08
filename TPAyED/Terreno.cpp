@@ -9,7 +9,7 @@ void setLocomotora(Terreno & terreno, Locomotora & locomotora){
     terreno.locomotora = locomotora;
 }
 
-Lista getMonedas(Terreno & terreno){return terreno.monedas;}
+Lista* getMonedas(Terreno & terreno){return &(terreno.monedas);}
 
 void setMonedas(Terreno & terreno, Lista& monedas){terreno.monedas=monedas;}
 
@@ -23,7 +23,7 @@ crearTerreno(Terreno& terreno, int alto, int ancho){
 
 Locomotora getLocomotora(Terreno & terreno){return terreno.locomotora;}
 
-Lista getBandidos(Terreno & terreno){return terreno.bandidos;}
+Lista* getBandidos(Terreno & terreno){return &terreno.bandidos;}
 
 void setBandidos(Terreno & terreno, Lista& bandidos){terreno.bandidos=bandidos;}
 /*********************************************************/
@@ -187,7 +187,6 @@ void chequearColisiones(Terreno & terreno){
         //E=ESTACION, M=MINAS, L=LOCOMOTORA,B=BANDIDOS, m=MONEDAS,T=TERRENO VACIO
         if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'E'){
             terreno.estadoJuego = LOCOMOTORADETENIDA; // DETENGO LOCOMOTORA
-
             NodoLista * ptrNodo = primero(terreno.estaciones);
             while(! listaVacia(terreno.estaciones) && ptrNodo != finLista()){
                 Estacion * estacionActual = (Estacion*) ptrNodo->ptrDato;
@@ -203,22 +202,35 @@ void chequearColisiones(Terreno & terreno){
             }
         }
         else if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'M'){
-            //obtengo minas si es posible o eliminoproduccion si no tengo capacidad
+            terreno.estadoJuego = LOCOMOTORADETENIDA; // DETENGO LOCOMOTORA
+            NodoLista * ptrNodo = primero(terreno.minas);
+            while(! listaVacia(terreno.minas) && ptrNodo != finLista()){
+                Mina * minaActual = (Mina*) ptrNodo->ptrDato;
+                Posicion posEstacion;
+                crearPosicion(posEstacion);
+                moverPosicion(posEstacion,getPosX(*minaActual), getPosY(*minaActual));
+                if (mismaPosicion(posEstacion, posLocomotora)){
+            //SI ES MISMA ESTACION -> VENDO VAGON
+                    Cajas * cajaARecibir = proximaCaja((*minaActual)); //DEVUELVE LA MINA TOP DE LA COLA
+                    if (hayLugarParaCajaEnLocomotora(terreno.locomotora, getCapMaxima(*cajaARecibir), getCodItem(*cajaARecibir))){
+                        almacenarCaja(terreno.locomotora, *cajaARecibir);
+                    }
+                    else{ // SI NO HAY UGAR SE PENALIZA ELIMINANDO PRODUCCION
+                        eliminarProduccion(*minaActual);
+                    }
+                }
+            ptrNodo = siguiente(terreno.minas, ptrNodo);
+            }
         }
         else if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'T'){
             //no tengoque hacer nada ya avanzo locomotora
             //PENSAR SI VA ACA O AFUERA -> TIene q ir afuera para que cuando en el juego
             //se toca la tecla para avanzar avance antes de verificar posicion
         }
+        //VEO COLISIONES CON BANDIDOS
         locomotoraEnRadarBandido(terreno);
-
+        //VEO COLISIONES CON MONEDAS
         locomotoraRecoletaMonedas(terreno);
-//        else if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'B'){
-//            //Peleo contra bandido
-//        }
-//        else if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'm'){
-//            //obtengo monedas
-//        }
 
     }
 
@@ -226,91 +238,100 @@ void chequearColisiones(Terreno & terreno){
 
 void locomotoraEnRadarBandido(Terreno& terreno){
     bool pelear = false;
-    Lista bandidosAPelear;
-    crearLista(bandidosAPelear, compararListaBandidos, eliminarBandidoDeLista);
 
     Locomotora l = getLocomotora(terreno);
     Posicion pLocomotora = getPosicion(l);
-    Lista bandidos = getBandidos(terreno);
-    if (!listaVacia(bandidos)){
-            NodoLista * ptrNodoBandido = primero(bandidos);
+    Lista* bandidos = getBandidos(terreno);
+    if (!listaVacia(*bandidos)){
+        NodoLista * ptrNodoBandido = primero(*bandidos);
 
-            while(!listaVacia(bandidos) && ptrNodoBandido != finLista() && !pelear){
-                Bandido * bandido = (Bandido*) ptrNodoBandido->ptrDato;
-                Posicion pBandido = getPosicion(*bandido);
-                //veo si hay algun tren o vagon esta en esa posicion
-                pelear = enCercanias(pBandido, pLocomotora, getAreaCobertura(*bandido));
-                if (!pelear){
-                    Lista vagones = getListaVagones(terreno.locomotora);
-                    NodoLista * ptrNodo = primero(vagones);
-                    //LO BUSCO EN LOS VAGONES
-                    while(!listaVacia(vagones) && ptrNodo != finLista() && !pelear){
-                        Vagon * vagon = (Vagon*) ptrNodo->ptrDato;
-                        Posicion pVagon = getPosicion(*vagon);
-                        pelear = enCercanias(pBandido, pVagon, getAreaCobertura(*bandido));
-                        ptrNodo = siguiente(vagones, ptrNodo);
-                    }
+        while(!listaVacia(*bandidos) && ptrNodoBandido != finLista() /*&& !pelear*/){
+            Bandido * bandido = (Bandido*) ptrNodoBandido->ptrDato;
+            Posicion pBandido = getPosicion(*bandido);
+            NodoLista * ptrBandidoEliminar;
+            //veo si hay algun tren o vagon esta en esa posicion
+            cout << "bandido pos [" << getX(pBandido) <<";" <<getY(pBandido) << "]";
+            cout << "VS [" << getX(pLocomotora) <<";" <<getY(pLocomotora) << "]";
+            pelear = enCercanias(pBandido, pLocomotora, getAreaCobertura(*bandido));
+            if (!pelear){
+                Lista vagones = getListaVagones(terreno.locomotora);
+                NodoLista * ptrNodo = primero(vagones);
+                //LO BUSCO EN LOS VAGONES
+                while(!listaVacia(vagones) && ptrNodo != finLista() && !pelear){
+
+                    Vagon * vagon = (Vagon*) ptrNodo->ptrDato;
+                    Posicion pVagon = getPosicion(*vagon);
+                    pelear = enCercanias(pBandido, pVagon, getAreaCobertura(*bandido));
+                    cout << "bandido pos [" << getX(pBandido) <<";" <<getY(pBandido) << "]";
+                    cout << "VS [" << getX(pVagon) <<";" <<getY(pVagon) << "]";
+                    ptrNodo = siguiente(vagones, ptrNodo);
                 }
-                if(pelear){
-                    adicionarPrincipio(bandidosAPelear,bandido);  //ADICIONO TODOS LOS BANDIDOS Q ESTAN CERCA
-                    pelear=false;
-                }
-                ptrNodoBandido = siguiente(bandidos, ptrNodoBandido);
             }
+            if(pelear){ //PELEO CON BANDIDO
+                //adicionarPrincipio(bandidosAPelear,bandido);  //ADICIONO TODOS LOS BANDIDOS Q ESTAN CERCA
+                cout << "ROBO ITEM LOCOMOTORA, bandido pos [" << getX(pBandido) <<";" <<getY(pBandido) << "]" << endl;
+////FALTAAAAAAAAAAAAAAAA PELEAR CON BANDIDO
+                //LOCOMOTORA.PELEARCONBANDIDO(LOCOMOTORA,BANDIDO);
+                ptrBandidoEliminar = ptrNodoBandido;
+                ptrNodoBandido = siguiente(*bandidos, ptrNodoBandido);
+                //ACTUALIZO MATRIZ CON NUEVO VALOR
+                terreno.matrizJuego[getX(pBandido)][getY(pBandido)] = 'T';
+                eliminarNodo(*bandidos,ptrBandidoEliminar);
+                pelear=false;
+            }
+            else{
+                ptrNodoBandido = siguiente(*bandidos, ptrNodoBandido);
+            }
+        }
     }
-    //RECORRO LISTA DE BANDIDOS A PELEAR PARA VER CONTRA QUIEN PELEO
-    NodoLista * ptrNodo = primero(bandidosAPelear);
-    while(!listaVacia(bandidosAPelear) && ptrNodo != finLista()){
-        //PELEAR CON BANDIDO SE CUAL ES PORQUE LO DEJE EN EL prtNODO
-        Posicion pB = getPosicion(*(Bandido*)ptrNodo->ptrDato);
-        cout << "ROBO ITEM LOCOMOTORA, bandido pos [" << getX(pB)
-                <<";" <<getY(pB) << "]" << endl;
-        //ACA SEGUIR VER COMO PELEAR CON TREN Y BANDIDO
-        ptrNodo = siguiente(bandidos, ptrNodo);
-    }
-
-    //VER COMO ELIMINAR BANDIDO UNA VEZ PASADO
-    // USAR ?? void eliminarDato(Lista &lista, PtrDato ptrDato);
 }
 
 void locomotoraRecoletaMonedas(Terreno& terreno){
-    Lista monedas = getMonedas(terreno);
+    bool encontrado = false;
+    Lista monedasABorrar;
+    crearLista(monedasABorrar, compararListaMonedas, eliminarMonedaDeLista);
+
+    Lista* monedas = getMonedas(terreno);
     Locomotora l = getLocomotora(terreno);
     Posicion pLocomotora = getPosicion(l);
-    bool encontrado = false;
 
-    if (!listaVacia(monedas)){
-        NodoLista * ptrNodoMoneda = primero(monedas);
+    if (!listaVacia(*monedas)){
+        NodoLista * ptrNodoMoneda = primero(*monedas);
 
-        while(!listaVacia(monedas) && ptrNodoMoneda != finLista()){
-                Moneda * moneda = (Moneda*) ptrNodoMoneda->ptrDato;
-                Posicion pMoneda = getPosicion(*moneda);
-                //veo si hay algun tren o vagon esta en esa posicion
-                encontrado = mismaPosicion(pMoneda,pLocomotora);
-                if (!encontrado){
-                    Lista vagones = getListaVagones(terreno.locomotora);
-                    NodoLista * ptrNodo = primero(vagones);
-                    //LO BUSCO EN LOS VAGONES
-                    while(!listaVacia(vagones) && ptrNodo != finLista() && !encontrado){
-                        Vagon * vagon = (Vagon*) ptrNodo->ptrDato;
-                        Posicion pVagon = getPosicion(*vagon);
-                        encontrado = mismaPosicion(pMoneda,pVagon);
-                        ptrNodo = siguiente(vagones, ptrNodo);
-                    }
+        while(!listaVacia(*monedas) && ptrNodoMoneda != finLista()){
+            Moneda * moneda = (Moneda*) ptrNodoMoneda->ptrDato;
+            Posicion pMoneda = getPosicion(*moneda);
+            //veo si hay algun tren o vagon esta en esa posicion
+            encontrado = mismaPosicion(pMoneda,pLocomotora);
+            NodoLista * ptrNodoEliminar;
+            if (!encontrado){
+                Lista vagones = getListaVagones(terreno.locomotora);
+                NodoLista * ptrNodo = primero(vagones);
+                //LO BUSCO EN LOS VAGONES
+                while(!listaVacia(vagones) && ptrNodo != finLista() && !encontrado){
+                    Vagon * vagon = (Vagon*) ptrNodo->ptrDato;
+                    Posicion pVagon = getPosicion(*vagon);
+                    encontrado = mismaPosicion(pMoneda,pVagon);
+                    ptrNodo = siguiente(vagones, ptrNodo);
                 }
-                if(encontrado){
-//                    obtenerMoneda(l,*moneda);  //VERIFICAR SI FUNCIONA
-                    obtenerMoneda(terreno.locomotora, (*moneda));  //OJO ESTA MAL HAY Q USAR PUNTEROS
-                    encontrado=false;
-                    //ELIMINAR MONEDAAAAAAAAAAAAAAA
-                    cout << "ENCONTRO MONEDA!! AHORA TIENE: -> " << terreno.locomotora.monedasAdquiridas;
-                }
-                ptrNodoMoneda = siguiente(monedas, ptrNodoMoneda);
             }
+            if(encontrado){
+//                    obtenerMoneda(l,*moneda);  //VERIFICAR SI FUNCIONA
+                obtenerMoneda(terreno.locomotora, (*moneda));  //OJO ESTA MAL HAY Q USAR PUNTEROS
+                encontrado=false;
+                //ELIMINAR MONEDAAAAAAAAAAAAAAA
+                ptrNodoEliminar = ptrNodoMoneda;
+//                cout << "ENCONTRO MONEDA!! AHORA TIENE: -> " << terreno.locomotora.monedasAdquiridas;
+                ptrNodoMoneda = siguiente(*monedas, ptrNodoMoneda);
+                terreno.matrizJuego[getX(pMoneda)][getY(pMoneda)] = 'T';
+                eliminarNodo(*monedas, ptrNodoEliminar); //SI ENCONTRE ELIMINO MONEDA
+            }
+            else{
+                ptrNodoMoneda = siguiente(*monedas, ptrNodoMoneda); //SI NO CHOQUE SOLO AVANZO MONEDA
+            }
+
+        }
     }
-
-
-
 }
 
 void cargarTexturasTerreno(Terreno& terreno, SDL_Renderer * renderizador){

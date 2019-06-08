@@ -1,6 +1,6 @@
 #include "Cajas.h"
 
-string getItem (Cajas &cajas) {return cajas.codItem;}
+string getCodItem (Cajas &cajas) {return cajas.codItem;}
 
 void setCantItem (Cajas &cajas,int cantitem) {cajas.cantitem = cantitem;}
 

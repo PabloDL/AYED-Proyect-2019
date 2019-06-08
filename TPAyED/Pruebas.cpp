@@ -19,7 +19,7 @@ void testLocomotoraRecolectarMondenas(){
         Moneda * m = new Moneda;
         crearMoneda(*m);
         setCantidad(*m, 2);
-        moverPosicion(ploc, 2,5);
+        moverPosicion(ploc, 5,5);
         setPosicion(*m,ploc); // LO SETEO EN LA POS DE LA LOCOMOTORA
         adicionarPrincipio(monedas, m);
 
@@ -65,7 +65,18 @@ void testLocomotoraRecolectarMondenas(){
         locomotoraRecoletaMonedas(t);
 
         cout << endl << "TREN TIENE AFUERA DESPUES DE RECOLET : " << t.locomotora.monedasAdquiridas << endl;
-
+        cout << "MONEDAS: " ;
+        if (!listaVacia(t.monedas)){
+        NodoLista * ptrNodo = primero(t.monedas);;
+            while(!listaVacia(t.monedas) && ptrNodo != finLista()){
+                Moneda * monedaActual = (Moneda*) ptrNodo->ptrDato;
+                Posicion p = getPosicion(*monedaActual);
+                int x = getX(p);
+                int y = getY(p);
+                cout << "[" << x << ";" <<  y << "]";
+                ptrNodo = siguiente(t.monedas, ptrNodo);
+            }
+        }
 
 }
 
@@ -86,13 +97,13 @@ void testColisionBandido(){
         crearLista(bandidos,compararListaBandidos,eliminarBandidoDeLista);
         Bandido * b = new Bandido;
         crearBandido(*b);
-        moverPosicion(ploc, 7,10);
+        moverPosicion(ploc, 6,5);
         setPosicion(*b,ploc); // LO SETEO EN LA POS DE LA LOCOMOTORA
         adicionarPrincipio(bandidos, b);
 
         Bandido * b2 = new Bandido;
         crearBandido(*b2);
-        moverPosicion(ploc, 1,1);
+        moverPosicion(ploc, 10,10);
         setPosicion(*b2,ploc); // LO SETEO EN LA POS DE LA LOCOMOTORA
         adicionarPrincipio(bandidos, b2);
     //Agrego locomotora y lista bandidos terrenos
@@ -128,6 +139,19 @@ void testColisionBandido(){
         cout << endl;
 
         locomotoraEnRadarBandido(t);
+
+        cout << "Despues de pelear lista Bandidos: " ;
+        if (!listaVacia(t.bandidos)){
+        NodoLista * ptrNodo = primero(t.bandidos);;
+            while(!listaVacia(t.bandidos) && ptrNodo != finLista()){
+                Bandido * b = (Bandido*) ptrNodo->ptrDato;
+                Posicion p = getPosicion(*b);
+                int x = getX(p);
+                int y = getY(p);
+                cout << "[" << x << ";" <<  y << "]";
+                ptrNodo = siguiente(t.bandidos, ptrNodo);
+            }
+        }
 
 
 }

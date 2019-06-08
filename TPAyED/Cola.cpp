@@ -28,6 +28,7 @@ void eliminarNodoCola(Cola &cola) {
       cola.primero = colaFrente(cola)->sgte;
 
     // Si el dato es un TDA, acá habría que llamar al destructor.
+    cola.destruye(ptrExPrimero->ptrDato);
 
     delete ptrExPrimero;
   }
@@ -38,9 +39,10 @@ void eliminarNodoCola(Cola &cola) {
 /* Implementación de Primitivas */
 /*------------------------------*/
 
-void crearCola(Cola &cola) {
+void crearCola(Cola &cola, PFDestructor destructor) {
   cola.primero = finCola();
   cola.ultimo = finCola();
+  cola.destruye = destructor;
 }
 
 /*----------------------------------------------------------------------------*/

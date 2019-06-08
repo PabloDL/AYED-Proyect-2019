@@ -140,6 +140,7 @@ void eliminarNodo(Lista &lista, PtrNodoLista ptrNodo) {
       ptrPrevio->sgte = ptrNodo->sgte;
     }
     // Si el dato es un TDA, acá habría que llamar al destructor.
+    lista.destruye(ptrNodo->ptrDato);
 
     delete ptrNodo;
   }

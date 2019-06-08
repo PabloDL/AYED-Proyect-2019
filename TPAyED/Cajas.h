@@ -29,7 +29,7 @@ Post: Devuelve cantidad de item
 
 */
 
-string getItem(Cajas &cajas);
+string getCodItem(Cajas &cajas);
 
 /*PRE: Que la caja existe
 

@@ -85,4 +85,7 @@ int getCantLingotes(Locomotora& locomotora , string tipoItem);
 //      finalmente devuelve 'la cant de lingotes solicitados si se cumple con la cantSolicitada' , si no es asi devuelve '0'
 int pagarBandido(Locomotora& locomotora , int cantSolicitada , string tipoItem);
 
+
+bool hayLugarParaCajaEnLocomotora(Locomotora& locomotora , int cantSolicitada , string tipoItem);
+
 #endif // _locomotora_h_

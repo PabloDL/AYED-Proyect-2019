@@ -96,7 +96,7 @@ int getCantLingotes(Locomotora& locomotora , string tipoItem){
 }
 
 //NOTA: NO FUNCIONA PORQUE ESTOY LLAMANDO A METODOS DE CAJA (getCapMax) (getCantItem) (getCodItem) que no esta agregados en el tda de CAJA
-/*
+
 void almacenarCaja(Locomotora& locomotora, Cajas& caja){
     if( !listaVacia(locomotora.listaVagones) ){ //si la locomotora tiene almenos 1 vagon
         PtrNodoLista cursor = primero( locomotora.listaVagones );
@@ -105,28 +105,28 @@ void almacenarCaja(Locomotora& locomotora, Cajas& caja){
         bool ubicado = false;
 
         while( cursor != finLista() && !ubicado ){
-            total = getCapVagonUsada( *((Vagon*)cursor->ptrDato) ) + getCapMax( *ptrCaja ); //el total de capacidad que va a requerir el vagon , lo uso como un verificador
+            total = getCapVagonUsada( *((Vagon*)cursor->ptrDato) ) + getCapMaxima( *ptrCaja ); //el total de capacidad que va a requerir el vagon , lo uso como un verificador
 
             if( total <= getCapVagon( *((Vagon*)cursor->ptrDato) ) && vagonVacio( *((Vagon*)cursor->ptrDato) ) ){//verifico que la sumaTotal sea menor o igual a la capacidadMaxima de dicho vagon y si el vagon esta vacio
                 setTipoVagon( *((Vagon*)cursor->ptrDato) , getCodItem( *ptrCaja ) ); //al ser la primera caja del vagon, le asigno al vagon el tipo de item de la caja
 
                 adicionarPrincipio( ((Vagon*)cursor->ptrDato)->listaCajas , ptrCaja); //lo agrego al principio de la lista ya que es la primera caja
-                ((Vagon*)cursor->ptrDato)->capVagonUsada += getCapMax( *ptrCaja ); //acutalizo la capacidad usada del vagon con la cnt de items de la caja
+                ((Vagon*)cursor->ptrDato)->capVagonUsada += getCapMaxima( *ptrCaja ); //acutalizo la capacidad usada del vagon con la cnt de items de la caja
                 ubicado = true;
             }
             else if( total <= getCapVagon( *((Vagon*)cursor->ptrDato) ) && mismoTipo( *((Vagon*)cursor->ptrDato) , getCodItem(*ptrCaja)) ){ //verifico que la sumaTotal sea menor o igual a la capacidadMaxima de dicho vagon  y si el vagon es del mismo tipo que la caja (item)
                 adicionarFinal( ((Vagon*)cursor->ptrDato)->listaCajas , ptrCaja );
-                ((Vagon*)cursor->ptrDato)->capVagonUsada += getCapMax( *ptrCaja ); //acutalizo la capacidad usada del vagon con la cnt de items de la caja
+                ((Vagon*)cursor->ptrDato)->capVagonUsada += getCapMaxima( *ptrCaja ); //acutalizo la capacidad usada del vagon con la cnt de items de la caja
                 ubicado = true;
             }
             cursor = siguiente( locomotora.listaVagones , cursor );
         }
     }
 }
-*/
+
 
 //NOTA: NO FUNCIONA PORQUE ESTOY LLAMANDO A METODOS DE CAJA (getCapMax) (getCantItem) (getCodItem) que no esta agregados en el tda de CAJA
-/*
+
 int pagarBandido(Locomotora& locomotora, int cantSolicitada, string tipoItem){
     bool pagado = false;//booleana para terminar el bucle de ListaVagones si es necesario
 
@@ -151,13 +151,13 @@ int pagarBandido(Locomotora& locomotora, int cantSolicitada, string tipoItem){
                                 Cajas *ptrCajaAUtilizar = &( *((Cajas*)cursorCaja->ptrDato) );
                                 lingotesSacados = 0;
 
-                                while( lingotesSacados != getCapMax( *ptrCajaAUtilizar ) && totalLingotesSacados != cantSolicitada ) {
+                                while( lingotesSacados != getCapMaxima( *ptrCajaAUtilizar ) && totalLingotesSacados != cantSolicitada ) {
                                     lingotesSacados ++ ;
                                     totalLingotesSacados ++ ;
                                 }
 
-                                if( lingotesSacados == getCapMax( *ptrCajaAUtilizar ) ){//si la cant de lingotes sacados es igual a la capacidad maxima de la caja entonces elimino la caja de la lista
-                                    eliminarCaja( *ptrCajaAUtilizar ); //llamo al destructor de caja y la elimina
+                                if( lingotesSacados == getCapMaxima( *ptrCajaAUtilizar ) ){//si la cant de lingotes sacados es igual a la capacidad maxima de la caja entonces elimino la caja de la lista
+                                    //eliminarCaja( *ptrCajaAUtilizar ); //llamo al destructor de caja y la elimina
                                     eliminarNodo( ptrVagonAUtilizar->listaCajas , cursorCaja );//elimino el nodo caja de la lista
                                 }
                                 else{
@@ -177,13 +177,13 @@ int pagarBandido(Locomotora& locomotora, int cantSolicitada, string tipoItem){
                                 Cajas *ptrCajaAUtilizar = &( *((Cajas*)cursorCaja->ptrDato) );
                                 lingotesSacados = 0;
 
-                                while( lingotesSacados != getCapMax(*ptrCajaAUtilizar) && totalLingotesSacados != cantSolicitada ) {
+                                while( lingotesSacados != getCapMaxima(*ptrCajaAUtilizar) && totalLingotesSacados != cantSolicitada ) {
                                     lingotesSacados ++ ;
                                     totalLingotesSacados ++ ;
                                 }
 
-                                if( lingotesSacados == getCapMax(*ptrCajaAUtilizar) ){//si la cant de lingotes sacados es igual a la capacidad maxima de la caja entonces elimino la caja de la lista
-                                    eliminarCaja( *ptrCajaAUtilizar ); //llamo al destructor de caja y la elimina
+                                if( lingotesSacados == getCapMaxima(*ptrCajaAUtilizar) ){//si la cant de lingotes sacados es igual a la capacidad maxima de la caja entonces elimino la caja de la lista
+//                                    eliminarCaja( *ptrCajaAUtilizar ); //llamo al destructor de caja y la elimina
                                     eliminarNodo( ptrVagonAUtilizar->listaCajas , cursorCaja );//elimino el nodo caja de la lista
                                 }
                                 else{
@@ -213,13 +213,13 @@ int pagarBandido(Locomotora& locomotora, int cantSolicitada, string tipoItem){
                             Cajas *ptrCajaAUtilizar = &( *((Cajas*)cursorCaja->ptrDato) );
                             lingotesSacados = 0;
 
-                            while( lingotesSacados != getCapMax( *ptrCajaAUtilizar ) && totalLingotesSacados != cantSolicitada ) {
+                            while( lingotesSacados != getCapMaxima( *ptrCajaAUtilizar ) && totalLingotesSacados != cantSolicitada ) {
                                 lingotesSacados ++ ;
                                 totalLingotesSacados ++ ;
                             }
 
-                            if( lingotesSacados == getCapMax( *ptrCajaAUtilizar ) ){//si la cant de lingotes sacados es igual a la capacidad maxima de la caja entonces elimino la caja de la lista
-                                eliminarCaja( *ptrCajaAUtilizar ); //llamo al destructor de caja y la elimina
+                            if( lingotesSacados == getCapMaxima( *ptrCajaAUtilizar ) ){//si la cant de lingotes sacados es igual a la capacidad maxima de la caja entonces elimino la caja de la lista
+//                                eliminarCaja( *ptrCajaAUtilizar ); //llamo al destructor de caja y la elimina
                                 eliminarNodo( ptrVagonAUtilizar->listaCajas , cursorCaja );//elimino el nodo caja de la lista
                             }
                             else{
@@ -239,13 +239,13 @@ int pagarBandido(Locomotora& locomotora, int cantSolicitada, string tipoItem){
                         Cajas *ptrCajaAUtilizar = &( *((Cajas*)cursorCaja->ptrDato) );
                         lingotesSacados = 0;
 
-                        while( lingotesSacados != getCapMax( *ptrCajaAUtilizar ) && totalLingotesSacados != cantSolicitada ) {
+                        while( lingotesSacados != getCapMaxima( *ptrCajaAUtilizar ) && totalLingotesSacados != cantSolicitada ) {
                             lingotesSacados ++ ;
                             totalLingotesSacados ++ ;
                         }
 
-                        if( lingotesSacados == getCapMax( *ptrCajaAUtilizar ) ){//si la cant de lingotes sacados es igual a la capacidad maxima de la caja entonces elimino la caja de la lista
-                            eliminarCaja( *ptrCajaAUtilizar ); //llamo al destructor de caja y la elimina
+                        if( lingotesSacados == getCapMaxima( *ptrCajaAUtilizar ) ){//si la cant de lingotes sacados es igual a la capacidad maxima de la caja entonces elimino la caja de la lista
+//                            eliminarCaja( *ptrCajaAUtilizar ); //llamo al destructor de caja y la elimina
                             eliminarNodo( ptrVagonAUtilizar->listaCajas , cursorCaja );//elimino el nodo caja de la lista
                         }
                         else{
@@ -267,7 +267,7 @@ int pagarBandido(Locomotora& locomotora, int cantSolicitada, string tipoItem){
     }
     return pagado;
 }
-*/
+
 
 void sacarVagon(Locomotora& locomotora){
     PtrNodoLista nodo = ultimo(locomotora.listaVagones); //siempre se elimina el ultimo vagon de la lista
@@ -293,4 +293,9 @@ void eliminarLocomotora(Locomotora& locomotora){
         cursor = siguiente( locomotora.listaVagones , cursor );
         eliminarNodo( locomotora.listaVagones , previo);
     }
+}
+
+bool hayLugarParaCajaEnLocomotora(Locomotora& locomotora , int cantSolicitada , string tipoItem){
+    //RECORRO LISTA VAGONES Y VEO SI HAY LUGAR
+    return true;
 }

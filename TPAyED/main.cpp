@@ -21,10 +21,10 @@ int main( int argc, char* argv[]){
     //testListaMinas();
 
     /*PRUEBA COLISION CON BANDIDO*/
-    //testColisionBandido();
+    testColisionBandido();
 
     /*PRUEBA COLISION CON BANDIDO*/
-    testLocomotoraRecolectarMondenas();
+    //testLocomotoraRecolectarMondenas();
 
  //MAIN PRINCIPAL JUEGO
     /*

@@ -49,10 +49,10 @@ typedef struct Terreno{
 void setLocomotora(Terreno & terreno, Locomotora & locomotora);
 Locomotora getLocomotora(Terreno & terreno);
 
-Lista getBandidos(Terreno & terreno);
+Lista* getBandidos(Terreno & terreno);
 void setBandidos(Terreno & terreno, Lista& bandidos);
 
-Lista getMonedas(Terreno & terreno);
+Lista* getMonedas(Terreno & terreno);
 void setMonedas(Terreno & terreno, Lista& monedas);
 /***********************PRIMITIVAS*********************/
 //pre:
