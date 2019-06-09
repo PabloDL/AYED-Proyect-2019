@@ -13,15 +13,18 @@
 int main( int argc, char* argv[]){
     srand(time(NULL));
 
+    /*PRUENA JUEGO SIN GRAFICOS*/
+    testTerreno();
+
     /*PRUEBA AVANCE LOCOMOTORA*/
     //testAvanzarLocomotora();
     /*PRUEBA ARCHIVOS*/
-    //testCargaDeArchivos();
+  //  testCargaDeArchivos();
     /*PRUEBA LISTA MINAS RECORRER*/
     //testListaMinas();
 
     /*PRUEBA COLISION CON BANDIDO*/
-    testColisionBandido();
+    //testColisionBandido();
 
     /*PRUEBA COLISION CON BANDIDO*/
     //testLocomotoraRecolectarMondenas();

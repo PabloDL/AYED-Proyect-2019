@@ -35,23 +35,23 @@ void imprimirListaMinas(Lista &l){
 //*/
 
 //
-//ResultadoComparacion compararListaEstaciones(PtrDato ptrDato1, PtrDato ptrDato2) {
-//    int dato1 = ((Estacion*) ptrDato1)->id;
-//    int dato2 = ((Estacion*) ptrDato2)->id;
+ResultadoComparacion compararListaEstaciones(PtrDato ptrDato1, PtrDato ptrDato2) {
+    int dato1 = ((Estacion*) ptrDato1)->id;
+    int dato2 = ((Estacion*) ptrDato2)->id;
+
+    if (dato1 < dato2) {
+        return MENOR;
+    }else if (dato1 > dato2) {
+        return MAYOR;
+    }else{
+        return IGUAL;
+    }
+}
 //
-//    if (dato1 < dato2) {
-//        return MENOR;
-//    }else if (dato1 > dato2) {
-//        return MAYOR;
-//    }else{
-//        return IGUAL;
-//    }
-//}
-//
-//void eliminarEstacionDeLista(PtrDato ptrDato) {
-//    Estacion estacionAEliminar = *((Estacion*) ptrDato);
-//    eliminarEstacion(estacionAEliminar);
-//}
+void eliminarEstacionDeLista(PtrDato ptrDato) {
+    Estacion estacionAEliminar = *((Estacion*) ptrDato);
+    eliminarEstacion(estacionAEliminar);
+}
 //
 //ResultadoComparacion compararListaMonedas(PtrDato ptrDato1, PtrDato ptrDato2) {
 //    int dato1 = ((Moneda*) ptrDato1)->id;

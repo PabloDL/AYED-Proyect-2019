@@ -207,7 +207,6 @@ void testAvanzarLocomotora(){
         cout << endl;
 }
 
-
 void testCargaDeArchivos(){
     /* PRUEBA ARCHIVOS */
     cout << "lectura Comanda" << endl;
@@ -233,7 +232,6 @@ void testCargaDeArchivos(){
 
 }
 
-
 void testListaMinas(){
 /* PRUEBA LISTA MINAS */
     cout << "***************** prueba de lista de minas -> " << endl;
@@ -248,5 +246,11 @@ void testListaMinas(){
     adicionarPrincipio(listaMinas, m);
     adicionarPrincipio(listaMinas, m);
     imprimirListaMinas(listaMinas);
-
 }
+
+void testTerreno(){
+    Terreno t;
+    crearTerreno(t);
+    imprimirMatriz(t);
+}
+

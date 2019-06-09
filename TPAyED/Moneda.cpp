@@ -30,7 +30,13 @@ void setCantidad(Moneda &moneda, int cantidad){
 
 /***************************************************/
 
-void crearMoneda(Moneda &moneda){}
+void crearMoneda(Moneda &moneda){
+    moneda.aparicion = 0;
+    moneda.cantidad = 0;
+    moneda.duracion = 0;
+    crearPosicion(moneda.posicion);
+    moverPosicion(moneda.posicion, 0, 0);
+}
 
 void eliminarMoneda(Moneda &moneda){}
 

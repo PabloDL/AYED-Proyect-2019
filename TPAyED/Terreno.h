@@ -2,6 +2,7 @@
 #define Terreno_h
 
 #include <iostream>
+#include "LecturaArchivos.h"
 #include "locomotora.h"
 #include "Lista.h"
 #include "vagon.h"
@@ -10,6 +11,7 @@
 #include "Estacion.h"
 #include "Bandido.h"
 #include "Funciones.h"
+#include "Parametros.h"
 
 #include <SDL_image.h>
 
@@ -26,6 +28,10 @@ enum Estados{
 typedef struct Terreno{
     //int ancho;
     //int alto;
+    Parametros parametros; //INICIALIZAR EN SET PARAMETROS
+    int intervalosAparicionProximaMoneda;
+    int intervalosAparicionProximoBandido;
+
     Locomotora locomotora;
     Lista minas;
     Lista estaciones;
@@ -56,7 +62,7 @@ Lista* getMonedas(Terreno & terreno);
 void setMonedas(Terreno & terreno, Lista& monedas);
 /***********************PRIMITIVAS*********************/
 //pre:
-//post: se inicializan los parametros de Terreno
+//post: se inicializan los parametros de Terreno, crea en forma random la primera aparicion de monedas y bandidos
 void crearTerreno(Terreno& terreno);
 
 //pre:Tiene que existir el terreno
@@ -117,6 +123,11 @@ void locomotoraEnRadarBandido(Terreno& terreno);
 //PRE: Terreno Creado y inicializado, tiene que existir locomotora
 //POST: verifica si hay alguna moneda debajo del tren (locomotora o vagon)
 void locomotoraRecoletaMonedas(Terreno& terreno);
+
+void actualizarMonedas(Terreno& terreno);
+void actualizarBandidos(Terreno& terreno);
+
+void imprimirMatriz(Terreno &t);
 
 void cargarTexturasTerreno(Terreno& terreno, SDL_Renderer* renderizador);
 

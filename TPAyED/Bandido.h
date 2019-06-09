@@ -5,6 +5,9 @@
 
 #include "locomotora.h"
 
+#define AREA_COBERTURA 2
+#define MAXIMO_ROBO_BANDIDO 5
+
 using namespace std;
 /*
 Definicion de tipo de dato Bandido para representar el rival del juego

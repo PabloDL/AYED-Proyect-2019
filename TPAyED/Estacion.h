@@ -21,6 +21,7 @@ using namespace std;
 /* Tipo de estructura de Estacion */
 
 typedef struct Estacion{
+    int id;
     Posicion posicion;
 }Estacion;
 
