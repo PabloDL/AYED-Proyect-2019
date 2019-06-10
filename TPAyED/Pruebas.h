@@ -2,6 +2,7 @@
 #define __PRUEBAS_H__
 
 #include <iostream>
+#include <windows.h>
 
 #include "LecturaArchivos.h"
 #include "Juego.h"

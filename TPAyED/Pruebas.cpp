@@ -230,6 +230,8 @@ void testCargaDeArchivos(){
     leerArchivoMinas(lectorMinas);
     eliminarLector(lectorMinas);
 
+
+
 }
 
 void testListaMinas(){
@@ -252,5 +254,28 @@ void testTerreno(){
     Terreno t;
     crearTerreno(t);
     imprimirMatriz(t);
+    actualizarTerreno(t,0);
+    cout << endl;
+    Sleep(4000);
+    imprimirMatriz(t);
+    actualizarTerreno(t,0);
+    cout << endl;
+    Sleep(4000);
+    imprimirMatriz(t);
+    cout << endl;
+    Sleep(4000);
+    imprimirMatriz(t);
+    actualizarTerreno(t,0);
+    cout << endl;
+    Sleep(4000);
+    imprimirMatriz(t);
+    cout << endl;
+    Sleep(4000);
+    imprimirMatriz(t);
+    actualizarTerreno(t,0);
+    cout << endl;
+    Sleep(4000);
+    actualizarTerreno(t,0);
+
 }
 

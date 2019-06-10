@@ -99,7 +99,19 @@ void aparecerMina(Terreno& terreno){
     }
 }
 
-void aparecerEstacion(Terreno& terreno){}
+void aparecerEstacion(Terreno& terreno){
+    Estacion * e = new Estacion;
+    crearEstacion(*e);
+
+    Posicion p;
+    crearPosicion(p);
+    moverPosicion(p, getPosXE(terreno.parametros), getPosYE(terreno.parametros));
+    setPosicion(*e, p);
+
+    adicionarPrincipio(terreno.estaciones, e);
+    terreno.matrizJuego[getX(p)][getY(p)] = 'E';
+
+}
 
 void actualizarMonedas(Terreno& terreno){
     //obtengo moneda si corresponde en intervalo, la agrego a la matriz e elimino
@@ -124,7 +136,7 @@ void actualizarMonedas(Terreno& terreno){
     //AGREGO SI CORRESPONDE UNA NUEVA MONEDA
     if (terreno.intervalosAparicionProximaMoneda == terreno.intervaloActual){
         aparecerMoneda(terreno);
-        terreno.intervalosAparicionProximaMoneda = terreno.intervaloActual +rand()% (getIm(terreno.parametros)+terreno.intervaloActual);
+        terreno.intervalosAparicionProximaMoneda = terreno.intervaloActual + 1 +rand()% (getIm(terreno.parametros)+terreno.intervaloActual);
     }
 }
 
@@ -151,18 +163,18 @@ void actualizarBandidos(Terreno& terreno){
     //AGREGO SI CORRESPONDE UNA NUEVO BANDIDO
     if (terreno.intervalosAparicionProximoBandido == terreno.intervaloActual){
         aparecerBandido(terreno);
-        terreno.intervalosAparicionProximoBandido = terreno.intervaloActual +rand()% (getIb(terreno.parametros)+terreno.intervaloActual);
+        terreno.intervalosAparicionProximoBandido = terreno.intervaloActual + 1 +rand()% (getIb(terreno.parametros)+terreno.intervaloActual);
+        cout << "proxima aparciacion bandido = " << terreno.intervalosAparicionProximoBandido << endl;
     }
 }
 
 void nuevaProduccionMinas(Terreno& terreno){
     //Recorro las listas de minas y agrego un item a cada elemento
     NodoLista * ptrNodo = primero(terreno.minas);;
-    Mina * minaActual = (Mina*) ptrNodo->ptrDato;
     while(! listaVacia(terreno.minas) && ptrNodo != finLista()){
+        Mina * minaActual = (Mina*) ptrNodo->ptrDato;
         crearCaja(*minaActual); //Agrego caja a mina Actual
         ptrNodo = siguiente(terreno.minas, ptrNodo);
-        Mina * minaActual = (Mina*) ptrNodo->ptrDato;
     }
 }
 
@@ -170,7 +182,7 @@ void aparecerMoneda(Terreno& terreno){
       //CREO RANDOM ENTRE IM (MAXIMO INTERVALO DE SEPARACION y EL INTERVALO ACTUAL)
       //que sera el tiempo de aparacicion de una nueva moneda
       int aparicion = terreno.intervaloActual;
-      int duracion=rand()% (getVm(terreno.parametros));
+      int duracion=1 + rand()% (getVm(terreno.parametros));
       int cantidad=1;
       int x = rand()% (ANCHO_TERRENO);
       int y = rand()% (ALTO_TERRENO);
@@ -178,15 +190,20 @@ void aparecerMoneda(Terreno& terreno){
       crearPosicion(p);
       moverPosicion(p,x,y);
 
-      Moneda * nuevaMoneda;
+      Moneda * nuevaMoneda = new Moneda;
       crearMoneda(*nuevaMoneda);
       setAparicion(*nuevaMoneda, aparicion);
       setDuracion(*nuevaMoneda, duracion);
       setCantidad(*nuevaMoneda, cantidad);
       setPosicion(*nuevaMoneda, p);
 
-      //AGREGO A LISTA BANDIDOS Y A MATRIZ
-      adicionarFinal(terreno.monedas,nuevaMoneda);
+      //AGREGO A LISTA monedas Y A MATRIZ
+      if(listaVacia(terreno.monedas)){
+        adicionarPrincipio(terreno.monedas,nuevaMoneda);
+      }
+      else{
+        adicionarFinal(terreno.monedas,nuevaMoneda);
+      }
       terreno.matrizJuego[getX(p)][getY(p)] = 'm';
 }
 
@@ -195,7 +212,7 @@ void aparecerBandido(Terreno& terreno){
       //que sera el tiempo de aparacicion de una nueva moneda
       //int intervaloHastaAparicion; ??
       int aparicion=terreno.intervaloActual;
-      int tiempoVida=rand()% (getVb(terreno.parametros));
+      int tiempoVida=1 + rand()% (getVb(terreno.parametros));
       int cantidad= 1 + rand()% (MAXIMO_ROBO_BANDIDO);
       int x = rand()% (ANCHO_TERRENO);
       int y = rand()% (ALTO_TERRENO);
@@ -203,7 +220,7 @@ void aparecerBandido(Terreno& terreno){
       crearPosicion(p);
       moverPosicion(p,x,y);
 
-      Bandido * nuevoBandido;
+      Bandido * nuevoBandido = new Bandido;
       crearBandido(*nuevoBandido);
       setIntervaloHastaAparicion(*nuevoBandido, aparicion);
       setTiempoVida(*nuevoBandido, tiempoVida);
@@ -217,6 +234,7 @@ void aparecerBandido(Terreno& terreno){
 
 //YA esta todo cargado, hay q actualizar
 void actualizarTerreno(Terreno& terreno, int sentido){
+    terreno.intervaloActual++;
     //Actualizar minas
     nuevaProduccionMinas(terreno);
     //actualizar bandido //chequea si tiene q aparecer un bandido  o eliminar uno
