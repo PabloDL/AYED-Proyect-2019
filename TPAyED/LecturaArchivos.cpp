@@ -6,7 +6,7 @@ void crearLector(Lector & lector){
 
 bool abrirArchivo(Lector & lector, string nombreArchivo){
     bool res = true;
-    lector.ficheroEntrada.open(nombreArchivo, ios::in);
+    lector.ficheroEntrada.open(nombreArchivo.c_str(), ios::in);
     if (!lector.ficheroEntrada){
         return false;
     }
@@ -66,12 +66,17 @@ Comanda leerArchivoComandas(Lector & lector){
     return comanda;
 }
 
-Mina leerArchivoMinas(Lector & lector){
-    Mina mina;
-    string posX,posY,codItem,IP,seq1,seq2,seq3,seq4,seq5;
+Lista leerArchivoMinas(Lector & lector){
+
+    Lista minas;
+    crearLista(minas,compararListaMinas,eliminarMinasDeLista);
 
     if (lector.ficheroEntrada.is_open()) {
         while (!lector.ficheroEntrada.eof()){
+            string posX,posY,codItem,IP,seq1,seq2,seq3,seq4,seq5;
+            Mina* mina = new Mina;
+            crearMina(*mina);
+
             getline(lector.ficheroEntrada,posX, ';');
             getline(lector.ficheroEntrada,posY, ';');
             getline(lector.ficheroEntrada,codItem, ';');
@@ -81,20 +86,21 @@ Mina leerArchivoMinas(Lector & lector){
             getline(lector.ficheroEntrada,seq3, ';');
             getline(lector.ficheroEntrada,seq4, ';');
             getline(lector.ficheroEntrada,seq5);
-            stringstream  issPosX(posX); issPosX >> mina.posX;
-            stringstream  issPosY(posY); issPosY >> mina.posY;
-            stringstream  issCod(codItem); issCod >> mina.codItem;
-            stringstream  issIP(IP); issIP >> mina.IP;
-            stringstream  issSeq1(seq1); issSeq1 >> mina.seq1;
-            stringstream  issSeq2(seq2); issSeq2 >> mina.seq2;
-            stringstream  issSeq3(seq3); issSeq3 >> mina.seq3;
-            stringstream  issSeq4(seq4); issSeq4 >> mina.seq4;
-            stringstream  issSeq5(seq5); issSeq5 >> mina.seq5;
+            stringstream  issPosX(posX); issPosX >> mina->posX;
+            stringstream  issPosY(posY); issPosY >> mina->posY;
+            stringstream  issCod(codItem); issCod >> mina->codItem;
+            stringstream  issIP(IP); issIP >> mina->IP;
+            stringstream  issSeq1(seq1); issSeq1 >> mina->seq1;
+            stringstream  issSeq2(seq2); issSeq2 >> mina->seq2;
+            stringstream  issSeq3(seq3); issSeq3 >> mina->seq3;
+            stringstream  issSeq4(seq4); issSeq4 >> mina->seq4;
+            stringstream  issSeq5(seq5); issSeq5 >> mina->seq5;
 
-            toString(mina);
+            adicionarPrincipio(minas,mina);
+            toString(*mina);
         }
     }
-    return mina;
+    return minas;
 }
 
 bool esFinDeArchivo(Lector &lector){

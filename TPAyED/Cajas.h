@@ -15,7 +15,8 @@ using namespace std;
 /* Tipo de estructura de Cajas */
 
 typedef struct Cajas{
-   int codItem;
+   int cantitem;
+   string codItem;
    int capMaxima;
    int capActual;
 } Cajas;
@@ -28,7 +29,18 @@ Post: Devuelve cantidad de item
 
 */
 
-int getItem(Cajas &cajas);
+string getCodItem(Cajas &cajas);
 
+/*PRE: Que la caja existe
+
+Post: Devuelve cantidad de item
+
+*/
+
+void setCantItem(Cajas &cajas);
+
+
+int getCapMaxima(Cajas &cajas);
+int getCapActual(Cajas &cajas);
 
 #endif // __PARAMETROS_H__

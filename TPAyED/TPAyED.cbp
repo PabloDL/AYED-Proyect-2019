@@ -34,6 +34,7 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="Bandido.h" />
+		<Unit filename="Cajas.cpp" />
 		<Unit filename="Cajas.h" />
 		<Unit filename="Cola.cpp" />
 		<Unit filename="Cola.h" />
@@ -49,9 +50,11 @@
 		<Unit filename="LecturaArchivos.h" />
 		<Unit filename="Lista.cpp" />
 		<Unit filename="Lista.h" />
+		<Unit filename="Locomotora.h" />
 		<Unit filename="Mina.cpp" />
 		<Unit filename="Mina.h" />
 		<Unit filename="Minas.cpp" />
+		<Unit filename="Moneda.cpp" />
 		<Unit filename="Moneda.h" />
 		<Unit filename="Parametros.cpp" />
 		<Unit filename="Parametros.h" />
@@ -61,10 +64,10 @@
 		<Unit filename="Posicion.h" />
 		<Unit filename="Terreno.cpp" />
 		<Unit filename="Terreno.h" />
+		<Unit filename="Vagon.cpp" />
+		<Unit filename="Vagon.h" />
 		<Unit filename="locomotora.cpp" />
-		<Unit filename="locomotora.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="vagon.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

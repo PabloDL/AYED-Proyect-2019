@@ -55,7 +55,7 @@ Comanda leerArchivoComandas(Lector & lector);
 PRE: Lector creado y archivo abierto  SE ESTA LEYENDO UN ARCHIVO DE MINAS /// ACA TIENE Q DEVOLVER UNA LISTA
 Post: se devuelve lista con instancias de Comandas con valores cargados
 */
-Mina leerArchivoMinas(Lector & lector);
+Lista leerArchivoMinas(Lector & lector);
 /*
 PRE: Lector creado y archivo abierto
 Post: devuelve true si es fin o false caso contrario

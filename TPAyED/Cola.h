@@ -22,10 +22,13 @@ struct NodoCola {
    la Cola y acceder a sus Datos. */
 typedef NodoCola* PtrNodoCola;
 
+typedef void (*PFDestructor)(PtrDato);
+
 /* Tipo de Estructura de la Cola */
 struct Cola{
     PtrNodoCola primero;      // puntero al primer nodo de la pila
     PtrNodoCola ultimo;       // puntero al ultimo nodo de la pila
+    PFDestructor destruye; //PARA LLAMAR DESTRUCTOR
 };
 
 
@@ -39,7 +42,7 @@ struct Cola{
 
   cola : estructura de datos a ser creado.
 */
-void crearCola(Cola &cola);
+void crearCola(Cola &cola, PFDestructor destructor);
 
 /*----------------------------------------------------------------------------*/
 /*

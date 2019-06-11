@@ -1,7 +1,7 @@
 #include "Estacion.h"
 
 Posicion getPosicion(Estacion &estacion){
-    return getPosicion(estacion);
+    return estacion.posicion;
 }
 void setPosicion(Estacion &estacion, Posicion posicion){
     moverPosicion(estacion.posicion, getX(posicion), getY(posicion));

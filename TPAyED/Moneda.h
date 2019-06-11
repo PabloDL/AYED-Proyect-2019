@@ -46,7 +46,7 @@ void setCantidad(Moneda &moneda, int cantidad);
 /***************************************************/
 /*
 PRE:
-Post: inicializa parametros de moneda, posicion=(0,0), duracion, aparicion,cantidad se calculan en forma random
+Post: inicializa parametros de moneda, posicion=(0,0), aparicion = 0, duracion=0, cantidad =0;
 */
 void crearMoneda(Moneda &moneda);
 /*

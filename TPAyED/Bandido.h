@@ -5,6 +5,9 @@
 
 #include "locomotora.h"
 
+#define AREA_COBERTURA 2
+#define MAXIMO_ROBO_BANDIDO 5
+
 using namespace std;
 /*
 Definicion de tipo de dato Bandido para representar el rival del juego
@@ -28,20 +31,23 @@ typedef struct Bandido{
     Posicion posicion;
     int tiempoVida;
     int intervaloHastaAparicion;
+    int areaCobertura;
 }Bandido;
 
 /************GETTERS AND SETTERS*********************/
 int getId(Bandido &bandido);
 int getCantidad(Bandido &bandido);
-int getPosicion(Bandido &bandido);
+Posicion getPosicion(Bandido &bandido);
 int getTiempoVida(Bandido &bandido);
 int getIntervaloHastaAparicion(Bandido &bandido);
+int getAreaCobertura(Bandido &bandido);
 
 void setId(Bandido &Bandido);
 void setCantidad(Bandido &bandido, int cantidad);
-void setCantidad(Bandido &bandido, Posicion posicion);
-void setCantidad(Bandido &bandido, int tiempoVida);
-void setCantidad(Bandido &bandido, int intervaloHastaAparicion);
+void setPosicion(Bandido &bandido, Posicion posicion);
+void setTiempoVida(Bandido &bandido, int tiempoVida);
+void setIntervaloHastaAparicion(Bandido &bandido, int intervaloHastaAparicion);
+void setAreaCobertura(Bandido &bandido, int areaCobertura);
 
 /***************************************************/
 /*

@@ -4,16 +4,10 @@
 #include <iostream>
 
 #include "Cajas.h"
+#include "Cola.h"
+#include "Funciones.h"
 
 using namespace std;
-
-/*Declaracion de cola de cajas */
-
-typedef struct Colacaja{
-    Cajas caja;
-    struct nodo *sgte;
-}Colacaja;
-
 
 /*
 Definicion de tipo de dato mina para representar estructura en donde se crean las cajas de item
@@ -29,7 +23,7 @@ typedef struct Mina{
     int seq3;
     int seq4;
     int seq5;
-    Colacaja colacaja;
+    Cola cajas;
 
     int seqActual;
 }Mina;
@@ -78,7 +72,7 @@ void eliminarMina (Mina &mina);
 PRE: Mina creada
 POST: agrega caja a mina, segun corresponda sequencia actual (SeqActual = 1;)
 */
-void crearCaja (Mina &mina, Cajas &cajas);
+void crearCaja (Mina &mina);
 
 /*
 PRE: Caja creada
@@ -93,5 +87,12 @@ Post: Muestra por pantalla los atributos
 */
 void toString(Mina &mina);
 
+/*
+PRE: Mina existente y cargada
+Post: Devuelve la proxima caja de la cola sin sacarla de la cola
+*/
+Cajas* proximaCaja(Mina &mina);
+
+void eliminarProduccion(Mina &mina);
 
 #endif // __PARAMETROS_H__

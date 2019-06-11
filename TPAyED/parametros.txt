@@ -1,0 +1,10 @@
+s=1
+p=3
+a=5
+posXE=3
+posYE=0
+iM=1
+vM=1
+iB=1
+vB=1
+iP=3

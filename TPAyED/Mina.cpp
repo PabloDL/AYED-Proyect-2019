@@ -1,5 +1,5 @@
 #include "Mina.h"
-#include "Cola.h"
+
 /************GETTERS AND SETTERS*********************/
 int getPosX(Mina &mina) {return mina.posX;};
 int getPosY(Mina &mina) {return mina.posY;};
@@ -24,21 +24,24 @@ void setSeq5(Mina &mina, int seq5){mina.seq5 = seq5;}
 /***************************************************/
 
 void crearMina (Mina &mina){
-    setPosX(Mina &mina, int posX);
-    setPosY(Mina &mina, int posY);
-    setCodItem(Mina &mina, int codItem);
-    setIp(Mina &mina, int ip);
-    setSeq1(Mina &mina, int seq1);
-    setSeq2(Mina &mina, int seq2);
-    setSeq3(Mina &mina, int seq3);
-    setSeq4(Mina &mina, int seq4);
-    setSeq5(Mina &mina, int seq5);
+    mina.codItem = 1;
+
+    mina.IP = 1;
+    mina.posX = 1;
+    mina.posY = 1;
+    mina.seq1 = 1;
+    mina.seq2 = 1;
+    mina.seq3 = 1;
+    mina.seq4 = 1;
+    mina.seq5 = 1;
+
     mina.seqActual=1;
-    crearCola(Cajas &cajas);
+
+    crearCola(mina.cajas, eliminarCajaDeLista);
 }
 
 void eliminarMina (Mina &mina){
-    eliminarCola(Cajas &cajas);
+// --->>    eliminarCola();
 }
 
 //TIENE Q DEVOLVER STRING ESTA CONCEPTUALMENTE MAL
@@ -48,46 +51,50 @@ void toString(Mina &mina){
         << mina.seq5 << endl;
 }
 
-void crearCaja (Mina &mina, Cajas &cajas){
-    cajas.codItem = mina.codItem;
+void crearCaja (Mina &mina){
     //dependiendo de la seguencia actual agrego lo que corresponda
-    
+
     switch (mina.seqActual){
         case 1:
-            encolar (mina.colacaja, seq1);
-            mina.seqActual++;
-            cajas.capActual = seq1;
-            cajas.capMaxima = seq1;
+            // ->> encolar (mina.colacaja, mina.seq1);
+             mina.seqActual++;
+
             break;
         case 2:
-            encolar (mina.colacaja, seq2);
-            mina.seqActual++;
-            cajas.capActual = seq2;
-            cajas.capMaxima = seq2;
+            // ->>  encolar (mina.colacaja, mina.seq2);
+             mina.seqActual++;
+
             break;
         case 3:
-            encolar (mina.colacaja, seq3);
-            mina.seqActual++;
-            cajas.capActual = seq3;
-            cajas.capMaxima = seq3;
+             // ->> encolar (mina.colacaja, mina.seq3);
+             mina.seqActual++;
+
             break;
         case 4:
-            encolar (mina.colacaja, seq4);
-            mina.seqActual++;
-            cajas.capActual = seq4;
-            cajas.capMaxima = seq4;
+            // ->> encolar (mina.colacaja, mina.seq4);
+             mina.seqActual++;
+
             break;
         case 5:
-            encolar (mina.colacaja, seq5);
-            mina.seqActual = 1;
-            cajas.capActual = seq5;
-            cajas.capMaxima = seq5;
+            // ->> encolar (mina.colacaja, mina.seq5);
+             mina.seqActual = 1;
+
             break;
     }
-   
+
 
 }
 
-void eliminarCaja (Cajas &cajas){
-desencolar (mina.colacaja);
+Cajas* proximaCaja(Mina &mina){
+    Cajas * c = NULL;
+    if (!colaVacia(mina.cajas)){
+        PtrNodoCola ptrNodoCola = colaFrente(mina.cajas);
+        c =  (Cajas*)ptrNodoCola->ptrDato;
+    }
+    return c;
+}
+
+void eliminarProduccion(Mina &mina){
+    mina.cajas;
+    eliminarCola(mina.cajas);
 }

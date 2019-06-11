@@ -2,6 +2,7 @@
 #define __POSICION_H__
 
 #include <iostream>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -58,5 +59,11 @@ Post: verifica si la posicion es valida en el juego, es
 bool esValidaPosicion(Posicion &posicion);
 
 bool mismaPosicion(Posicion &posA, Posicion &posB);
+
+/*
+PRE: posicion creada
+Post: verifica si la posicion A esta respecto de B a una diferencia de "distancia"
+*/
+bool enCercanias(Posicion &posA, Posicion &posB, int distancia);
 
 #endif // __PARAMETROS_H__
