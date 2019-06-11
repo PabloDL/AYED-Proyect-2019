@@ -124,7 +124,6 @@ void almacenarCaja(Locomotora& locomotora, Cajas& caja){
     }
 }
 
-
 //NOTA: NO FUNCIONA PORQUE ESTOY LLAMANDO A METODOS DE CAJA (getCapMax) (getCantItem) (getCodItem) que no esta agregados en el tda de CAJA
 
 int pagarBandido(Locomotora& locomotora, int cantSolicitada, string tipoItem){
@@ -268,7 +267,6 @@ int pagarBandido(Locomotora& locomotora, int cantSolicitada, string tipoItem){
     return pagado;
 }
 
-
 void sacarVagon(Locomotora& locomotora){
     PtrNodoLista nodo = ultimo(locomotora.listaVagones); //siempre se elimina el ultimo vagon de la lista
     Vagon * ptrVagon = &( *((Vagon*)nodo->ptrDato) );
@@ -296,6 +294,18 @@ void eliminarLocomotora(Locomotora& locomotora){
 }
 
 bool hayLugarParaCajaEnLocomotora(Locomotora& locomotora , int cantSolicitada , string tipoItem){
+    ///REVISAAAAAAAAAAAAAAAAAAAAR
     //RECORRO LISTA VAGONES Y VEO SI HAY LUGAR
-    return true;
+    bool hayLugar = false;
+    Lista vagones = locomotora.listaVagones;
+    if (!listaVacia(vagones)){
+        PtrNodoLista ptrNodoListaVagones = primero(vagones);
+        while (ptrNodoListaVagones != finLista() && !hayLugar){
+            Vagon* pV =  (Vagon*) ptrNodoListaVagones->ptrDato;
+            if (getTipoVagon(*pV) == tipoItem && ((getCapVagon(*pV)-getCapVagonUsada(*pV)) >=cantSolicitada)){
+                hayLugar=true;
+            }
+        }
+    }
+    return hayLugar;
 }

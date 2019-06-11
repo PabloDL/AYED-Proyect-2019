@@ -250,32 +250,54 @@ void testListaMinas(){
     imprimirListaMinas(listaMinas);
 }
 
+
+void imprimirLocomotora(Terreno &t){
+    cout <<"locomotora despues avanzar" << "[" << t.locomotora.posicion.x << ";" <<  t.locomotora.posicion.y << "]";
+        Lista vagones = getListaVagones(t.locomotora);
+        if (!listaVacia(vagones)){
+            NodoLista * ptrNodo = primero(vagones);;
+
+            while(!listaVacia(vagones) && ptrNodo != finLista()){
+                Vagon * vagonActual = (Vagon*) ptrNodo->ptrDato;
+                Posicion p = getPosicion(*vagonActual);
+                int x = getX(p);
+                int y = getY(p);
+                cout << "[" << x << ";" <<  y << "]";
+                ptrNodo = siguiente(vagones, ptrNodo);
+            }
+
+        }
+         cout << endl;
+}
+
 void testTerreno(){
     Terreno t;
     crearTerreno(t);
     imprimirMatriz(t);
-    actualizarTerreno(t,0);
     cout << endl;
-    Sleep(4000);
-    imprimirMatriz(t);
-    actualizarTerreno(t,0);
     cout << endl;
-    Sleep(4000);
+    actualizarTerreno(t,1);
+    imprimirLocomotora(t);
     imprimirMatriz(t);
     cout << endl;
-    Sleep(4000);
-    imprimirMatriz(t);
-    actualizarTerreno(t,0);
     cout << endl;
     Sleep(4000);
+    cout << endl;
+    cout << endl;
+    actualizarTerreno(t,1);
+    imprimirLocomotora(t);
     imprimirMatriz(t);
     cout << endl;
-    Sleep(4000);
-    imprimirMatriz(t);
-    actualizarTerreno(t,0);
     cout << endl;
     Sleep(4000);
-    actualizarTerreno(t,0);
+    cout << endl;
+    cout << endl;
+    actualizarTerreno(t,1);
+    imprimirLocomotora(t);
+    imprimirMatriz(t);
+    cout << endl;
+    cout << endl;
+
 
 }
 

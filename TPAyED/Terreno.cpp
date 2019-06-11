@@ -314,7 +314,7 @@ void chequearColisiones(Terreno & terreno){
             //SI ES MISMA ESTACION -> VENDO VAGON
                     int capacidadVagon = entregarVagon((*estacionActual), getMonedasAdquiridas(terreno.locomotora));
                     if (capacidadVagon > 0){
-                    agregarVagon(terreno.locomotora, capacidadVagon);
+                        agregarVagon(terreno.locomotora, capacidadVagon);
                     }
                 }
             ptrNodo = siguiente(terreno.estaciones, ptrNodo);
@@ -325,17 +325,20 @@ void chequearColisiones(Terreno & terreno){
             NodoLista * ptrNodo = primero(terreno.minas);
             while(! listaVacia(terreno.minas) && ptrNodo != finLista()){
                 Mina * minaActual = (Mina*) ptrNodo->ptrDato;
-                Posicion posEstacion;
-                crearPosicion(posEstacion);
-                moverPosicion(posEstacion,getPosX(*minaActual), getPosY(*minaActual));
-                if (mismaPosicion(posEstacion, posLocomotora)){
+                Posicion posMina;
+                crearPosicion(posMina);
+                moverPosicion(posMina,getPosX(*minaActual), getPosY(*minaActual));
+                if (mismaPosicion(posMina, posLocomotora)){
             //SI ES MISMA ESTACION -> VENDO VAGON
                     Cajas * cajaARecibir = proximaCaja((*minaActual)); //DEVUELVE LA MINA TOP DE LA COLA
-                    if (hayLugarParaCajaEnLocomotora(terreno.locomotora, getCapMaxima(*cajaARecibir), getCodItem(*cajaARecibir))){
-                        almacenarCaja(terreno.locomotora, *cajaARecibir);
-                    }
-                    else{ // SI NO HAY UGAR SE PENALIZA ELIMINANDO PRODUCCION
-                        eliminarProduccion(*minaActual);
+                    if (cajaARecibir != NULL){  //SI ES NULL NO HAY PRODCCION
+                        if (hayLugarParaCajaEnLocomotora(terreno.locomotora, getCapMaxima(*cajaARecibir), getCodItem(*cajaARecibir))){
+                            almacenarCaja(terreno.locomotora, *cajaARecibir);
+                        }
+                        else{ // SI NO HAY UGAR SE PENALIZA ELIMINANDO PRODUCCION
+                                cout << "no hay lugar vacio produccion"<< endl;
+                            eliminarProduccion(*minaActual);
+                        }
                     }
                 }
             ptrNodo = siguiente(terreno.minas, ptrNodo);
@@ -484,7 +487,7 @@ void renderizarTerreno(Terreno& terreno,SDL_Renderer *renderizador){
 void imprimirMatriz(Terreno &t){
     for(int i=0; i< ANCHO_TERRENO; i++){
         for(int j=0; j< ALTO_TERRENO; j++){
-            cout << "[" << t.matrizJuego[i][j] <<"]" ;
+            cout << "[" << t.matrizJuego[j][i] <<"]" ;
         }
         cout << endl;
     }

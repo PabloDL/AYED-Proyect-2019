@@ -86,10 +86,12 @@ void crearCaja (Mina &mina){
 }
 
 Cajas* proximaCaja(Mina &mina){
+    Cajas * c = NULL;
     if (!colaVacia(mina.cajas)){
         PtrNodoCola ptrNodoCola = colaFrente(mina.cajas);
-        return (Cajas*)ptrNodoCola->ptrDato;
+        c =  (Cajas*)ptrNodoCola->ptrDato;
     }
+    return c;
 }
 
 void eliminarProduccion(Mina &mina){

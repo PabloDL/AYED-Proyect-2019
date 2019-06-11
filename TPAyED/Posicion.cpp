@@ -42,7 +42,7 @@ bool mismaPosicion(Posicion &posA, Posicion &posB){
 
 bool enCercanias(Posicion &posA, Posicion &posB, int distancia){
     bool cercano = false;
-    if ( (abs(getX(posA) - getX(posB)) <= distancia) ||  (abs(getY(posA) - getY(posB)) <= distancia)){
+    if ( (abs(getX(posA) - getX(posB)) <= distancia) &&  (abs(getY(posA) - getY(posB)) <= distancia)){
         cercano = true;
     }
     return cercano;
