@@ -276,28 +276,20 @@ void testTerreno(){
     imprimirMatriz(t);
     cout << endl;
     cout << endl;
-    actualizarTerreno(t,1);
-    imprimirLocomotora(t);
-    imprimirMatriz(t);
-    cout << endl;
-    cout << endl;
-    Sleep(4000);
-    cout << endl;
-    cout << endl;
-    actualizarTerreno(t,1);
-    imprimirLocomotora(t);
-    imprimirMatriz(t);
-    cout << endl;
-    cout << endl;
-    Sleep(4000);
-    cout << endl;
-    cout << endl;
-    actualizarTerreno(t,1);
-    imprimirLocomotora(t);
-    imprimirMatriz(t);
-    cout << endl;
-    cout << endl;
 
+    bool salir = false;
 
+    while (!salir){
+              // IZQUIERDA,DERECHA,ARRIBA,ABAJO
+        int sentido ;
+        cout << "PARA DONDE AVANZAR IZQUIERDA=0,DERECHA=1,ARRIBA=2,ABAJO=3" << endl;
+        cin >> sentido;
+        actualizarTerreno(t,sentido);
+        imprimirLocomotora(t);
+        imprimirMatriz(t);
+        cout << "ESTADO JUEGO ACTUAL (JUGABLE=0,GAMEOVER=1,LOCOMOTORADETENIDA=2)" << "-->" <<  t.estadoJuego << endl;
+        cout << endl;
+        cout << endl;
+    }
 }
 

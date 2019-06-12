@@ -32,6 +32,8 @@ typedef struct Bandido{
     int tiempoVida;
     int intervaloHastaAparicion;
     int areaCobertura;
+
+    int codItem;
 }Bandido;
 
 /************GETTERS AND SETTERS*********************/
@@ -41,6 +43,7 @@ Posicion getPosicion(Bandido &bandido);
 int getTiempoVida(Bandido &bandido);
 int getIntervaloHastaAparicion(Bandido &bandido);
 int getAreaCobertura(Bandido &bandido);
+int getCodItem(Bandido &bandido);
 
 void setId(Bandido &Bandido);
 void setCantidad(Bandido &bandido, int cantidad);
@@ -48,6 +51,7 @@ void setPosicion(Bandido &bandido, Posicion posicion);
 void setTiempoVida(Bandido &bandido, int tiempoVida);
 void setIntervaloHastaAparicion(Bandido &bandido, int intervaloHastaAparicion);
 void setAreaCobertura(Bandido &bandido, int areaCobertura);
+void setCodItem(Bandido &bandido, int codItem);
 
 /***************************************************/
 /*
