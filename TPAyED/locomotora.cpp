@@ -1,5 +1,6 @@
 #include "Locomotora.h"
-#include "Funciones.h"
+
+
 
 /********************GETTERS Y SETTERS*************************/
 void setMonedasAdquiridas(Locomotora& locomotora,int monedasAdquiridas){
@@ -126,7 +127,11 @@ void almacenarCaja(Locomotora& locomotora, Cajas& caja){
 
 //NOTA: NO FUNCIONA PORQUE ESTOY LLAMANDO A METODOS DE CAJA (getCapMax) (getCantItem) (getCodItem) que no esta agregados en el tda de CAJA
 
-int pagarBandido(Locomotora& locomotora, int cantSolicitada, string tipoItem){
+int pagarBandido(Locomotora& locomotora, int cantSolicitada, int tipoItemInt){
+    std::stringstream ss;
+    ss << tipoItemInt;
+    string tipoItem = ss.str();
+
     bool pagado = false;//booleana para terminar el bucle de ListaVagones si es necesario
 
     if ( !listaVacia( locomotora.listaVagones ) ){//verifico que por lo menos la locomotora tenga 1 vagon
@@ -261,19 +266,21 @@ int pagarBandido(Locomotora& locomotora, int cantSolicitada, string tipoItem){
                 }
             }
         }
-
-
     }
     return pagado;
 }
 
-void sacarVagon(Locomotora& locomotora){
+bool sacarVagon(Locomotora& locomotora){
+    int locomotoraVacia = true;
     PtrNodoLista nodo = ultimo(locomotora.listaVagones); //siempre se elimina el ultimo vagon de la lista
-    Vagon * ptrVagon = &( *((Vagon*)nodo->ptrDato) );
-
-    locomotora.listaVagones.destruye(ptrVagon); //llamo al destructor de listaVagones
-    delete ptrVagon;
-    eliminarNodo( locomotora.listaVagones , nodo );
+    if (nodo != finLista()){
+        Vagon * ptrVagon = &( *((Vagon*)nodo->ptrDato) );
+        locomotora.listaVagones.destruye(ptrVagon); //llamo al destructor de listaVagones
+        delete ptrVagon;
+        eliminarNodo( locomotora.listaVagones , nodo );
+        locomotoraVacia=false;
+    }
+    return locomotoraVacia;
 }
 
 void eliminarLocomotora(Locomotora& locomotora){

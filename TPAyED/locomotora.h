@@ -5,10 +5,13 @@
 #define velocidad    5
 #endif // velocidad
 
+#include <sstream>
+
 #include "Lista.h"
 #include "Posicion.h"
 #include "Vagon.h"
 #include "Moneda.h"
+#include "Funciones.h"
 
 typedef struct Locomotora{
     int monedasAdquiridas;
@@ -64,7 +67,8 @@ void agregarVagon(Locomotora& locomotora,int capVagon);
 
 //pre: locomotora creada y con uno o mas vagaones(nodos) agregados a la misma
 //post: elimina el ultimo Vagon(nodo) de la locomotora(listaVagones)
-void sacarVagon(Locomotora& locomotora);
+//        devuelve true si cuando lo saca NO quedan vagones, sino false
+bool sacarVagon(Locomotora& locomotora);
 
 //pre: Locomotora creada y cargada con uno o mas vagones que CUMPLAN CON UNA de las siguentes condiciones:
 //    (1) capacidad total disponible
@@ -83,7 +87,7 @@ int getCantLingotes(Locomotora& locomotora , string tipoItem);
 //      si ese vagon no logra cumplir con la cant de lingotes solicitados se pasa a recorrer el anterior de la listaVagones hasta cumplir con
 //      la cantSolicitada de lingotes(recuerden que siempre empieza del ultimo vagon y va ir hasta el primero si es necesario)
 //      finalmente devuelve 'la cant de lingotes solicitados si se cumple con la cantSolicitada' , si no es asi devuelve '0'
-int pagarBandido(Locomotora& locomotora , int cantSolicitada , string tipoItem);
+int pagarBandido(Locomotora& locomotora , int cantSolicitada , int tipoItem);
 
 
 bool hayLugarParaCajaEnLocomotora(Locomotora& locomotora , int cantSolicitada , string tipoItem);

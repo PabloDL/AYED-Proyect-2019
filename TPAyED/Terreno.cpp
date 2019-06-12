@@ -29,6 +29,7 @@ void setBandidos(Terreno & terreno, Lista& bandidos){terreno.bandidos=bandidos;}
 void crearTerreno(Terreno& terreno){
     //INICIALIZO MATRIZ DE JUEGO
     terreno.intervaloActual = 0;
+    terreno.estadoJuego = JUGABLE;
     //INICIALIZO LISTAS
     crearLista(terreno.bandidos, compararListaBandidos, eliminarBandidoDeLista);
     crearLista(terreno.estaciones, compararListaEstaciones, eliminarEstacionDeLista);
@@ -234,6 +235,11 @@ void aparecerBandido(Terreno& terreno){
 
 //YA esta todo cargado, hay q actualizar
 void actualizarTerreno(Terreno& terreno, int sentido){
+
+    //SI VUELVO A ENTRAR EL JUEGO VUELVE A ESTAR JUGABLE
+
+    terreno.estadoJuego = JUGABLE;
+
     terreno.intervaloActual++;
     //Actualizar minas
     nuevaProduccionMinas(terreno);
@@ -273,6 +279,9 @@ void avanzarLocomotora(Terreno &terreno, int sentido){
             moverPosicion(nuevaPosicion,getX(pTemp),getY(pTemp)+1);
             break;
         }
+        default:
+            moverPosicion(nuevaPosicion,getX(pTemp),getY(pTemp));
+            break;
     }
     setPosicion(locomotora, nuevaPosicion);  //SETEO NUEVA POSICION DE LOCOMOTORA
     setLocomotora(terreno,locomotora); //SETEO LOCOMOTORA actualizada en terreno (ira directamente?)
@@ -394,6 +403,14 @@ void locomotoraEnRadarBandido(Terreno& terreno){
                 cout << "ROBO ITEM LOCOMOTORA, bandido pos [" << getX(pBandido) <<";" <<getY(pBandido) << "]" << endl;
 ////FALTAAAAAAAAAAAAAAAA PELEAR CON BANDIDO
                 //LOCOMOTORA.PELEARCONBANDIDO(LOCOMOTORA,BANDIDO);
+                int alcanza = pagarBandido(terreno.locomotora, getCantidad(*bandido), getCodItem(*bandido));
+                if (alcanza==0){
+                    bool locomotoraVacia = sacarVagon(terreno.locomotora);
+                    if (locomotoraVacia){ // EN ESTE CASO EL BANDIDO NO PUDO SACAR VAGONES ENTONCES SE PIERDE
+                        terreno.estadoJuego = GAMEOVER;
+                    }
+                }
+
                 ptrBandidoEliminar = ptrNodoBandido;
                 ptrNodoBandido = siguiente(*bandidos, ptrNodoBandido);
                 //ACTUALIZO MATRIZ CON NUEVO VALOR
