@@ -52,7 +52,8 @@ void crearTerreno(Terreno& terreno){
     for(int i=0; i< ANCHO_TERRENO; i++){
         for(int j=0; j< ALTO_TERRENO; j++){
             terreno.matrizJuego[i][j] = 'T';
-            terreno.textureMap[i][j]= rand() % 9 + 0;
+            terreno.textureMap[i][j]= rand() % 9;
+
             //necesito numeros aleatorios para poder cargar texturas distintas en el fondo
         }
     }

@@ -16,7 +16,8 @@
 #include <SDL_image.h>
 
 
-#define ANCHO_TERRENO 10
+
+#define ANCHO_TERRENO 15
 #define ALTO_TERRENO 10
 
 using namespace std;
