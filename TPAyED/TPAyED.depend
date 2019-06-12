@@ -40,10 +40,10 @@
 1557208880 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\comanda.h
 	<iostream>
 
-1557191498 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\lecturaarchivos.cpp
+1560274664 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\lecturaarchivos.cpp
 	"LecturaArchivos.h"
 
-1557191498 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\lecturaarchivos.h
+1560274664 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\lecturaarchivos.h
 	<iostream>
 	<fstream>
 	<sstream>
@@ -54,11 +54,13 @@
 1557191498 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\parametros.h
 	<iostream>
 
-1559175527 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\mina.h
+1560274664 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\mina.h
 	<iostream>
 	"Cajas.h"
+	"Cola.h"
+	"Funciones.h"
 
-1559179482 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\main.cpp
+1560277744 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -68,15 +70,15 @@
 	"Lista.h"
 	"Funciones.h"
 	"Mina.h"
+	"Pruebas.h"
 
-1559177285 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\mina.cpp
+1560274664 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\mina.cpp
 	"Mina.h"
-	"Cola.h"
 
 1557191498 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\parametros.cpp
 	"Parametros.h"
 
-1559173324 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\cajas.h
+1560274664 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\cajas.h
 	<iostream>
 
 1558942193 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\juego.h
@@ -84,17 +86,17 @@
 	<iostream>
 	"Terreno.h"
 
-1559177290 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\juego.cpp
+1560301006 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\juego.cpp
 	"Juego.h"
 	"Terreno.h"
 
 1558942193 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\lista.h
 
-1558310878 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\funciones.h
+1560274664 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\funciones.h
 	"Lista.h"
 	"Mina.h"
 
-1558310878 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\lista.cpp
+1560274664 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\lista.cpp
 	"Lista.h"
 
 1558310878 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\pila.cpp
@@ -102,39 +104,46 @@
 
 1558310878 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\pila.h
 
-1558310878 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\cola.cpp
+1560274664 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\cola.cpp
 	"Cola.h"
 
-1558310878 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\cola.h
+1560274664 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\cola.h
 
-1558942193 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\funciones.cpp
+1560274664 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\funciones.cpp
 	"Funciones.h"
 	"Mina.h"
 	"Terreno.h"
 
 1557191498 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\minas.cpp
 
-1558942193 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\estacion.cpp
+1560274664 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\estacion.cpp
 	"Estacion.h"
 
-1558942193 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\estacion.h
+1560274664 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\estacion.h
 	<iostream>
 	"Posicion.h"
 
-1558942193 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\posicion.h
+1560274664 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\posicion.h
 	<iostream>
+	<stdlib.h>
 
-1558942193 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\locomotora.cpp
-	"locomotora.h"
+1560299835 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\locomotora.cpp
+	"Locomotora.h"
+	"Funciones.h"
 
-1558942193 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\locomotora.h
-	"posicion.h"
+1560299679 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\locomotora.h
+	"Lista.h"
+	"Posicion.h"
+	"Vagon.h"
+	"Moneda.h"
+	<SDL_image.h>
 
-1558942193 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\posicion.cpp
+1560274664 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\posicion.cpp
 	"Posicion.h"
 
-1559185160 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\terreno.h
+1560300816 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\terreno.h
 	<iostream>
+	"LecturaArchivos.h"
 	"locomotora.h"
 	"Lista.h"
 	"vagon.h"
@@ -142,20 +151,54 @@
 	"Moneda.h"
 	"Estacion.h"
 	"Bandido.h"
+	"Funciones.h"
+	"Parametros.h"
 	<SDL_image.h>
 
-1558942193 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\vagon.h
-	"posicion.h"
+1560274665 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\vagon.h
+	"Lista.h"
+	"Posicion.h"
 	"Cajas.h"
+	"Locomotora.h"
 
-1558942193 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\moneda.h
+1560274664 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\moneda.h
 	<iostream>
 	"Posicion.h"
 
-1559185028 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\terreno.cpp
+1560301117 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\terreno.cpp
 	"Terreno.h"
+	"Mina.h"
 
-1559176303 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\bandido.h
+1560274664 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\bandido.h
 	<iostream>
 	"locomotora.h"
+
+1560274664 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\cajas.cpp
+	"Cajas.h"
+
+1560274664 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\pruebas.h
+	<iostream>
+	<windows.h>
+	"LecturaArchivos.h"
+	"Juego.h"
+	"Lista.h"
+	"Funciones.h"
+	"Mina.h"
+
+1560274664 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\moneda.cpp
+	"Moneda.h"
+
+1560274665 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\vagon.cpp
+	"Vagon.h"
+	"Funciones.h"
+
+1560274664 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\bandido.cpp
+	"Bandido.h"
+
+1560301742 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\pruebas.cpp
+	"Pruebas.h"
+	"Terreno.h"
+	"Mina.h"
+	"Locomotora.h"
+	"Lista.h"
 

@@ -10,11 +10,15 @@
 #include "Vagon.h"
 #include "Moneda.h"
 
+#include <SDL_image.h>
+
 typedef struct Locomotora{
     int monedasAdquiridas;
     Posicion posicion;
     int velocidadL;
     Lista listaVagones;
+    SDL_Texture *textura;
+    SDL_Rect rectImag;
 }Locomotora;
 /************************Axiomas******************/
 //velocidad >= 0
@@ -87,5 +91,9 @@ int pagarBandido(Locomotora& locomotora , int cantSolicitada , string tipoItem);
 
 
 bool hayLugarParaCajaEnLocomotora(Locomotora& locomotora , int cantSolicitada , string tipoItem);
+
+//pre: debe existir una locomotora, y por tanto un terreno
+//post: se cargan las texturas en el rect de locomotora
+void cargarTexturasLocomotora(Locomotora& locomotora , SDL_Renderer *renderizador);
 
 #endif // _locomotora_h_

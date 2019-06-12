@@ -1,4 +1,5 @@
 #include "Terreno.h"
+#include "Mina.h"
 
 using namespace std;
 

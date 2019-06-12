@@ -14,7 +14,7 @@ int main( int argc, char* argv[]){
     srand(time(NULL));
 
     /*PRUENA JUEGO SIN GRAFICOS*/
-    testTerreno();
+    //testTerreno();
 
     /*PRUEBA AVANCE LOCOMOTORA*/
     //testAvanzarLocomotora();
@@ -30,7 +30,7 @@ int main( int argc, char* argv[]){
     //testLocomotoraRecolectarMondenas();
 
  //MAIN PRINCIPAL JUEGO
-    /*
+
     const int FPS = 60;
     const int FrameDelay = 100/FPS;
     Uint32 frameStart;
@@ -53,5 +53,5 @@ int main( int argc, char* argv[]){
     salirJuego(juego);
 
     return 0;
-    */
+
 }

@@ -17,8 +17,8 @@
 
 
 
-#define ANCHO_TERRENO 15
-#define ALTO_TERRENO 10
+#define ANCHO_TERRENO 16
+#define ALTO_TERRENO 12
 
 using namespace std;
 

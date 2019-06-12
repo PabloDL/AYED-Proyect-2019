@@ -309,3 +309,7 @@ bool hayLugarParaCajaEnLocomotora(Locomotora& locomotora , int cantSolicitada , 
     }
     return hayLugar;
 }
+
+void cargarTexturasLocomotora(Locomotora& locomotora , SDL_Renderer *renderizador){
+    locomotora.textura = IMG_LoadTexture(renderizador, "assets/img/c1/der/4.png");
+}

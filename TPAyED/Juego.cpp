@@ -10,6 +10,7 @@ void crearJuego(Juego& juego, const char* title, int xpos, int ypos, int width, 
 
     juego.terreno = new Terreno();
     //juego.terreno = new Terreno;
+    //crearTerreno(*juego.terreno);
 
     juego.counter = 0;
     int flags = 0;
@@ -28,7 +29,6 @@ void crearJuego(Juego& juego, const char* title, int xpos, int ypos, int width, 
             std::cout << "Renderizador creado..." << std::endl;
         }
         juego.estaCorriendo = true;
-
 
         crearTerreno(*juego.terreno);
     }
@@ -64,7 +64,9 @@ void actualizar(Juego& juego){
 }
 
 void renderizar(Juego& juego){
-    cargarTexturas(juego);
+    if(juego.counter == 0){
+        cargarTexturas(juego);
+    }
     SDL_RenderClear(juego.renderizador);
     //AGREGAR FUNCIONES PARA RENDERIZAR OBJETOS
     renderizarTerreno(*(juego.terreno), juego.renderizador);
@@ -77,6 +79,6 @@ bool corriendo(Juego& juego){
 
 
 void cargarTexturas(Juego& juego){
-    cargarTexturasTerreno( *juego.terreno,
-                    juego.renderizador);
+    cargarTexturasTerreno( *juego.terreno, juego.renderizador);
+    cargarTexturasLocomotora( juego.terreno->locomotora , juego.renderizador);
 }
