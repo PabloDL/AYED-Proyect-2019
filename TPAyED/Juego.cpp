@@ -93,6 +93,7 @@ void renderizar(Juego& juego){
 
     renderizarTerreno(*(juego.terreno), juego.renderizador);
     renderizarLocomotora(juego.terreno->locomotora, juego.renderizador, juego.counter);
+    renderizarMinas(juego.terreno->minas, juego.renderizador);
     //AGREGAR FUNCIONES PARA RENDERIZAR OBJETOS
 
     SDL_RenderPresent(juego.renderizador);

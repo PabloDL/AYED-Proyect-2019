@@ -54,12 +54,13 @@
 1560478757 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\parametros.h
 	<iostream>
 
-1560478757 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\mina.h
+1560532916 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\mina.h
 	<iostream>
 	<sstream>
 	"Cajas.h"
 	"Cola.h"
 	"Funciones.h"
+	"SDL_image.h"
 
 1560483715 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\main.cpp
 	<iostream>
@@ -87,7 +88,7 @@
 	"Terreno.h"
 	"SDL.h"
 
-1560488738 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\juego.cpp
+1560532488 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\juego.cpp
 	"Juego.h"
 	"Terreno.h"
 	"locomotora.h"
@@ -198,7 +199,7 @@
 1560478757 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\bandido.cpp
 	"Bandido.h"
 
-1560488826 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\pruebas.cpp
+1560534432 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\pruebas.cpp
 	"Pruebas.h"
 	"Funciones.h"
 

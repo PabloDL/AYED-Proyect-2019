@@ -6,6 +6,7 @@
 #include "Cajas.h"
 #include "Cola.h"
 #include "Funciones.h"
+#include "SDL_image.h"
 
 using namespace std;
 /*
@@ -29,7 +30,8 @@ typedef struct Mina{
     int seq4;
     int seq5;
     Cola cajas;
-
+    SDL_Texture* textura;
+    SDL_Rect rectImag;
     int seqActual;
 }Mina;
 /***********GETTERS AND SETTERS*********************/
@@ -93,5 +95,13 @@ Post: Devuelve la proxima caja de la cola sin sacarla de la cola
 Cajas* proximaCaja(Mina &mina);
 
 void eliminarProduccion(Mina &mina);
+
+//pre: debe existir una locomotora, y por tanto un terreno
+//post: se cargan las texturas en el rect de locomotora
+void cargarTexturaMina(Mina& mina, SDL_Renderer * renderizador);
+
+//pre debe existir una locomotora y tener cargadas las texturas
+//post: añade al renderizador las texturas de la locomotora en su posicion relativa
+void renderizarMinas(Lista& minas, SDL_Renderer *renderizador);
 
 #endif

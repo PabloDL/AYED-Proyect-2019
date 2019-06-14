@@ -9,7 +9,7 @@ int getSeq1(Mina &mina){return mina.seq1;};
 int getSeq2(Mina &mina){return mina.seq2;};
 int getSeq3(Mina &mina){return mina.seq3;};
 int getSeq4(Mina &mina){return mina.seq4;};
-int getSeq5(Mina &mina){return mina.seq5;};
+int getSeq5(Mina &mina){return mina.seq5;}
 
 void setPosX(Mina &mina, int posX){mina.posX = posX;}
 void setPosY(Mina &mina, int posY){mina.posY = posY;}
@@ -20,7 +20,6 @@ void setSeq2(Mina &mina, int seq2){mina.seq2 = seq2;}
 void setSeq3(Mina &mina, int seq3){mina.seq3 = seq3;}
 void setSeq4(Mina &mina, int seq4){mina.seq4 = seq4;}
 void setSeq5(Mina &mina, int seq5){mina.seq5 = seq5;}
-
 /***************************************************/
 
 void crearMina (Mina &mina){
@@ -124,4 +123,22 @@ Cajas* proximaCaja(Mina &mina){
 void eliminarProduccion(Mina &mina){
     mina.cajas;
     eliminarCola(mina.cajas);
+}
+
+void cargarTexturaMina(Mina& mina, SDL_Renderer * renderizador){
+    mina.textura = IMG_LoadTexture(renderizador, "assets/img/mina.png");
+}
+
+void renderizarMinas(Lista& minas, SDL_Renderer *renderizador){
+     NodoLista * nodoActual = primero(minas);;
+
+    while(siguiente(minas, nodoActual) != minas.primero){
+        Mina minaActual = (Mina) nodoActual->ptrDato;
+        minaActual.rectImag.x=getPosX(mina)*40;
+        minaActual.rectImag.y=getPosY(mina)*40;
+        minaActual.rectImag.w=40;
+        minaActual.rectImag.h=40;
+        SDL_RenderCopy(renderizador, minaActual.textura, NULL, (Mina)actual.rectImag);
+        actual = siguiente(vagones, actual);
+    }
 }
