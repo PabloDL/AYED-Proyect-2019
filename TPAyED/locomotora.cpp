@@ -318,5 +318,63 @@ bool hayLugarParaCajaEnLocomotora(Locomotora& locomotora , int cantSolicitada , 
 }
 
 void cargarTexturasLocomotora(Locomotora& locomotora , SDL_Renderer *renderizador){
-    locomotora.textura = IMG_LoadTexture(renderizador, "assets/img/c1/der/4.png");
+    locomotora.texturas[0] = IMG_LoadTexture(renderizador, "assets/img/c1/izq/0.png");
+    locomotora.texturas[1] = IMG_LoadTexture(renderizador, "assets/img/c1/izq/1.png");
+    locomotora.texturas[2] = IMG_LoadTexture(renderizador, "assets/img/c1/izq/2.png");
+    locomotora.texturas[3] = IMG_LoadTexture(renderizador, "assets/img/c1/izq/3.png");
+    locomotora.texturas[4] = IMG_LoadTexture(renderizador, "assets/img/c1/izq/4.png");
+    locomotora.texturas[5] = IMG_LoadTexture(renderizador, "assets/img/c1/izq/5.png");
+    locomotora.texturas[6] = IMG_LoadTexture(renderizador, "assets/img/c1/izq/6.png");
+    locomotora.texturas[7] = IMG_LoadTexture(renderizador, "assets/img/c1/izq/7.png");
+    locomotora.texturas[8] = IMG_LoadTexture(renderizador, "assets/img/c1/izq/8.png");
+    locomotora.texturas[9] = IMG_LoadTexture(renderizador, "assets/img/c1/izq/9.png");
+
+    locomotora.texturas[10] = IMG_LoadTexture(renderizador, "assets/img/c1/der/0.png");
+    locomotora.texturas[11] = IMG_LoadTexture(renderizador, "assets/img/c1/der/1.png");
+    locomotora.texturas[12] = IMG_LoadTexture(renderizador, "assets/img/c1/der/2.png");
+    locomotora.texturas[13] = IMG_LoadTexture(renderizador, "assets/img/c1/der/3.png");
+    locomotora.texturas[14] = IMG_LoadTexture(renderizador, "assets/img/c1/der/4.png");
+    locomotora.texturas[15] = IMG_LoadTexture(renderizador, "assets/img/c1/der/5.png");
+    locomotora.texturas[16] = IMG_LoadTexture(renderizador, "assets/img/c1/der/6.png");
+    locomotora.texturas[17] = IMG_LoadTexture(renderizador, "assets/img/c1/der/7.png");
+    locomotora.texturas[18] = IMG_LoadTexture(renderizador, "assets/img/c1/der/8.png");
+    locomotora.texturas[19] = IMG_LoadTexture(renderizador, "assets/img/c1/der/9.png");
+
+    locomotora.texturas[20] = IMG_LoadTexture(renderizador, "assets/img/c1/arr/0.png");
+    locomotora.texturas[21] = IMG_LoadTexture(renderizador, "assets/img/c1/arr/1.png");
+    locomotora.texturas[22] = IMG_LoadTexture(renderizador, "assets/img/c1/arr/2.png");
+    locomotora.texturas[23] = IMG_LoadTexture(renderizador, "assets/img/c1/arr/3.png");
+    locomotora.texturas[24] = IMG_LoadTexture(renderizador, "assets/img/c1/arr/4.png");
+    locomotora.texturas[25] = IMG_LoadTexture(renderizador, "assets/img/c1/arr/5.png");
+    locomotora.texturas[26] = IMG_LoadTexture(renderizador, "assets/img/c1/arr/6.png");
+    locomotora.texturas[27] = IMG_LoadTexture(renderizador, "assets/img/c1/arr/7.png");
+    locomotora.texturas[28] = IMG_LoadTexture(renderizador, "assets/img/c1/arr/8.png");
+    locomotora.texturas[29] = IMG_LoadTexture(renderizador, "assets/img/c1/arr/9.png");
+
+    locomotora.texturas[30] = IMG_LoadTexture(renderizador, "assets/img/c1/aba/0.png");
+    locomotora.texturas[31] = IMG_LoadTexture(renderizador, "assets/img/c1/aba/1.png");
+    locomotora.texturas[32] = IMG_LoadTexture(renderizador, "assets/img/c1/aba/2.png");
+    locomotora.texturas[33] = IMG_LoadTexture(renderizador, "assets/img/c1/aba/3.png");
+    locomotora.texturas[34] = IMG_LoadTexture(renderizador, "assets/img/c1/aba/4.png");
+    locomotora.texturas[35] = IMG_LoadTexture(renderizador, "assets/img/c1/aba/5.png");
+    locomotora.texturas[36] = IMG_LoadTexture(renderizador, "assets/img/c1/aba/6.png");
+    locomotora.texturas[37] = IMG_LoadTexture(renderizador, "assets/img/c1/aba/7.png");
+    locomotora.texturas[38] = IMG_LoadTexture(renderizador, "assets/img/c1/aba/8.png");
+    locomotora.texturas[39] = IMG_LoadTexture(renderizador, "assets/img/c1/aba/9.png");
+
+}
+
+void renderizarLocomotora(Locomotora& locomotora, SDL_Renderer *renderizador, int counter, int sentido){
+    int index = counter%10;
+    locomotora.rectImag.x= locomotora.posicion.x*50;
+    locomotora.rectImag.y= locomotora.posicion.y*50;
+    locomotora.rectImag.w=50;
+    locomotora.rectImag.h=50;
+    /*SENTIDO
+            IZQUIERDA=0,
+            DERECHA=1,
+            ARRIBA=2,
+            ABAJO=3
+    */
+    SDL_RenderCopy(renderizador,locomotora.texturas[index+sentido*10], NULL, &locomotora.rectImag);
 }

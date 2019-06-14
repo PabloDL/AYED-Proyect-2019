@@ -1,5 +1,7 @@
 #include "Pruebas.h"
 
+#include "Funciones.h"
+
 void testLocomotoraRecolectarMondenas(){
 
            cout << "Test Colision locomotora o vagon con moneda" << endl;

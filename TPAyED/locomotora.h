@@ -20,7 +20,7 @@ typedef struct Locomotora{
     Posicion posicion;
     int velocidadL;
     Lista listaVagones;
-    SDL_Texture *textura;
+    SDL_Texture *texturas[40];
     SDL_Rect rectImag;
 }Locomotora;
 /************************Axiomas******************/

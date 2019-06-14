@@ -2,7 +2,7 @@
 #include "Terreno.h"
 /*GETTERS Y SETTERS*/
 Terreno getTerreno(Juego& juego){
-   // return juego.terreno
+   return *juego.terreno;
 }
 
 /*-----------------------------*/
@@ -10,6 +10,7 @@ void crearJuego(Juego& juego, const char* title, int xpos, int ypos, int width, 
 
     juego.terreno = new Terreno();
     //juego.terreno = new Terreno;
+
     //crearTerreno(*juego.terreno);
 
     juego.counter = 0;
@@ -64,9 +65,10 @@ void actualizar(Juego& juego){
 }
 
 void renderizar(Juego& juego){
-    if(juego.counter == 0){
+    if(juego.counter == 1){
         cargarTexturas(juego);
     }
+    cout << juego.counter << endl;
     SDL_RenderClear(juego.renderizador);
     //AGREGAR FUNCIONES PARA RENDERIZAR OBJETOS
     renderizarTerreno(*(juego.terreno), juego.renderizador);

@@ -278,7 +278,7 @@ void avanzarLocomotora(Terreno &terreno, int sentido){
             break;
         }
         case 3: { //VA HACIA IZQUIERDA
-            moverPosicion(nuevaPosicion,getX(pTemp),getY(pTemp)+1);
+/**<  */            moverPosicion(nuevaPosicion,getX(pTemp),getY(pTemp)+1);
             break;
         }
         default:
@@ -489,7 +489,7 @@ void cargarTexturasTerreno(Terreno& terreno, SDL_Renderer * renderizador){
 
 }
 
-void renderizarTerreno(Terreno& terreno,SDL_Renderer *renderizador){
+void renderizarTerreno(Terreno& terreno, SDL_Renderer *renderizador){
     for(int c=0;c<ANCHO_TERRENO;c++){
         for(int d=0;d<ALTO_TERRENO;d++){
             terreno.rectImag.x=c*50;
@@ -497,7 +497,6 @@ void renderizarTerreno(Terreno& terreno,SDL_Renderer *renderizador){
             terreno.rectImag.w=50;
             terreno.rectImag.h=50;
             int texturaActual = terreno.textureMap[c][d];
-            cout << "textura actual " << texturaActual << endl;
             SDL_RenderCopy(renderizador,terreno.texturas[texturaActual], NULL, &terreno.rectImag);
         }
     }
