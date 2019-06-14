@@ -42,17 +42,56 @@ void salirJuego(Juego& juego){
     std::cout << "Se salio del Juego" << std::endl;
 }
 
-void manejarEventos(Juego& juego){
-    SDL_Event evento;
-    SDL_PollEvent(&evento);
-    switch (evento.type){
-        case SDL_QUIT:
-            juego.estaCorriendo = false;
+void manejarEventos(Juego& juego, SDL_Event & event){
+
+//    SDL_Event evento;
+//    SDL_PollEvent(&evento);
+//cout << "evento: " << evento.type << endl;
+//    switch (evento.type){
+//        case SDL_QUIT:
+//            juego.estaCorriendo = false;
+//            system("pause");
+//            break;
+//        case SDL_KEYDOWN:
+//            /* Check the SDLKey values and move change the coords */
+//            switch( evento.key.keysym.sym ){
+//                case SDLK_LEFT:
+//                    juego.terreno->locomotora.direccion = 0;
+//                    break;
+//                case SDLK_RIGHT:
+//                    juego.terreno->locomotora.direccion = 1;
+//                    break;
+//                case SDLK_UP:
+//                    juego.terreno->locomotora.direccion = 2;
+//                    break;
+//                case SDLK_DOWN:
+//                    system("pause");
+//                    juego.terreno->locomotora.direccion = 3;
+//                    break;
+//                default:
+//                    break;
+//            }
+//        default:
+//            break;
+//    }
+while(SDL_PollEvent(&event)) {
+    switch(event.type)
+    {
+    case SDL_WINDOWEVENT:
+        switch(event.window.event)
+        {
+        case SDL_WINDOWEVENT_ENTER:
+            cout << "entered" << endl;
             break;
 
-        case SDL_KEYDOWN:
-            /* Check the SDLKey values and move change the coords */
-            switch( evento.key.keysym.sym ){
+        case SDL_WINDOWEVENT_LEAVE:
+            cout << "left" << endl;
+            break;
+        }
+        break;
+
+    case SDL_KEYDOWN:
+            switch( event.key.keysym.sym ){
                 case SDLK_LEFT:
                     juego.terreno->locomotora.direccion = 0;
                     break;
@@ -68,9 +107,9 @@ void manejarEventos(Juego& juego){
                 default:
                     break;
             }
-        default:
-            break;
+        break;
     }
+}
 }
 
 void actualizar(Juego& juego){

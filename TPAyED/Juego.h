@@ -33,7 +33,7 @@ void salirJuego(Juego &juego);
 PRE: Juego inicializado
 Post:Se manejan los eventos (eventos de teclado,etc)del juego
 */
-void manejarEventos(Juego &juego);
+void manejarEventos(Juego &juego, SDL_Event & evento);
 
 /*
 PRE: Juego inicializado
