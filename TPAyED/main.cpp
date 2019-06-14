@@ -32,7 +32,7 @@ int main( int argc, char* argv[]){
  //MAIN PRINCIPAL JUEGO
 
 
-    const int FPS = 5;
+    const int FPS = 10;
     const int FrameDelay = 5000/FPS;
     Uint32 frameStart;
     int frameTime;

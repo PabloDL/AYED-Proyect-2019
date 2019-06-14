@@ -235,7 +235,7 @@ void aparecerBandido(Terreno& terreno){
 }
 
 //YA esta todo cargado, hay q actualizar
-void actualizarTerreno(Terreno& terreno, int sentido){
+void actualizarTerreno(Terreno& terreno){
 
     //SI VUELVO A ENTRAR EL JUEGO VUELVE A ESTAR JUGABLE
 
@@ -251,19 +251,19 @@ void actualizarTerreno(Terreno& terreno, int sentido){
     //avanzarLocomotora -> ACTUAR SI POSICION DE LOCOMOTORA O VAGONES ESTA EN ZONA DE CONFLI
     actualizarMatrizJuego(terreno);
     ////ACTUALIZAR EN MATRIZ SI APARECIO BANDIDO O MONEDA
-    avanzarLocomotora(terreno, sentido);
+    avanzarLocomotora(terreno);
     //REVISAR CAMBIOS
     chequearColisiones(terreno);
 }
 
-void avanzarLocomotora(Terreno &terreno, int sentido){
+void avanzarLocomotora(Terreno &terreno){
     //AVANZO LOCOMOTORA Y VAGONES
     Posicion nuevaPosicion;
     crearPosicion(nuevaPosicion);
     Locomotora locomotora = getLocomotora(terreno);
     Posicion pTemp = getPosicion(locomotora); //guardo posicion actual locomotora
 
-    switch (sentido){   // IZQUIERDA,DERECHA,ARRIBA,ABAJO
+    switch (terreno.locomotora.direccion){   // IZQUIERDA,DERECHA,ARRIBA,ABAJO
         case 0: { //VA HACIA IZQUIERDA
             moverPosicion(nuevaPosicion,getX(pTemp)-1,getY(pTemp));
             break;

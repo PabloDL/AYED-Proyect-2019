@@ -49,6 +49,25 @@ void manejarEventos(Juego& juego){
         case SDL_QUIT:
             juego.estaCorriendo = false;
             break;
+
+        case SDL_KEYDOWN:
+            /* Check the SDLKey values and move change the coords */
+            switch( evento.key.keysym.sym ){
+                case SDLK_LEFT:
+                    juego.terreno->locomotora.direccion = 0;
+                    break;
+                case SDLK_RIGHT:
+                    juego.terreno->locomotora.direccion = 1;
+                    break;
+                case SDLK_UP:
+                    juego.terreno->locomotora.direccion = 2;
+                    break;
+                case SDLK_DOWN:
+                    juego.terreno->locomotora.direccion = 3;
+                    break;
+                default:
+                    break;
+            }
         default:
             break;
     }
@@ -57,7 +76,7 @@ void manejarEventos(Juego& juego){
 void actualizar(Juego& juego){
     juego.counter++;
     //AGREGAR FUNCIONES PARA ACTUALIZAR OBJETOS
-    actualizarTerreno(*juego.terreno, 1);
+    actualizarTerreno(*juego.terreno);
 
 
 
@@ -73,7 +92,7 @@ void renderizar(Juego& juego){
     SDL_RenderClear(juego.renderizador);
 
     renderizarTerreno(*(juego.terreno), juego.renderizador);
-    renderizarLocomotora(juego.terreno->locomotora, juego.renderizador, juego.counter, 1);
+    renderizarLocomotora(juego.terreno->locomotora, juego.renderizador, juego.counter);
     //AGREGAR FUNCIONES PARA RENDERIZAR OBJETOS
 
     SDL_RenderPresent(juego.renderizador);

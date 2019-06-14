@@ -21,6 +21,13 @@ int getVelocidadL(Locomotora& locomotora){
     return locomotora.velocidadL;
 }
 
+void setDireccion(Locomotora& locomotora, int direccion){
+    locomotora.direccion = direccion;
+}
+int getDireccion(Locomotora& locomotora){
+    return locomotora.direccion;
+}
+
 Lista getListaVagones(Locomotora& locomotora){
     return locomotora.listaVagones;
 }
@@ -30,6 +37,7 @@ void crearLocomotora(Locomotora& locomotora){
    locomotora.velocidadL = 0;
    locomotora.posicion.x = 0;
    locomotora.posicion.y = 0;
+   locomotora.direccion = 1;
    crearLista( locomotora.listaVagones, compararListaVagones , eliminarVagonesDeLista );
 }
 
@@ -357,7 +365,7 @@ void cargarTexturasLocomotora(Locomotora& locomotora , SDL_Renderer *renderizado
 
 }
 
-void renderizarLocomotora(Locomotora& locomotora, SDL_Renderer *renderizador, int counter, int sentido){
+void renderizarLocomotora(Locomotora& locomotora, SDL_Renderer *renderizador, int counter){
     int index = counter%10;
     locomotora.rectImag.x= locomotora.posicion.x*50;
     locomotora.rectImag.y= locomotora.posicion.y*50;
@@ -369,5 +377,5 @@ void renderizarLocomotora(Locomotora& locomotora, SDL_Renderer *renderizador, in
             ARRIBA=2,
             ABAJO=3
     */
-    SDL_RenderCopy(renderizador,locomotora.texturas[index+sentido*10], NULL, &locomotora.rectImag);
+    SDL_RenderCopy(renderizador, locomotora.texturas[index+(locomotora.direccion*10)], NULL, &locomotora.rectImag);
 }

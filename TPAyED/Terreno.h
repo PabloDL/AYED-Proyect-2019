@@ -86,7 +86,7 @@ PRE: Terreno Creado y inicializado
 POST: Terreno actualizado, con movimientos de locomotora yproducciones de minas, monedas  y bandidos
       SI ALGUNA DE LAS CONDICIONES DEL JUEGO CAMBIA MODIFICA VARIABLE ESTADO
 */
-void actualizarTerreno(Terreno& terreno, int sentido);
+void actualizarTerreno(Terreno& terreno);
 //PRE: Terreno Creado y inicializado
 //POST: Recore listas y redibuja si es necesario,
 //      Matriz actualizada con nuevos movimientos, revisa colisiones y de ser necesario aplica cambios
@@ -94,7 +94,7 @@ void actualizarMatrizJuego(Terreno &terreno);
 //PRE: Terreno Creado y inicializado
 //POST: Avanza locomotora y sus vagones, verifica si algun vagon o la locomotora tienn una intercepciopn
 //y en tal caso efectua accion
-void avanzarLocomotora(Terreno &terreno, int sentido);
+void avanzarLocomotora(Terreno &terreno);
 //PRE: Terreno Creado y inicializado, se debe llamar de actualizar terreno
 //POST: verifica colisiones y actualiza estado matriz y actua en efecto
 void chequearColisiones(Terreno& terreno);

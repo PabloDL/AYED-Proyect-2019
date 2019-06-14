@@ -18,6 +18,7 @@ typedef struct Locomotora{
     int monedasAdquiridas;
     Posicion posicion;
     int velocidadL;
+    int direccion;
     Lista listaVagones;
     SDL_Texture *texturas[40];
     SDL_Rect rectImag;
@@ -33,6 +34,9 @@ int getMonedasAdquiridas(Locomotora& locomotora);
 
 void setVelocidadL(Locomotora& locomotora, int velocidadL);
 int getVelocidadL(Locomotora& locomotora);
+
+void setDireccion(Locomotora& locomotora, int direccion);
+int getDireccion(Locomotora& locomotora);
 
 void setPosicion(Locomotora& locomotora,Posicion posicion);
 Posicion getPosicion(Locomotora& locomotora);
@@ -101,5 +105,5 @@ void cargarTexturasLocomotora(Locomotora& locomotora , SDL_Renderer *renderizado
 
 //pre debe existir una locomotora y tener cargadas las texturas
 //post: añade al renderizador las texturas de la locomotora en su posicion relativa
-void renderizarLocomotora(Locomotora& locomotora, SDL_Renderer *renderizador, int counter, int sentido);
+void renderizarLocomotora(Locomotora& locomotora, SDL_Renderer *renderizador, int counter);
 #endif // _locomotora_h_

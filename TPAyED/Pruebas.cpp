@@ -188,7 +188,7 @@ void testAvanzarLocomotora(){
             }
         }
         //AVANZO LOCOMOTORA
-        avanzarLocomotora(t, 3);
+        avanzarLocomotora(t);
 
         cout <<"locomotora despues avanzar" << "[" << t.locomotora.posicion.x << ";" <<  t.locomotora.posicion.y << "]";
         vagones = getListaVagones(l);
@@ -286,7 +286,7 @@ void testTerreno(){
         int sentido ;
         cout << "PARA DONDE AVANZAR IZQUIERDA=0,DERECHA=1,ARRIBA=2,ABAJO=3" << endl;
         cin >> sentido;
-        actualizarTerreno(t,sentido);
+        actualizarTerreno(t);
         imprimirLocomotora(t);
         imprimirMatriz(t);
         cout << "ESTADO JUEGO ACTUAL (JUGABLE=0,GAMEOVER=1,LOCOMOTORADETENIDA=2)" << "-->" <<  t.estadoJuego << endl;
