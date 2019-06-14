@@ -6,7 +6,6 @@
 #endif // velocidad
 
 #include <sstream>
-
 #include "Lista.h"
 #include "Posicion.h"
 #include "Vagon.h"
@@ -88,8 +87,8 @@ int getCantLingotes(Locomotora& locomotora , string tipoItem);
 //      la cantSolicitada de lingotes(recuerden que siempre empieza del ultimo vagon y va ir hasta el primero si es necesario)
 //      finalmente devuelve 'la cant de lingotes solicitados si se cumple con la cantSolicitada' , si no es asi devuelve '0'
 int pagarBandido(Locomotora& locomotora , int cantSolicitada , int tipoItem);
-
-
+//PRE:  Locomotora creada
+//POST False si no hay lugar en locomotora para produccion de mina, true si la caja entra en vagon
 bool hayLugarParaCajaEnLocomotora(Locomotora& locomotora , int cantSolicitada , string tipoItem);
 
 #endif // _locomotora_h_

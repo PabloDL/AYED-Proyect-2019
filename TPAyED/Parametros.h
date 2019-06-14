@@ -4,7 +4,6 @@
 #include <iostream>
 
 using namespace std;
-
 /*
     Definicicion de tipo de dato Parametro para cargar items de archivo
     Atributos:
@@ -14,10 +13,7 @@ using namespace std;
     * codItem > 0, existente
     * cantidad < 100
 */
-
 /* Tipo de estructura de Comanda */
-
-
 typedef struct Parametros{
     int s;
     int p;
@@ -30,7 +26,6 @@ typedef struct Parametros{
     int vB;
     int iP;
 }Parametros;
-
 /************GETTERS AND SETTERS*********************/
 int getS(Parametros &parametros);
 int getP(Parametros &parametros);
@@ -54,11 +49,20 @@ void setIb(Parametros &parametros, int ib);
 void setIp(Parametros &parametros, int ip);
 
 /***************************************************/
-
+/*
+PRE:
+Post: inicializa parametros de TDA Parametros en 0
+*/
+void crearParametros(Parametros & parametros);
+/*
+PRE: Parametros creado
+Post: libera recursos solicitados por parametros
+*/
+void eliminarParametros(Parametros & parametros);
 /*
 PRE: Mina existente y cargada
 Post: Muestra por pantalla los atributos
 */
 void toString(Parametros &parametros);
 
-#endif // __PARAMETROS_H__
+#endif

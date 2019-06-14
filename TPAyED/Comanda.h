@@ -50,4 +50,4 @@ Post: Muestra por pantalla los atributos
 */
 void toString(Comanda &comanda);
 
-#endif // __PARAMETROS_H__
+#endif

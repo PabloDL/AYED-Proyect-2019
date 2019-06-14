@@ -32,9 +32,7 @@ void imprimirListaMinas(Lista &l){
 
     }
 }
-//*/
 
-//
 ResultadoComparacion compararListaEstaciones(PtrDato ptrDato1, PtrDato ptrDato2) {
     int dato1 = ((Estacion*) ptrDato1)->id;
     int dato2 = ((Estacion*) ptrDato2)->id;
@@ -47,52 +45,12 @@ ResultadoComparacion compararListaEstaciones(PtrDato ptrDato1, PtrDato ptrDato2)
         return IGUAL;
     }
 }
-//
+
 void eliminarEstacionDeLista(PtrDato ptrDato) {
     Estacion estacionAEliminar = *((Estacion*) ptrDato);
     eliminarEstacion(estacionAEliminar);
 }
-//
-//ResultadoComparacion compararListaMonedas(PtrDato ptrDato1, PtrDato ptrDato2) {
-//    int dato1 = ((Moneda*) ptrDato1)->id;
-//    int dato2 = ((Moneda*) ptrDato2)->id;
-//
-//    if (dato1 < dato2) {
-//        return MENOR;
-//    }else if (dato1 > dato2) {
-//        return MAYOR;
-//    }else{
-//        return IGUAL;
-//    }
-//}
-//
-//void eliminarMonedaDeLista(PtrDato ptrDato) {
-//    Moneda monedaAEliminar = *((Moneda*) ptrDato);
-//    eliminarMoneda(monedaAEliminar);
-//}
-//
-//
-//ResultadoComparacion compararListaBandidos(PtrDato ptrDato1, PtrDato ptrDato2) {
-//    int dato1 = ((Bandido*) ptrDato1)->id;
-//    int dato2 = ((Bandido*) ptrDato2)->id;
-//
-//    if (dato1 < dato2) {
-//        return MENOR;
-//    }else if (dato1 > dato2) {
-//        return MAYOR;
-//    }else{
-//        return IGUAL;
-//    }
-//}
-//
-//void eliminarBandidoDeLista(PtrDato ptrDato) {
-//    Bandido bandidoAEliminar = *((Bandido*) ptrDato);
-//    eliminarBandido(bandidoAEliminar);
-//}
-
-
 /***************************************CAJAS**************************************/
-
 ResultadoComparacion compararListaCajas(PtrDato ptrDato1, PtrDato ptrDato2) {
     int dato1 = ((Cajas*) ptrDato1)->capMaxima;
     int dato2 = ((Cajas*) ptrDato2)->capMaxima;
@@ -129,7 +87,6 @@ void imprimirListaCajas(Lista &l){
         cout<< "Vagon Vacio"<< endl;
     }
 }
-
 /*********************************************VAGONES******************************************/
 ResultadoComparacion compararListaVagones(PtrDato ptrDato1 , PtrDato ptrDato2){
     int dato1 = ((Vagon*) ptrDato1)->capVagon;
@@ -164,8 +121,6 @@ void imprimirListaVagones(Lista& l){
             }
     }
 }
-
-
 /*************************************************************************************************/
 ResultadoComparacion compararListaBandidos(PtrDato ptrDato1, PtrDato ptrDato2) {
     int dato1 = ((Bandido*) ptrDato1)->id;

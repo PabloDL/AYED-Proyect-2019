@@ -1,7 +1,4 @@
 #include "Locomotora.h"
-
-
-
 /********************GETTERS Y SETTERS*************************/
 void setMonedasAdquiridas(Locomotora& locomotora,int monedasAdquiridas){
     locomotora.monedasAdquiridas=monedasAdquiridas;
@@ -96,8 +93,6 @@ int getCantLingotes(Locomotora& locomotora , string tipoItem){
     return cantLingotes;
 }
 
-//NOTA: NO FUNCIONA PORQUE ESTOY LLAMANDO A METODOS DE CAJA (getCapMax) (getCantItem) (getCodItem) que no esta agregados en el tda de CAJA
-
 void almacenarCaja(Locomotora& locomotora, Cajas& caja){
     if( !listaVacia(locomotora.listaVagones) ){ //si la locomotora tiene almenos 1 vagon
         PtrNodoLista cursor = primero( locomotora.listaVagones );
@@ -124,8 +119,6 @@ void almacenarCaja(Locomotora& locomotora, Cajas& caja){
         }
     }
 }
-
-//NOTA: NO FUNCIONA PORQUE ESTOY LLAMANDO A METODOS DE CAJA (getCapMax) (getCantItem) (getCodItem) que no esta agregados en el tda de CAJA
 
 int pagarBandido(Locomotora& locomotora, int cantSolicitada, int tipoItemInt){
     std::stringstream ss;
@@ -301,7 +294,6 @@ void eliminarLocomotora(Locomotora& locomotora){
 }
 
 bool hayLugarParaCajaEnLocomotora(Locomotora& locomotora , int cantSolicitada , string tipoItem){
-    ///REVISAAAAAAAAAAAAAAAAAAAAR
     //RECORRO LISTA VAGONES Y VEO SI HAY LUGAR
     bool hayLugar = false;
     Lista vagones = locomotora.listaVagones;
@@ -309,9 +301,10 @@ bool hayLugarParaCajaEnLocomotora(Locomotora& locomotora , int cantSolicitada , 
         PtrNodoLista ptrNodoListaVagones = primero(vagones);
         while (ptrNodoListaVagones != finLista() && !hayLugar){
             Vagon* pV =  (Vagon*) ptrNodoListaVagones->ptrDato;
-            if (getTipoVagon(*pV) == tipoItem && ((getCapVagon(*pV)-getCapVagonUsada(*pV)) >=cantSolicitada)){
+            if ((getTipoVagon(*pV) == tipoItem || getTipoVagon(*pV) == "SIN DEFINIR") && ((getCapVagon(*pV)-getCapVagonUsada(*pV)) >=cantSolicitada)){
                 hayLugar=true;
             }
+            ptrNodoListaVagones = siguiente(vagones, ptrNodoListaVagones);
         }
     }
     return hayLugar;

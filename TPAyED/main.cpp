@@ -51,7 +51,7 @@ int main( int argc, char* argv[]){
         }
     }
     salirJuego(juego);
-
+*/
     return 0;
-    */
+
 }

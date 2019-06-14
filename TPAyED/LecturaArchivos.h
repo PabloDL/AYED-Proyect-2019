@@ -4,7 +4,6 @@
 #include<iostream>
 #include <fstream>
 #include <sstream>
-
 #include "Parametros.h"
 #include "Comanda.h"
 #include "Mina.h"
@@ -19,12 +18,10 @@ using namespace std;
     * Existen tres tipos de archivos Paramatros.txt,Comanda.txt, Minas.txt
     * Los archivos estan creados con las estructuras correctas, no hay datos erroneos
 */
-
 /* Tipo de estructura del Lector */
 typedef struct Lector{
     fstream ficheroEntrada;
 }Lector;
-
 /*
 PRE: Lector no existente
 Post:

@@ -2,16 +2,21 @@
 #define __MINA_H__
 
 #include <iostream>
-
+#include <sstream>
 #include "Cajas.h"
 #include "Cola.h"
 #include "Funciones.h"
 
 using namespace std;
-
 /*
-Definicion de tipo de dato mina para representar estructura en donde se crean las cajas de item
+Definicion de tipo de dato Mina para representar donde se producen las cajas de items
+    AXIOMAS
+    * Los item pueden ser: oro, plata, bronce, platino, roca y carbón.
+    * La secuencia esta establecida por 5 numeros enteros del 1 al 5 inclusive
+
+    * posX, posY, codItem, IP, seq enteros y > 0
 */
+/* Tipo de estructura de Mina */
 
 typedef struct Mina{
     int posX;
@@ -27,12 +32,6 @@ typedef struct Mina{
 
     int seqActual;
 }Mina;
-
-/*
-AXIOMAS
-Los item pueden ser: oro, plata, bronce, platino, roca y carbón.
-La secuencia esta establecida por 5 numeros enteros del 1 al 5 inclusive
-
 /***********GETTERS AND SETTERS*********************/
 int getPosX(Mina &mina);
 int getPosY(Mina &mina);
@@ -95,4 +94,4 @@ Cajas* proximaCaja(Mina &mina);
 
 void eliminarProduccion(Mina &mina);
 
-#endif // __PARAMETROS_H__
+#endif
