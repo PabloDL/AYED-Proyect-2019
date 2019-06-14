@@ -104,6 +104,10 @@ while(SDL_PollEvent(&event)) {
                 case SDLK_DOWN:
                     juego.terreno->locomotora.direccion = 3;
                     break;
+                case SDLK_ESCAPE:
+                    juego.estaCorriendo = false;
+                    system("pause");
+                    break;
                 default:
                     break;
             }

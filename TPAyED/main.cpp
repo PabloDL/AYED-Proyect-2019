@@ -43,19 +43,31 @@ int main( int argc, char* argv[]){
         SDL_PollEvent(&evento);
 
     while(corriendo(juego)){
-
-
-            manejarEventos(juego, evento);
-            frameStart = SDL_GetTicks();
-
+        manejarEventos(juego, evento);
+        frameStart = SDL_GetTicks();
         //manejarEventos(juego);
         actualizar(juego);
         renderizar(juego);
+
+
+
+        Mina* m = new Mina;
+        crearMina((*m));
+        adicionarPrincipio(juego.terreno->minas, m);
+
+
+        imprimirListaMinas(juego.terreno->minas);
+
+        imprimirMatriz(*juego.terreno);
 
         frameTime = SDL_GetTicks() - frameStart;
         if(FrameDelay > frameTime){
             SDL_Delay(FrameDelay - frameTime);
         }
+
+        system("pause");
+
+
     }
     salirJuego(juego);
     return 0;

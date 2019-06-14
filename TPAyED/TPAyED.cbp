@@ -54,7 +54,6 @@
 		<Unit filename="Locomotora.h" />
 		<Unit filename="Mina.cpp" />
 		<Unit filename="Mina.h" />
-		<Unit filename="Minas.cpp" />
 		<Unit filename="Moneda.cpp" />
 		<Unit filename="Moneda.h" />
 		<Unit filename="Parametros.cpp" />
