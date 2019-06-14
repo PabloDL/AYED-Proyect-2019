@@ -39,10 +39,16 @@ int main( int argc, char* argv[]){
     Juego juego;
     crearJuego(juego, "Juego", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
 
-    while(corriendo(juego)){
-        frameStart = SDL_GetTicks();
+    SDL_Event evento;
+        SDL_PollEvent(&evento);
 
-        manejarEventos(juego);
+    while(corriendo(juego)){
+
+
+            manejarEventos(juego, evento);
+            frameStart = SDL_GetTicks();
+
+        //manejarEventos(juego);
         actualizar(juego);
         renderizar(juego);
 
