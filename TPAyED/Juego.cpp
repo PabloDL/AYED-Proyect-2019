@@ -1,18 +1,14 @@
 #include "Juego.h"
 #include "Terreno.h"
 /*GETTERS Y SETTERS*/
-Terreno getTerreno(Juego& juego){
-   return *juego.terreno;
+
+Terreno* getTerreno(Juego& juego){
+   return juego.terreno;
 }
 
 /*-----------------------------*/
 void crearJuego(Juego& juego, const char* title, int xpos, int ypos, int width, int height, bool fullscreen){
-
-    juego.terreno = new Terreno();
-    //juego.terreno = new Terreno;
-
-    //crearTerreno(*juego.terreno);
-
+    juego.terreno = new Terreno;
     juego.counter = 0;
     int flags = 0;
     if(fullscreen){

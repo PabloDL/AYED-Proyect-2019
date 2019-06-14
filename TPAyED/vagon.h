@@ -5,7 +5,11 @@
 #include "Posicion.h"
 #include "Cajas.h"
 #include "Locomotora.h"
-
+/*********************Axiomas********************/
+//capacidadVagon = 5kg * cantMonedas
+//el vagon incia con tipoVagon 'SIN DEFINIR' hasta que se le agregue una CAJA
+//el vagon solo puede almacenar CAJAS de su mismo tipo(item)
+/***************getters y setters******************/
 typedef struct Vagon{
     int capVagon; //capacidad del Vagon
     int capVagonUsada; //para poder saber cuanto se uso de la capacidadMaxima
@@ -14,39 +18,29 @@ typedef struct Vagon{
     int velocidadV;
     Lista listaCajas;//lista cajas
 }Vagon;
-
-/*********************Axiomas********************/
-//capacidadVagon = 5kg * cantMonedas
-//el vagon incia con tipoVagon 'SIN DEFINIR' hasta que se le agregue una CAJA
-//el vagon solo puede almacenar CAJAS de su mismo tipo(item)
-/***************getters y setters******************/
+/**************GETTERS AND SETTERS *********************/
 void setCapVagon(Vagon& vagon,int capVagon);
-int getCapVagon(Vagon& vagon);
-
 void setCapVagonUsada(Vagon& vagon,int capVagonUsada);
-int getCapVagonUsada(Vagon& vagon);
-
 void setVelocidadV(Vagon& vagon,int velocidadV);
-int getVelocidadV(Vagon& vagon);
-
-void setTipoVagon(Vagon& vagon,string tipoVagon);
-string getTipoVagon(Vagon& vagon);
-
 void setPosicion(Vagon& vagon,Posicion& posicion);
+void setTipoVagon(Vagon& vagon,string tipoVagon);
+
+int getCapVagon(Vagon& vagon);
+int getCapVagonUsada(Vagon& vagon);
+int getVelocidadV(Vagon& vagon);
+string getTipoVagon(Vagon& vagon);
 Posicion getPosicion(Vagon& vagon);
+/**************GETTERS AND SETTERS *********************/
 /***********************Primitivas*********************/
 //pre:
 //post: se inicializan los parametros de Vagon
 void crearVagon(Vagon& vagon);
-
 //pre:vagon creado
 //post:se liberan los recursos usados en Vagon
 void eliminarVagon(Vagon& vagon);
-
 //pre:vagon creado
 //post: devuelve true si el vagon esta vacio o false si no esta vacio
 bool vagonVacio(Vagon& vagon);
-
 //pre: vagon creado y asignado con 1 o mas items
 //post: devuelte 1 si el vagon es del tipoItem o 0 si no es del tipoItem
 bool mismoTipo(Vagon& vagon,string tipoItem);

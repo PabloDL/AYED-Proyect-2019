@@ -1,10 +1,9 @@
 #ifndef Juego_h
 #define Juego_h
 
-#include "SDL.h"
 #include <iostream>
-//---------------------
 #include "Terreno.h"
+#include "SDL.h"
 
 using namespace std;
 
@@ -17,9 +16,7 @@ typedef struct Juego{
 }Juego;
 /*GETTERS Y SETTERS*/
 
-Terreno getTerreno(Juego& juego);
-
-
+Terreno* getTerreno(Juego& juego);
 /*
 PRE: Juego no existe
 Post:  se inicializan los atributos del juego

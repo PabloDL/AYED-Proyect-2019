@@ -1,5 +1,4 @@
 #include "LecturaArchivos.h"
-/* Implementcion de primitivs */
 
 void crearLector(Lector & lector){
 }

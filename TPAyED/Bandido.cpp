@@ -30,8 +30,3 @@ void crearBandido(Bandido &bandido){
 void eliminarBandido(Bandido &bandido){}
 
 void toString(Bandido &bandido){}
-
-void robarItem(Bandido &bandido, Locomotora& locomotora){}
-
-void destruirVagon(Bandido &bandido, Locomotora& locomotora){}
-

@@ -53,8 +53,7 @@ void crearTerreno(Terreno& terreno){
     for(int i=0; i< ANCHO_TERRENO; i++){
         for(int j=0; j< ALTO_TERRENO; j++){
             terreno.matrizJuego[i][j] = 'T';
-            terreno.textureMap[i][j]= rand() % 9;
-
+            terreno.textureMap[i][j]= rand() % 9 + 0;
             //necesito numeros aleatorios para poder cargar texturas distintas en el fondo
         }
     }
@@ -345,6 +344,8 @@ void chequearColisiones(Terreno & terreno){
                     if (cajaARecibir != NULL){  //SI ES NULL NO HAY PRODCCION
                         if (hayLugarParaCajaEnLocomotora(terreno.locomotora, getCapMaxima(*cajaARecibir), getCodItem(*cajaARecibir))){
                             almacenarCaja(terreno.locomotora, *cajaARecibir);
+                            cout << "hay lugar vacio produccion, almaceno" << cajaARecibir->cantitem << " de"
+                            << cajaARecibir->codItem<< endl;
                         }
                         else{ // SI NO HAY UGAR SE PENALIZA ELIMINANDO PRODUCCION
                                 cout << "no hay lugar vacio produccion"<< endl;

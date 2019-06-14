@@ -2,11 +2,9 @@
 #define __MONEDA_H__
 
 #include <iostream>
-
 #include "Posicion.h"
 
 using namespace std;
-
 /*
     Definicion de tipo de dato Moneda
     Las monedas son el elemento que debera recolectar el tren para comprar vagones
@@ -22,9 +20,7 @@ using namespace std;
     * tiempo aparicion [0..IM]
     * tiempo vida [0..IV]
 */
-
 /* Tipo de estructura de Moneda*/
-
 typedef struct Moneda{
     int cantidad;
     Posicion posicion;
@@ -42,7 +38,6 @@ void setPosicion(Moneda &moneda, Posicion &posicion);
 void setAparicion(Moneda &moneda, int duracion);
 void setDuracion(Moneda &moneda, int aparicion);
 void setCantidad(Moneda &moneda, int cantidad);
-
 /***************************************************/
 /*
 PRE:
@@ -60,5 +55,5 @@ Post: Muestra por pantalla los atributos
 */
 void toString(Moneda &moneda);
 
-#endif // __PARAMETROS_H__
+#endif
 
