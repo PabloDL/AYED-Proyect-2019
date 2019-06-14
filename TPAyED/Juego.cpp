@@ -1,5 +1,6 @@
 #include "Juego.h"
 #include "Terreno.h"
+#include "locomotora.h"
 /*GETTERS Y SETTERS*/
 
 Terreno* getTerreno(Juego& juego){
@@ -56,6 +57,10 @@ void manejarEventos(Juego& juego){
 void actualizar(Juego& juego){
     juego.counter++;
     //AGREGAR FUNCIONES PARA ACTUALIZAR OBJETOS
+    actualizarTerreno(*juego.terreno, 1);
+
+
+
 
     std::cout << juego.counter << std::endl;
 }
@@ -66,8 +71,11 @@ void renderizar(Juego& juego){
     }
     cout << juego.counter << endl;
     SDL_RenderClear(juego.renderizador);
-    //AGREGAR FUNCIONES PARA RENDERIZAR OBJETOS
+
     renderizarTerreno(*(juego.terreno), juego.renderizador);
+    renderizarLocomotora(juego.terreno->locomotora, juego.renderizador, juego.counter, 1);
+    //AGREGAR FUNCIONES PARA RENDERIZAR OBJETOS
+
     SDL_RenderPresent(juego.renderizador);
 }
 

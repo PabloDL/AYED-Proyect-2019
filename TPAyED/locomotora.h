@@ -99,4 +99,7 @@ bool hayLugarParaCajaEnLocomotora(Locomotora& locomotora , int cantSolicitada , 
 //post: se cargan las texturas en el rect de locomotora
 void cargarTexturasLocomotora(Locomotora& locomotora , SDL_Renderer *renderizador);
 
+//pre debe existir una locomotora y tener cargadas las texturas
+//post: añade al renderizador las texturas de la locomotora en su posicion relativa
+void renderizarLocomotora(Locomotora& locomotora, SDL_Renderer *renderizador, int counter, int sentido);
 #endif // _locomotora_h_
