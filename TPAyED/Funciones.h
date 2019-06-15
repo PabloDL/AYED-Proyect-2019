@@ -22,5 +22,6 @@ void eliminarEstacionDeLista(PtrDato ptrDato);
 void imprimirListaMinas(Lista &l);
 void imprimirListaVagones(Lista& l);
 void imprimirListaCajas(Lista& l);
+void imprimirListaMonedas(Lista& l);
 
 #endif

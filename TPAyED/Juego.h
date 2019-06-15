@@ -56,4 +56,5 @@ bool corriendo(Juego &juego);
 
 void cargarTexturas(Juego &juego);
 
+
 #endif // Game_h

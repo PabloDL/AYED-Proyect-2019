@@ -30,3 +30,18 @@ void crearBandido(Bandido &bandido){
 void eliminarBandido(Bandido &bandido){}
 
 void toString(Bandido &bandido){}
+
+
+void cargarTexturaBandido(Bandido& bandido, SDL_Renderer * renderizador){
+    bandido.textura = IMG_LoadTexture(renderizador, "assets/img/villano.png");
+}
+
+void renderizarBandido(Bandido& bandidoActual, SDL_Renderer *renderizador){
+        Posicion p = getPosicion(bandidoActual);
+        bandidoActual.rectImag.x = getX(p)*40;
+        bandidoActual.rectImag.y = getY(p)*40;
+        bandidoActual.rectImag.w = 40;
+        bandidoActual.rectImag.h = 40;
+        SDL_RenderCopy(renderizador, bandidoActual.textura, NULL, &bandidoActual.rectImag);
+}
+

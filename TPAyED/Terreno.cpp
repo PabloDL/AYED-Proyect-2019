@@ -131,12 +131,14 @@ void actualizarMonedas(Terreno& terreno){
         NodoLista * ptrNodoActual = ptrNodo;
         ptrNodo = siguiente(terreno.monedas, ptrNodo);
         if (eliminarNodoMoneda){
+cout << "elimino en Lista con: " << longitud(terreno.monedas) << "en iteracion " << terreno.intervaloActual <<endl;
             eliminarNodo(terreno.monedas, ptrNodoActual);
             eliminarNodoMoneda = false;
         }
     }
     //AGREGO SI CORRESPONDE UNA NUEVA MONEDA
     if (terreno.intervalosAparicionProximaMoneda == terreno.intervaloActual){
+cout << "agrego en Lista con: " << longitud(terreno.monedas) << "en iteracion " << terreno.intervaloActual <<endl;
         aparecerMoneda(terreno);
         terreno.intervalosAparicionProximaMoneda = terreno.intervaloActual + 1 +rand()% (getIm(terreno.parametros)+terreno.intervaloActual);
     }
@@ -184,7 +186,7 @@ void aparecerMoneda(Terreno& terreno){
       //CREO RANDOM ENTRE IM (MAXIMO INTERVALO DE SEPARACION y EL INTERVALO ACTUAL)
       //que sera el tiempo de aparacicion de una nueva moneda
       Moneda * nuevaMoneda = new Moneda;
-
+    cout << "agregue moneda "<< endl;
       int aparicion = terreno.intervaloActual;
       int duracion= 1 + rand()% (getVm(terreno.parametros));
       int cantidad=1;

@@ -69,6 +69,25 @@ void eliminarCajaDeLista(PtrDato ptrDato) {
     //eliminarCaja(cajaAEliminar);
 }
 
+void imprimirListaMonedas(Lista &l){
+        /// Recorro la lista de Cajas
+     if(!listaVacia(l)){
+         int c = 0;
+        PtrNodoLista nodo = primero(l);
+        while(nodo != finLista()){
+            Moneda m = *((Moneda*)(nodo->ptrDato));
+            //cout<<"Moneda "<< m << "-> ";
+            cout<< "Moneda apariciion: "<<m.aparicion << " -> duracion: " << m.duracion << endl;
+            nodo = siguiente(l, nodo);
+            c++;
+        }
+
+    }
+    else{
+        cout<< "Vagon Vacio"<< endl;
+    }
+}
+
 void imprimirListaCajas(Lista &l){
         /// Recorro la lista de Cajas
      if(!listaVacia(l)){

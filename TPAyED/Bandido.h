@@ -30,8 +30,10 @@ typedef struct Bandido{
     int tiempoVida;
     int intervaloHastaAparicion;
     int areaCobertura;
-
     int codItem;
+
+    SDL_Texture *textura;
+    SDL_Rect rectImag;
 }Bandido;
 
 /************GETTERS AND SETTERS*********************/
@@ -67,6 +69,9 @@ PRE: Bandido existente y cargada
 Post: Muestra por pantalla los atributos
 */
 void toString(Bandido &bandido);
+
+void cargarTexturaBandido(Bandido& bandido, SDL_Renderer * renderizador);
+void renderizarBandido(Bandido& bandidoActual, SDL_Renderer *renderizador);
 
 #endif
 

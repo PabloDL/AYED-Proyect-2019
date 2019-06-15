@@ -127,9 +127,9 @@ void actualizar(Juego& juego){
 }
 
 void renderizar(Juego& juego){
-    if(juego.counter == 1){
+    //if(juego.counter == 1){
         cargarTexturas(juego);
-    }
+    //}
     cout << juego.counter << endl;
     SDL_RenderClear(juego.renderizador);
 
@@ -143,12 +143,22 @@ void renderizar(Juego& juego){
     }
 
     if (!listaVacia(juego.terreno->monedas)) {
+        //cout << "Lista con: " << longitud(juego.terreno->monedas) << "en iteracion " << juego.terreno->intervaloActual <<endl;
+        imprimirListaMonedas(juego.terreno->monedas);
+
         NodoLista * NodoListaMoneda = primero(juego.terreno->monedas);
         while(NodoListaMoneda != finLista()){
             Moneda * moneda = (Moneda*)NodoListaMoneda->ptrDato;
             renderizarMoneda(*moneda, juego.renderizador);
             NodoListaMoneda = siguiente(juego.terreno->monedas, NodoListaMoneda);
         }
+    }
+
+    NodoLista * NodoListaBandido = primero(juego.terreno->bandidos);
+    while(NodoListaBandido != finLista()){
+            Bandido * bandido = (Bandido*)NodoListaBandido->ptrDato;
+            renderizarBandido(*bandido, juego.renderizador);
+            NodoListaBandido = siguiente(juego.terreno->bandidos, NodoListaBandido);
     }
 
     NodoLista * NodoListaEstacion = primero(juego.terreno->estaciones);
@@ -163,6 +173,16 @@ void renderizar(Juego& juego){
     //AGREGAR FUNCIONES PARA RENDERIZAR OBJETOS
 
     renderizarLocomotora(juego.terreno->locomotora, juego.renderizador, juego.counter);
+
+    if (!listaVacia(juego.terreno->locomotora.listaVagones)) {
+        NodoLista * NodoListaVagon = primero(juego.terreno->locomotora.listaVagones);
+        while(NodoListaVagon != finLista()){
+            Vagon * vagon = (Vagon*)NodoListaVagon->ptrDato;
+            renderizarVagon(*vagon, juego.renderizador);
+            NodoListaVagon = siguiente(juego.terreno->locomotora.listaVagones, NodoListaVagon);
+        }
+    }
+
     SDL_RenderPresent(juego.renderizador);
 }
 
@@ -193,5 +213,22 @@ void cargarTexturas(Juego& juego){
             Estacion * estacion = (Estacion*)NodoListaEstacion->ptrDato;
             cargarTexturaEstacion(*estacion, juego.renderizador);
             NodoListaEstacion = siguiente(juego.terreno->estaciones, NodoListaEstacion);
+    }
+
+    NodoLista * NodoListaBandido = primero(juego.terreno->bandidos);
+    while(NodoListaBandido != finLista()){
+            Bandido * bandido = (Bandido*)NodoListaBandido->ptrDato;
+            cargarTexturaBandido(*bandido, juego.renderizador);
+            NodoListaBandido = siguiente(juego.terreno->bandidos, NodoListaBandido);
+    }
+
+
+    if (!listaVacia(juego.terreno->locomotora.listaVagones)) {
+        NodoLista * NodoListaVagon = primero(juego.terreno->locomotora.listaVagones);
+        while(NodoListaVagon != finLista()){
+            Vagon * vagon = (Vagon*)NodoListaVagon->ptrDato;
+            cargarTexturaVagon(*vagon, juego.renderizador);
+            NodoListaVagon = siguiente(juego.terreno->locomotora.listaVagones, NodoListaVagon);
+        }
     }
 }

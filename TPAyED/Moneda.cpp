@@ -45,7 +45,7 @@ void eliminarMoneda(Moneda &moneda){
 void toString(Moneda &moneda){}
 
 void cargarTexturaMoneda(Moneda& moneda, SDL_Renderer * renderizador){
-    moneda.textura = IMG_LoadTexture(renderizador, "assets/img/mina.png");
+    moneda.textura = IMG_LoadTexture(renderizador, "assets/img/moneda.png");
 }
 
 void renderizarMoneda(Moneda& monedaActual, SDL_Renderer *renderizador){

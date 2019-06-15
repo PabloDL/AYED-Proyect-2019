@@ -5,6 +5,7 @@
 #include "Posicion.h"
 #include "Cajas.h"
 #include "Locomotora.h"
+#include "SDL_image.h"
 /*********************Axiomas********************/
 //capacidadVagon = 5kg * cantMonedas
 //el vagon incia con tipoVagon 'SIN DEFINIR' hasta que se le agregue una CAJA
@@ -17,6 +18,8 @@ typedef struct Vagon{
     Posicion posicion;
     int velocidadV;
     Lista listaCajas;//lista cajas
+    SDL_Texture *textura;
+    SDL_Rect rectImag;
 }Vagon;
 /**************GETTERS AND SETTERS *********************/
 void setCapVagon(Vagon& vagon,int capVagon);
@@ -44,5 +47,9 @@ bool vagonVacio(Vagon& vagon);
 //pre: vagon creado y asignado con 1 o mas items
 //post: devuelte 1 si el vagon es del tipoItem o 0 si no es del tipoItem
 bool mismoTipo(Vagon& vagon,string tipoItem);
+
+
+void cargarTexturaVagon(Vagon& vagon, SDL_Renderer * renderizador);
+void renderizarVagon(Vagon& vagon, SDL_Renderer *renderizador);
 
 #endif // _VAGON_H_

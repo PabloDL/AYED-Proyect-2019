@@ -60,3 +60,16 @@ void eliminarVagon(Vagon& vagon){
         eliminarNodo( vagon.listaCajas , previo);
     }
 }
+
+void cargarTexturaVagon(Vagon& vagon, SDL_Renderer * renderizador){
+    vagon.textura = IMG_LoadTexture(renderizador, "assets/img/c2/arr/0.png");
+}
+
+void renderizarVagon(Vagon& vagon, SDL_Renderer *renderizador){
+        Posicion p = getPosicion(vagon);
+        vagon.rectImag.x = getX(p)*40;
+        vagon.rectImag.y = getY(p)*40;
+        vagon.rectImag.w = 40;
+        vagon.rectImag.h = 40;
+        SDL_RenderCopy(renderizador, vagon.textura, NULL, &vagon.rectImag);
+}
