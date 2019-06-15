@@ -49,26 +49,18 @@ int main( int argc, char* argv[]){
         actualizar(juego);
         renderizar(juego);
 
-
-
-//        Mina* m = new Mina;
-//        crearMina((*m));
-//        adicionarPrincipio(juego.terreno->minas, m);
-
-
-        imprimirListaMinas(juego.terreno->minas);
-
-        imprimirMatriz(*juego.terreno);
+        //imprimirMatriz(*juego.terreno);
 
         frameTime = SDL_GetTicks() - frameStart;
         if(FrameDelay > frameTime){
             SDL_Delay(FrameDelay - frameTime);
         }
 
-        //system("pause");
+
 
 
     }
+    system("pause");
     salirJuego(juego);
     return 0;
 

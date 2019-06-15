@@ -129,7 +129,7 @@ void cargarTexturaMina(Mina& mina, SDL_Renderer * renderizador){
     mina.textura = IMG_LoadTexture(renderizador, "assets/img/mina.png");
 }
 
-void renderizarMinas(Mina& minaActual, SDL_Renderer *renderizador){
+void renderizarMina(Mina& minaActual, SDL_Renderer *renderizador){
 
         minaActual.rectImag.x = getPosX(minaActual)*40;
         minaActual.rectImag.y = getPosY(minaActual)*40;

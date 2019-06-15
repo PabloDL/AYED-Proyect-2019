@@ -137,7 +137,7 @@ void renderizar(Juego& juego){
     NodoLista * nodoActual = primero(juego.terreno->minas);
     while(nodoActual != finLista()){
             Mina * mina = (Mina*)nodoActual->ptrDato;
-            renderizarMinas(*mina, juego.renderizador);
+            renderizarMina(*mina, juego.renderizador);
             nodoActual = siguiente(juego.terreno->minas, nodoActual);
     }
 
@@ -188,7 +188,6 @@ void renderizar(Juego& juego){
 bool corriendo(Juego& juego){
     return juego.estaCorriendo;
 }
-
 
 void cargarTexturas(Juego& juego){
     cargarTexturasTerreno( *juego.terreno, juego.renderizador);

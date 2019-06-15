@@ -20,7 +20,7 @@ int entregarVagon(Estacion &estacion, int cantidadMonedas){
 }
 
 void cargarTexturaEstacion(Estacion& estacion, SDL_Renderer * renderizador){
-    estacion.textura = IMG_LoadTexture(renderizador, "assets/img/estacion.png");
+    estacion.textura = IMG_LoadTexture(renderizador, "assets/img/estacion4.png");
 }
 
 void renderizarEstacion(Estacion& estacionActual, SDL_Renderer *renderizador){
