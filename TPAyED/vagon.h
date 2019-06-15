@@ -17,8 +17,9 @@ typedef struct Vagon{
     string tipoVagon; //podra ser ORO,PLATA,BRONCE,ETC
     Posicion posicion;
     int velocidadV;
+    int direccion;
     Lista listaCajas;//lista cajas
-    SDL_Texture *textura;
+    SDL_Texture *texturas [40];
     SDL_Rect rectImag;
 }Vagon;
 /**************GETTERS AND SETTERS *********************/
@@ -27,12 +28,14 @@ void setCapVagonUsada(Vagon& vagon,int capVagonUsada);
 void setVelocidadV(Vagon& vagon,int velocidadV);
 void setPosicion(Vagon& vagon,Posicion& posicion);
 void setTipoVagon(Vagon& vagon,string tipoVagon);
+void setDireccion(Vagon& vagon, int direccion);
 
 int getCapVagon(Vagon& vagon);
 int getCapVagonUsada(Vagon& vagon);
 int getVelocidadV(Vagon& vagon);
 string getTipoVagon(Vagon& vagon);
 Posicion getPosicion(Vagon& vagon);
+int getDireccion(Vagon &vagon);
 /**************GETTERS AND SETTERS *********************/
 /***********************Primitivas*********************/
 //pre:
@@ -50,6 +53,6 @@ bool mismoTipo(Vagon& vagon,string tipoItem);
 
 
 void cargarTexturaVagon(Vagon& vagon, SDL_Renderer * renderizador);
-void renderizarVagon(Vagon& vagon, SDL_Renderer *renderizador);
+void renderizarVagon(Vagon& vagon, SDL_Renderer *renderizador, int counter);
 
 #endif // _VAGON_H_

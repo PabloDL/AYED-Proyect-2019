@@ -127,9 +127,8 @@ void actualizar(Juego& juego){
 }
 
 void renderizar(Juego& juego){
-    //if(juego.counter == 1){
-        cargarTexturas(juego);
-    //}
+    cargarTexturas(juego);
+
     cout << juego.counter << endl;
     SDL_RenderClear(juego.renderizador);
 
@@ -178,7 +177,7 @@ void renderizar(Juego& juego){
         NodoLista * NodoListaVagon = primero(juego.terreno->locomotora.listaVagones);
         while(NodoListaVagon != finLista()){
             Vagon * vagon = (Vagon*)NodoListaVagon->ptrDato;
-            renderizarVagon(*vagon, juego.renderizador);
+            renderizarVagon(*vagon, juego.renderizador, juego.counter);
             NodoListaVagon = siguiente(juego.terreno->locomotora.listaVagones, NodoListaVagon);
         }
     }

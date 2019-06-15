@@ -265,7 +265,7 @@ void avanzarLocomotora(Terreno &terreno){
     crearPosicion(nuevaPosicion);
     Locomotora locomotora = getLocomotora(terreno);
     Posicion pTemp = getPosicion(locomotora); //guardo posicion actual locomotora
-
+    int dTemp = getDireccion(locomotora); //guardo direccion actual locomotora
     switch (terreno.locomotora.direccion){   // IZQUIERDA,DERECHA,ARRIBA,ABAJO
         case 0: { //VA HACIA IZQUIERDA
             moverPosicion(nuevaPosicion,getX(pTemp)-1,getY(pTemp));
@@ -298,10 +298,13 @@ void avanzarLocomotora(Terreno &terreno){
         while(!listaVacia(vagones) && ptrNodo != finLista()){
             Vagon * vagonActual = (Vagon*) ptrNodo->ptrDato;
             Posicion posVagonAnterior = getPosicion(*vagonActual);
+            int dirVagonAnterior = getDireccion(*vagonActual);
             moverPosicion(vagonActual->posicion, getX(pTemp),getY(pTemp));
+            setDireccion(*vagonActual, dTemp);
             pTemp = posVagonAnterior;
-
+            dTemp = dirVagonAnterior;
             ptrNodo = siguiente(vagones, ptrNodo);
+
 
         }
     }
@@ -514,4 +517,5 @@ void imprimirMatriz(Terreno &t){
         cout << endl;
     }
 }
+
 
