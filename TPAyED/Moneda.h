@@ -2,6 +2,7 @@
 #define __MONEDA_H__
 
 #include <iostream>
+#include "SDL_image.h"
 #include "Posicion.h"
 
 using namespace std;
@@ -26,6 +27,9 @@ typedef struct Moneda{
     Posicion posicion;
     int aparicion;
     int duracion;
+
+    SDL_Texture * textura;
+    SDL_Rect rectImag;
 }Moneda;
 
 /************GETTERS AND SETTERS*********************/
@@ -54,6 +58,10 @@ PRE: Moneda existente y cargada
 Post: Muestra por pantalla los atributos
 */
 void toString(Moneda &moneda);
+
+void cargarTexturaMoneda(Moneda& moneda, SDL_Renderer * renderizador);
+void renderizarMoneda(Moneda& monedaActual, SDL_Renderer *renderizador);
+
 
 #endif
 

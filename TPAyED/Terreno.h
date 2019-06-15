@@ -14,8 +14,8 @@
 #include "Funciones.h"
 #include "Parametros.h"
 
-#define ANCHO_TERRENO 16
-#define ALTO_TERRENO 12
+#define ANCHO_TERRENO 20
+#define ALTO_TERRENO 15
 
 using namespace std;
 /*

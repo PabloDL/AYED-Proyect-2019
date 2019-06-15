@@ -2,6 +2,7 @@
 #define __ESTACION_H__
 
 #include <iostream>
+#include "SDL_image.h"
 #include "Posicion.h"
 
 #define COFICIENTE_PESO_VAGON 5
@@ -20,6 +21,9 @@ using namespace std;
 typedef struct Estacion{
     int id;
     Posicion posicion;
+
+    SDL_Texture *textura;
+    SDL_Rect rectImag;
 }Estacion;
 
 /************GETTERS AND SETTERS*********************/
@@ -41,5 +45,9 @@ PRE: Estacion creada
 Post: calcula y devuelve peso que soporta vagon
 */
 int entregarVagon(Estacion &estacion, int cantidadMonedas);
+
+
+void cargarTexturaEstacion(Estacion& estacion, SDL_Renderer * renderizador);
+void renderizarEstacion(Estacion& estacionActual, SDL_Renderer *renderizador);
 
 #endif

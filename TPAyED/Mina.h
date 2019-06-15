@@ -102,6 +102,6 @@ void cargarTexturaMina(Mina& mina, SDL_Renderer * renderizador);
 
 //pre debe existir una locomotora y tener cargadas las texturas
 //post: añade al renderizador las texturas de la locomotora en su posicion relativa
-void renderizarMinas(Lista& minas, SDL_Renderer *renderizador);
+void renderizarMinas(Mina& minaActual, SDL_Renderer *renderizador);
 
 #endif

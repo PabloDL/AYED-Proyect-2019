@@ -129,16 +129,11 @@ void cargarTexturaMina(Mina& mina, SDL_Renderer * renderizador){
     mina.textura = IMG_LoadTexture(renderizador, "assets/img/mina.png");
 }
 
-void renderizarMinas(Lista& minas, SDL_Renderer *renderizador){
-     NodoLista * nodoActual = primero(minas);;
+void renderizarMinas(Mina& minaActual, SDL_Renderer *renderizador){
 
-    while(nodoActual != finLista()){
-        Mina* minaActual = (Mina*) nodoActual->ptrDato;
-        minaActual->rectImag.x = getPosX(*minaActual)*40;
-        minaActual->rectImag.y = getPosY(*minaActual)*40;
-        minaActual->rectImag.w = 40;
-        minaActual->rectImag.h = 40;
-        SDL_RenderCopy(renderizador, minaActual->textura, NULL, &minaActual->rectImag);
-        nodoActual = siguiente(minas, nodoActual);
-    }
+        minaActual.rectImag.x = getPosX(minaActual)*40;
+        minaActual.rectImag.y = getPosY(minaActual)*40;
+        minaActual.rectImag.w = 40;
+        minaActual.rectImag.h = 40;
+        SDL_RenderCopy(renderizador, minaActual.textura, NULL, &minaActual.rectImag);
 }

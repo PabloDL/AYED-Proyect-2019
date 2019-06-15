@@ -38,7 +38,21 @@ void crearMoneda(Moneda &moneda){
     moverPosicion(moneda.posicion, 0, 0);
 }
 
-void eliminarMoneda(Moneda &moneda){}
+void eliminarMoneda(Moneda &moneda){
+    SDL_DestroyTexture(moneda.textura);
+}
 
 void toString(Moneda &moneda){}
 
+void cargarTexturaMoneda(Moneda& moneda, SDL_Renderer * renderizador){
+    moneda.textura = IMG_LoadTexture(renderizador, "assets/img/mina.png");
+}
+
+void renderizarMoneda(Moneda& monedaActual, SDL_Renderer *renderizador){
+        Posicion p = getPosicion(monedaActual);
+        monedaActual.rectImag.x = getX(p)*40;
+        monedaActual.rectImag.y = getY(p)*40;
+        monedaActual.rectImag.w = 40;
+        monedaActual.rectImag.h = 40;
+        SDL_RenderCopy(renderizador, monedaActual.textura, NULL, &(monedaActual.rectImag));
+}

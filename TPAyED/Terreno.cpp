@@ -57,8 +57,8 @@ void crearTerreno(Terreno& terreno){
             //necesito numeros aleatorios para poder cargar texturas distintas en el fondo
         }
     }
-    terreno.intervalosAparicionProximaMoneda = terreno.intervaloActual +rand()% (getIm(terreno.parametros)+terreno.intervaloActual);
-    terreno.intervalosAparicionProximoBandido= terreno.intervaloActual +rand()% (getIb(terreno.parametros)+terreno.intervaloActual);
+    terreno.intervalosAparicionProximaMoneda = 1 + terreno.intervaloActual +rand()% (getIm(terreno.parametros)+terreno.intervaloActual);
+    terreno.intervalosAparicionProximoBandido= 1 + terreno.intervaloActual +rand()% (getIb(terreno.parametros)+terreno.intervaloActual);
 /*
     juego.locomotora.rectImag.y=juego.locomotora.f* 50;//coordenada de dibujo y
     juego.locomotora.rectImag.x= juego.locomotora.c* 50;//coordenada de dibujo x
@@ -183,23 +183,23 @@ void nuevaProduccionMinas(Terreno& terreno){
 void aparecerMoneda(Terreno& terreno){
       //CREO RANDOM ENTRE IM (MAXIMO INTERVALO DE SEPARACION y EL INTERVALO ACTUAL)
       //que sera el tiempo de aparacicion de una nueva moneda
+      Moneda * nuevaMoneda = new Moneda;
+
       int aparicion = terreno.intervaloActual;
-      int duracion=1 + rand()% (getVm(terreno.parametros));
+      int duracion= 1 + rand()% (getVm(terreno.parametros));
       int cantidad=1;
       int x = rand()% (ANCHO_TERRENO);
       int y = rand()% (ALTO_TERRENO);
       Posicion p;
       crearPosicion(p);
       moverPosicion(p,x,y);
-
-      Moneda * nuevaMoneda = new Moneda;
       crearMoneda(*nuevaMoneda);
       setAparicion(*nuevaMoneda, aparicion);
       setDuracion(*nuevaMoneda, duracion);
       setCantidad(*nuevaMoneda, cantidad);
       setPosicion(*nuevaMoneda, p);
 
-      //AGREGO A LISTA monedas Y A MATRIZ
+      //AGREGO A LISTA monedas Y A MATRIZ  //TODO VER PROBLEMAAPARENTE CUANDO VUELVE A AGEGAR NODO
       if(listaVacia(terreno.monedas)){
         adicionarPrincipio(terreno.monedas,nuevaMoneda);
       }
@@ -239,7 +239,7 @@ void actualizarTerreno(Terreno& terreno){
 
     //SI VUELVO A ENTRAR EL JUEGO VUELVE A ESTAR JUGABLE
 
-    terreno.estadoJuego = JUGABLE;
+//    terreno.estadoJuego = JUGABLE;
 
     terreno.intervaloActual++;
     //Actualizar minas
@@ -251,7 +251,8 @@ void actualizarTerreno(Terreno& terreno){
     //avanzarLocomotora -> ACTUAR SI POSICION DE LOCOMOTORA O VAGONES ESTA EN ZONA DE CONFLI
     actualizarMatrizJuego(terreno);
     ////ACTUALIZAR EN MATRIZ SI APARECIO BANDIDO O MONEDA
-    avanzarLocomotora(terreno);
+    if (terreno.estadoJuego == JUGABLE)
+        avanzarLocomotora(terreno);
     //REVISAR CAMBIOS
     chequearColisiones(terreno);
 }
@@ -491,21 +492,21 @@ void cargarTexturasTerreno(Terreno& terreno, SDL_Renderer * renderizador){
 }
 
 void renderizarTerreno(Terreno& terreno, SDL_Renderer *renderizador){
-    for(int c=0;c<ANCHO_TERRENO;c++){
-        for(int d=0;d<ALTO_TERRENO;d++){
-            terreno.rectImag.x=c*50;
-            terreno.rectImag.y=d*50;
-            terreno.rectImag.w=50;
-            terreno.rectImag.h=50;
-            int texturaActual = terreno.textureMap[c][d];
+    for(int index_y=0;index_y<ALTO_TERRENO;index_y++){
+        for(int index_x=0;index_x<ANCHO_TERRENO;index_x++){
+            terreno.rectImag.x=index_x*40;
+            terreno.rectImag.y=index_y*40;
+            terreno.rectImag.w=40;
+            terreno.rectImag.h=40;
+            int texturaActual = terreno.textureMap[index_x][index_y];
             SDL_RenderCopy(renderizador,terreno.texturas[texturaActual], NULL, &terreno.rectImag);
         }
     }
 }
 
 void imprimirMatriz(Terreno &t){
-    for(int i=0; i< ANCHO_TERRENO; i++){
-        for(int j=0; j< ALTO_TERRENO; j++){
+    for(int i=0; i< ALTO_TERRENO; i++){
+        for(int j=0; j<ANCHO_TERRENO ; j++){
             cout << "[" << t.matrizJuego[j][i] <<"]" ;
         }
         cout << endl;

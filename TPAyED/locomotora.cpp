@@ -367,10 +367,10 @@ void cargarTexturasLocomotora(Locomotora& locomotora , SDL_Renderer *renderizado
 
 void renderizarLocomotora(Locomotora& locomotora, SDL_Renderer *renderizador, int counter){
     int index = counter%10;
-    locomotora.rectImag.x= locomotora.posicion.x*50;
-    locomotora.rectImag.y= locomotora.posicion.y*50;
-    locomotora.rectImag.w=50;
-    locomotora.rectImag.h=50;
+    locomotora.rectImag.x= locomotora.posicion.x*40;
+    locomotora.rectImag.y= locomotora.posicion.y*40;
+    locomotora.rectImag.w=40;
+    locomotora.rectImag.h=40;
     /*SENTIDO
             IZQUIERDA=0,
             DERECHA=1,

@@ -51,9 +51,9 @@ int main( int argc, char* argv[]){
 
 
 
-        Mina* m = new Mina;
-        crearMina((*m));
-        adicionarPrincipio(juego.terreno->minas, m);
+//        Mina* m = new Mina;
+//        crearMina((*m));
+//        adicionarPrincipio(juego.terreno->minas, m);
 
 
         imprimirListaMinas(juego.terreno->minas);
@@ -65,7 +65,7 @@ int main( int argc, char* argv[]){
             SDL_Delay(FrameDelay - frameTime);
         }
 
-        system("pause");
+        //system("pause");
 
 
     }
