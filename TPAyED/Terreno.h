@@ -27,7 +27,7 @@ Definicion de tipo de dato Terreno que contendra la logica de la aplicacion
 */
 /* Tipo de estructura de Bandido */
 enum Estados{
-    JUGABLE, GAMEOVER, LOCOMOTORADETENIDA
+    JUGABLE, GAMEOVER, LOCOMOTORADETENIDA, GAMEOVER_FUERALIMITES, GAMEOVER_BANDIDO
 };
 typedef struct Terreno{
     Parametros parametros; //INICIALIZADO EN SET PARAMETROS
@@ -54,6 +54,7 @@ Lista* getBandidos(Terreno & terreno);
 void setBandidos(Terreno & terreno, Lista& bandidos);
 Lista* getMonedas(Terreno & terreno);
 void setMonedas(Terreno & terreno, Lista& monedas);
+Estados getEstado(Terreno & terreno);
 /***********************PRIMITIVAS*********************/
 //pre:
 //post: se inicializan los parametros de Terreno, crea en forma random la primera aparicion de monedas y bandidos
