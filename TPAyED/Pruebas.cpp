@@ -295,3 +295,11 @@ void testTerreno(){
     }
 }
 
+void testTipografia(){
+    /*
+    TTF_Font *menuFont = TTF_OpenFont("assets/font/CFFarWest-Regular.ttf", 22);
+    SDL_Color color = {0,0,0,255};
+    SDL_Surface *textSurface = TTF_RenderText_Solid(menuFont, "press \"Enter\" to start", color);
+    SDL_Texture *text = SDL_CreateTextureFromSurface(juego.renderizador, textSurface);
+    */
+}

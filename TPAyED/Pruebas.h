@@ -24,4 +24,5 @@ void testListaMinas();
 
 void testTerreno();
 
+void testTipografia();
 #endif

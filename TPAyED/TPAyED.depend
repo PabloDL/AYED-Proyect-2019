@@ -62,10 +62,11 @@
 	"Funciones.h"
 	"SDL_image.h"
 
-1560637630 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\main.cpp
+1560724240 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
+	<SDL_ttf.h>
 	<time.h>
 	"LecturaArchivos.h"
 	"Juego.h"
@@ -88,7 +89,7 @@
 	"Terreno.h"
 	"SDL.h"
 
-1560636402 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\juego.cpp
+1560724408 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\juego.cpp
 	"Juego.h"
 	"Terreno.h"
 	"locomotora.h"

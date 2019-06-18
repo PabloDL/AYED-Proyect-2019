@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #include <time.h>
 
 #include "LecturaArchivos.h"
@@ -12,6 +13,7 @@
 
 int main( int argc, char* argv[]){
     srand(time(NULL));
+
 
     /*PRUENA JUEGO SIN GRAFICOS*/
     //testTerreno();
