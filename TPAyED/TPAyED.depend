@@ -147,7 +147,7 @@
 1560274664 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\posicion.cpp
 	"Posicion.h"
 
-1560615230 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\terreno.h
+1560816338 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\terreno.h
 	<iostream>
 	<SDL_image.h>
 	"LecturaArchivos.h"

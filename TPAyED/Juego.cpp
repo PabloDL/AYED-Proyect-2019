@@ -138,58 +138,17 @@ void actualizar(Juego& juego){
 
 void renderizar(Juego& juego){
     cargarTexturas(juego);
-    cout << juego.counter << endl;
+    cout << "game count: "<< juego.counter << endl;
     SDL_RenderClear(juego.renderizador);
 
     renderizarTerreno(*(juego.terreno), juego.renderizador);
 
-    NodoLista * nodoActual = primero(juego.terreno->minas);
-    while(nodoActual != finLista()){
-            Mina * mina = (Mina*)nodoActual->ptrDato;
-            renderizarMina(*mina, juego.renderizador);
-            nodoActual = siguiente(juego.terreno->minas, nodoActual);
-    }
-
-    if (!listaVacia(juego.terreno->monedas)) {
-        //cout << "Lista con: " << longitud(juego.terreno->monedas) << "en iteracion " << juego.terreno->intervaloActual <<endl;
-        imprimirListaMonedas(juego.terreno->monedas);
-
-        NodoLista * NodoListaMoneda = primero(juego.terreno->monedas);
-        while(NodoListaMoneda != finLista()){
-            Moneda * moneda = (Moneda*)NodoListaMoneda->ptrDato;
-            renderizarMoneda(*moneda, juego.renderizador);
-            NodoListaMoneda = siguiente(juego.terreno->monedas, NodoListaMoneda);
-        }
-    }
-
-    NodoLista * NodoListaBandido = primero(juego.terreno->bandidos);
-    while(NodoListaBandido != finLista()){
-            Bandido * bandido = (Bandido*)NodoListaBandido->ptrDato;
-            renderizarBandido(*bandido, juego.renderizador);
-            NodoListaBandido = siguiente(juego.terreno->bandidos, NodoListaBandido);
-    }
-
-    NodoLista * NodoListaEstacion = primero(juego.terreno->estaciones);
-    while(NodoListaEstacion != finLista()){
-            Estacion * estacion = (Estacion*)NodoListaEstacion->ptrDato;
-            renderizarEstacion(*estacion, juego.renderizador);
-            NodoListaEstacion = siguiente(juego.terreno->estaciones, NodoListaEstacion);
-    }
-
-
-
-    //AGREGAR FUNCIONES PARA RENDERIZAR OBJETOS
-
+    renderizarMinas(juego);
+    renderizarBandidos(juego);
+    renderizarMonedas(juego);
+    renderizarEstaciones(juego);
     renderizarLocomotora(juego.terreno->locomotora, juego.renderizador, juego.counter);
-
-    if (!listaVacia(juego.terreno->locomotora.listaVagones)) {
-        NodoLista * NodoListaVagon = primero(juego.terreno->locomotora.listaVagones);
-        while(NodoListaVagon != finLista()){
-            Vagon * vagon = (Vagon*)NodoListaVagon->ptrDato;
-            renderizarVagon(*vagon, juego.renderizador, juego.counter);
-            NodoListaVagon = siguiente(juego.terreno->locomotora.listaVagones, NodoListaVagon);
-        }
-    }
+    renderizarvagones(juego);
 
     SDL_RenderPresent(juego.renderizador);
 }
@@ -235,6 +194,64 @@ void cargarTexturas(Juego& juego){
         while(NodoListaVagon != finLista()){
             Vagon * vagon = (Vagon*)NodoListaVagon->ptrDato;
             cargarTexturaVagon(*vagon, juego.renderizador);
+            NodoListaVagon = siguiente(juego.terreno->locomotora.listaVagones, NodoListaVagon);
+        }
+    }
+}
+
+
+void chequearEstado(Juego &juego){
+}
+
+void renderizarMinas(Juego &juego){
+    NodoLista * nodoActual = primero(juego.terreno->minas);
+    while(nodoActual != finLista()){
+            Mina * mina = (Mina*)nodoActual->ptrDato;
+            renderizarMina(*mina, juego.renderizador);
+            nodoActual = siguiente(juego.terreno->minas, nodoActual);
+    }
+}
+
+void renderizarMonedas(Juego &juego){
+     if (!listaVacia(juego.terreno->monedas)) {
+        //cout << "Lista con: " << longitud(juego.terreno->monedas) << "en iteracion " << juego.terreno->intervaloActual <<endl;
+        imprimirListaMonedas(juego.terreno->monedas);
+
+        NodoLista * NodoListaMoneda = primero(juego.terreno->monedas);
+        while(NodoListaMoneda != finLista()){
+            Moneda * moneda = (Moneda*)NodoListaMoneda->ptrDato;
+            renderizarMoneda(*moneda, juego.renderizador);
+            NodoListaMoneda = siguiente(juego.terreno->monedas, NodoListaMoneda);
+        }
+    }
+}
+
+void renderizarEstaciones(Juego &juego){
+
+    NodoLista * NodoListaEstacion = primero(juego.terreno->estaciones);
+    while(NodoListaEstacion != finLista()){
+            Estacion * estacion = (Estacion*)NodoListaEstacion->ptrDato;
+            renderizarEstacion(*estacion, juego.renderizador);
+            NodoListaEstacion = siguiente(juego.terreno->estaciones, NodoListaEstacion);
+    }
+}
+
+void renderizarBandidos(Juego &juego){
+
+    NodoLista * NodoListaBandido = primero(juego.terreno->bandidos);
+    while(NodoListaBandido != finLista()){
+            Bandido * bandido = (Bandido*)NodoListaBandido->ptrDato;
+            renderizarBandido(*bandido, juego.renderizador);
+            NodoListaBandido = siguiente(juego.terreno->bandidos, NodoListaBandido);
+    }
+}
+
+void renderizarvagones(Juego &juego){
+    if (!listaVacia(juego.terreno->locomotora.listaVagones)) {
+        NodoLista * NodoListaVagon = primero(juego.terreno->locomotora.listaVagones);
+        while(NodoListaVagon != finLista()){
+            Vagon * vagon = (Vagon*)NodoListaVagon->ptrDato;
+            renderizarVagon(*vagon, juego.renderizador, juego.counter);
             NodoListaVagon = siguiente(juego.terreno->locomotora.listaVagones, NodoListaVagon);
         }
     }
