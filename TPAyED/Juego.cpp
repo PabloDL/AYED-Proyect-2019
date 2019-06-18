@@ -117,18 +117,27 @@ while(SDL_PollEvent(&event)) {
 }
 }
 
+void chequearEstado(Juego &juego){
+    if (getEstado(*juego.terreno) == GAMEOVER_BANDIDO){
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "GAMEOVER", "Un bandido te elimino!!, intentelo nuevamente", NULL);
+        juego.estaCorriendo=false;
+    }
+    if (getEstado(*juego.terreno) == GAMEOVER_FUERALIMITES){
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "GAMEOVER", "No se puede salir del terreno!!!, intentelo nuevamente", NULL);
+        juego.estaCorriendo=false;
+    }
+}
+
 void actualizar(Juego& juego){
     juego.counter++;
     //AGREGAR FUNCIONES PARA ACTUALIZAR OBJETOS
     actualizarTerreno(*juego.terreno);
-
 
     std::cout << "iteracion " << juego.counter << std::endl;
 }
 
 void renderizar(Juego& juego){
     cargarTexturas(juego);
-
     cout << juego.counter << endl;
     SDL_RenderClear(juego.renderizador);
 

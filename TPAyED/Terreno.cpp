@@ -14,6 +14,8 @@ Lista* getMonedas(Terreno & terreno){return &(terreno.monedas);}
 
 void setMonedas(Terreno & terreno, Lista& monedas){terreno.monedas=monedas;}
 
+Estados getEstado(Terreno & terreno){return terreno.estadoJuego;}
+
 /*
 crearTerreno(Terreno& terreno, int alto, int ancho){
     aparecerLocomotora(terreno);
@@ -315,7 +317,7 @@ void chequearColisiones(Terreno & terreno){
     Posicion posLocomotora = getPosicion(terreno.locomotora);
     if (getX(posLocomotora) > ANCHO_TERRENO || getY(posLocomotora) > ALTO_TERRENO
                 || (getX(posLocomotora) < 0) || getY(posLocomotora) < 0 ){
-        terreno.estadoJuego = GAMEOVER; // SI SALGO DEL CUADRADO TERMINA JUEGO
+        terreno.estadoJuego = GAMEOVER_FUERALIMITES; // SI SALGO DEL CUADRADO TERMINA JUEGO
     }
     else{
         //VERIFICO INTERSECCION
@@ -331,6 +333,7 @@ void chequearColisiones(Terreno & terreno){
                     int capacidadVagon = entregarVagon((*estacionActual), getMonedasAdquiridas(terreno.locomotora));
                     if (capacidadVagon > 0){
                         agregarVagon(terreno.locomotora, capacidadVagon);
+                        setMonedasAdquiridas(terreno.locomotora, 0);
                     }
                 }
             ptrNodo = siguiente(terreno.estaciones, ptrNodo);
@@ -416,7 +419,7 @@ void locomotoraEnRadarBandido(Terreno& terreno){
                 if (alcanza==0){
                     bool locomotoraVacia = sacarVagon(terreno.locomotora);
                     if (locomotoraVacia){ // EN ESTE CASO EL BANDIDO NO PUDO SACAR VAGONES ENTONCES SE PIERDE
-                        terreno.estadoJuego = GAMEOVER;
+                        terreno.estadoJuego = GAMEOVER_BANDIDO;
                     }
                 }
 

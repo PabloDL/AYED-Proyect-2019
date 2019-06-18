@@ -50,6 +50,7 @@ int main( int argc, char* argv[]){
         //manejarEventos(juego);
         actualizar(juego);
         renderizar(juego);
+        chequearEstado(juego); // LO HACE DESPUES DE RENDERIZAR PARA SABER PORQUE PIERDE
 
         //imprimirMatriz(*juego.terreno);
 
@@ -59,10 +60,8 @@ int main( int argc, char* argv[]){
         }
 
 
-
-
     }
-    system("pause");
+    //system("pause");
     salirJuego(juego);
     return 0;
 
