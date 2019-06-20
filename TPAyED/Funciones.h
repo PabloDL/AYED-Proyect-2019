@@ -11,6 +11,7 @@ ResultadoComparacion compararListaCajas( PtrDato ptrDato1 , PtrDato ptrDato2 );
 ResultadoComparacion compararListaBandidos(PtrDato ptrDato1, PtrDato ptrDato2);
 ResultadoComparacion compararListaMonedas(PtrDato ptrDato1, PtrDato ptrDato2);
 ResultadoComparacion compararListaEstaciones(PtrDato ptrDato1, PtrDato ptrDato2);
+ResultadoComparacion compararListaComandas(PtrDato ptrDato1, PtrDato ptrDato2);
 //DESTRUCTORES
 void eliminarBandidoDeLista(PtrDato ptrDato);
 void eliminarMinasDeLista(PtrDato ptrDato);
@@ -18,6 +19,7 @@ void eliminarVagonesDeLista(PtrDato ptrDato);
 void eliminarCajaDeLista(PtrDato ptrDato);
 void eliminarMonedaDeLista(PtrDato ptrDato);
 void eliminarEstacionDeLista(PtrDato ptrDato);
+void eliminarComandaDeLista(PtrDato ptrDato);
 //IMPRESION
 void imprimirListaMinas(Lista &l);
 void imprimirListaVagones(Lista& l);
