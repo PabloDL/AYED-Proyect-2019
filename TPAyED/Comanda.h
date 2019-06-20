@@ -22,17 +22,17 @@ using namespace std;
 typedef struct Comanda{
     string codItem;
     int cantidad;
+    bool completado; //PARA SABER SI SE COMPLETO LA COMANDA
 }Comanda;
 
 /************GETTERS AND SETTERS*********************/
 string getCodItem(Comanda &comanda);
-
 int getCantidad(Comanda &comanda);
+bool getCompletado(Comanda &comanda);
 
 void setCodItem(Comanda &comanda, string codItem);
-
 void setCantidad(Comanda &comanda, int cantidad);
-
+void setCompletado(Comanda &comanda, bool completado);
 /***************************************************/
 /*
 PRE:

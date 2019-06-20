@@ -177,3 +177,22 @@ void eliminarMonedaDeLista(PtrDato ptrDato) {
     Moneda monedaAEliminar = *((Moneda*) ptrDato);
     eliminarMoneda(monedaAEliminar);
 }
+
+/*********************************************COMANDAS******************************************/
+ResultadoComparacion compararListaComandas(PtrDato ptrDato1 , PtrDato ptrDato2){
+    string dato1 = ((Comanda*) ptrDato1)->codItem;
+    string dato2 = ((Comanda*) ptrDato2)->codItem;
+
+    if (dato1 < dato2) {
+        return MENOR;
+    }else if (dato1 > dato2) {
+        return MAYOR;
+    }else{
+        return IGUAL;
+    }
+}
+
+void eliminarComandaDeLista(PtrDato ptrDato){
+    Comanda comandaAEliminar = *((Comanda*) ptrDato);
+    eliminarComanda(comandaAEliminar);
+}

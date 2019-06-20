@@ -59,6 +59,7 @@ PRE: Juego inicializado
 Post: Se ejecutan las funciones de renderizado de cada uno de los TDA que correspondan
 */
 void renderizarMinas(Juego &juego);
+
 /*
 PRE: Juego inicializado
 Post: Se ejecutan las funciones de renderizado de cada uno de los TDA que correspondan
@@ -82,6 +83,7 @@ PRE: Juego inicializado
 Post: Se ejecutan las funciones de renderizado de cada uno de los TDA que correspondan
 */
 void renderizarvagones(Juego &juego, bool estaDetenida);
+
 /*
 PRE: Juego inicializado
 Post: retorna el estado activo o no del juego

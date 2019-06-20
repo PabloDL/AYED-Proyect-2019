@@ -31,6 +31,7 @@ enum Estados{
 };
 typedef struct Terreno{
     Parametros parametros; //INICIALIZADO EN SET PARAMETROS
+    Lista objetivoJuego;
     int intervalosAparicionProximaMoneda;
     int intervalosAparicionProximoBandido;
     Locomotora locomotora;
@@ -116,6 +117,9 @@ void actualizarBandidos(Terreno& terreno);
 //PRE: Terreno Creado y inicializado, Matriz inicializada
 //POST: recorre matriz imprimiendo en forma de matriz los datos q tiene
 void imprimirMatriz(Terreno &t);
+//PRE: Terreno Creado y inicializado
+//POST: verifica si al ingresar un nuevo vagon se alcanza la victoria, devuelve true si se cumplio objetivos
+bool verificarComanda(Terreno &t);
 //PRE: Terreno Creado y inicializado,
 //POST: Carga las texturas
 void cargarTexturasTerreno(Terreno& terreno, SDL_Renderer* renderizador);
