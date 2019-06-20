@@ -365,8 +365,7 @@ void cargarTexturasLocomotora(Locomotora& locomotora , SDL_Renderer *renderizado
 
 }
 
-void renderizarLocomotora(Locomotora& locomotora, SDL_Renderer *renderizador, int counter){
-    int index = counter%10;
+void renderizarLocomotora(Locomotora& locomotora, SDL_Renderer *renderizador, int counter, bool estaDetenida){
     locomotora.rectImag.x= locomotora.posicion.x*40;
     locomotora.rectImag.y= locomotora.posicion.y*40;
     locomotora.rectImag.w=40;
@@ -377,5 +376,24 @@ void renderizarLocomotora(Locomotora& locomotora, SDL_Renderer *renderizador, in
             ARRIBA=2,
             ABAJO=3
     */
-    SDL_RenderCopy(renderizador, locomotora.texturas[index+(locomotora.direccion*10)], NULL, &locomotora.rectImag);
+
+
+    if(!estaDetenida){
+        switch(getDireccion(locomotora)){
+            case 0://VA HACIA IZQUIERDA
+                locomotora.rectImag.x -=4*counter;
+                break;
+            case 1://VA HACIA DERECHA
+                locomotora.rectImag.x +=4*counter;
+                break;
+            case 2://VA HACIA ARRIBA
+                locomotora.rectImag.y -=4*counter;
+                break;
+            case 3://VA HACIA ABAJO
+                locomotora.rectImag.y +=4*counter;
+                break;
+        }
+    }
+    SDL_RenderCopy(renderizador, locomotora.texturas[counter+(locomotora.direccion*10)], NULL, &locomotora.rectImag);
+
 }

@@ -43,78 +43,47 @@ void salirJuego(Juego& juego){
 }
 
 void manejarEventos(Juego& juego, SDL_Event & event){
-
-//    SDL_Event evento;
-//    SDL_PollEvent(&evento);
-//cout << "evento: " << evento.type << endl;
-//    switch (evento.type){
-//        case SDL_QUIT:
-//            juego.estaCorriendo = false;
-//            system("pause");
-//            break;
-//        case SDL_KEYDOWN:
-//            /* Check the SDLKey values and move change the coords */
-//            switch( evento.key.keysym.sym ){
-//                case SDLK_LEFT:
-//                    juego.terreno->locomotora.direccion = 0;
-//                    break;
-//                case SDLK_RIGHT:
-//                    juego.terreno->locomotora.direccion = 1;
-//                    break;
-//                case SDLK_UP:
-//                    juego.terreno->locomotora.direccion = 2;
-//                    break;
-//                case SDLK_DOWN:
-//                    system("pause");
-//                    juego.terreno->locomotora.direccion = 3;
-//                    break;
-//                default:
-//                    break;
-//            }
-//        default:
-//            break;
-//    }
-while(SDL_PollEvent(&event)) {
-    switch(event.type)
-    {
-    case SDL_WINDOWEVENT:
-        switch(event.window.event)
+    while(SDL_PollEvent(&event)) {
+        switch(event.type)
         {
-        case SDL_WINDOWEVENT_ENTER:
-            cout << "entered" << endl;
+        case SDL_WINDOWEVENT:
+            switch(event.window.event)
+            {
+            case SDL_WINDOWEVENT_ENTER:
+                cout << "entered" << endl;
+                break;
+
+            case SDL_WINDOWEVENT_LEAVE:
+                cout << "left" << endl;
+                break;
+            }
             break;
 
-        case SDL_WINDOWEVENT_LEAVE:
-            cout << "left" << endl;
+        case SDL_KEYDOWN:
+                juego.terreno->estadoJuego = JUGABLE;
+                switch( event.key.keysym.sym ){
+                    case SDLK_LEFT:
+                        juego.terreno->locomotora.direccion = 0;
+                        break;
+                    case SDLK_RIGHT:
+                        juego.terreno->locomotora.direccion = 1;
+                        break;
+                    case SDLK_UP:
+                        juego.terreno->locomotora.direccion = 2;
+                        break;
+                    case SDLK_DOWN:
+                        juego.terreno->locomotora.direccion = 3;
+                        break;
+                    case SDLK_ESCAPE:
+                        juego.estaCorriendo = false;
+                        system("pause");
+                        break;
+                    default:
+                        break;
+                }
             break;
         }
-        break;
-
-    case SDL_KEYDOWN:
-            juego.terreno->estadoJuego = JUGABLE;
-            switch( event.key.keysym.sym ){
-                case SDLK_LEFT:
-                    juego.terreno->locomotora.direccion = 0;
-                    break;
-                case SDLK_RIGHT:
-                    juego.terreno->locomotora.direccion = 1;
-                    break;
-                case SDLK_UP:
-                    juego.terreno->locomotora.direccion = 2;
-                    break;
-                case SDLK_DOWN:
-                    juego.terreno->locomotora.direccion = 3;
-                    break;
-                case SDLK_ESCAPE:
-                    juego.estaCorriendo = false;
-                    system("pause");
-                    break;
-                default:
-                    break;
-            }
-        break;
     }
-}
 }
 
 void chequearEstado(Juego &juego){
@@ -136,21 +105,21 @@ void actualizar(Juego& juego){
     std::cout << "iteracion " << juego.counter << std::endl;
 }
 
-void renderizar(Juego& juego){
+void renderizar(Juego& juego, int renderIndex){
     cargarTexturas(juego);
-    cout << "game count: "<< juego.counter << endl;
     SDL_RenderClear(juego.renderizador);
+    bool estaDetenida = juego.terreno->estadoJuego!= JUGABLE;
 
     renderizarTerreno(*(juego.terreno), juego.renderizador);
-
     renderizarMinas(juego);
     renderizarBandidos(juego);
     renderizarMonedas(juego);
     renderizarEstaciones(juego);
-    renderizarLocomotora(juego.terreno->locomotora, juego.renderizador, juego.counter);
-    renderizarvagones(juego);
+    renderizarLocomotora(juego.terreno->locomotora, juego.renderizador, renderIndex, estaDetenida);
+    renderizarvagones(juego, estaDetenida);
 
     SDL_RenderPresent(juego.renderizador);
+
 }
 
 bool corriendo(Juego& juego){
@@ -174,6 +143,7 @@ void cargarTexturas(Juego& juego){
             cargarTexturaMoneda(*moneda, juego.renderizador);
             NodoListaMoneda = siguiente(juego.terreno->monedas, NodoListaMoneda);
     }
+
     NodoLista * NodoListaEstacion = primero(juego.terreno->estaciones);
     while(NodoListaEstacion != finLista()){
             Estacion * estacion = (Estacion*)NodoListaEstacion->ptrDato;
@@ -188,7 +158,6 @@ void cargarTexturas(Juego& juego){
             NodoListaBandido = siguiente(juego.terreno->bandidos, NodoListaBandido);
     }
 
-
     if (!listaVacia(juego.terreno->locomotora.listaVagones)) {
         NodoLista * NodoListaVagon = primero(juego.terreno->locomotora.listaVagones);
         while(NodoListaVagon != finLista()){
@@ -197,10 +166,6 @@ void cargarTexturas(Juego& juego){
             NodoListaVagon = siguiente(juego.terreno->locomotora.listaVagones, NodoListaVagon);
         }
     }
-}
-
-
-void chequearEstado(Juego &juego){
 }
 
 void renderizarMinas(Juego &juego){
@@ -246,13 +211,31 @@ void renderizarBandidos(Juego &juego){
     }
 }
 
-void renderizarvagones(Juego &juego){
+void renderizarvagones(Juego &juego, bool estaDetenida){
     if (!listaVacia(juego.terreno->locomotora.listaVagones)) {
         NodoLista * NodoListaVagon = primero(juego.terreno->locomotora.listaVagones);
         while(NodoListaVagon != finLista()){
             Vagon * vagon = (Vagon*)NodoListaVagon->ptrDato;
+
+            switch(getDireccion(*vagon)){
+                case 0://VA HACIA IZQUIERDA
+                    vagon->rectImag.x -=4;
+                    break;
+                case 1://VA HACIA DERECHA
+                    vagon->rectImag.x +=4;
+                    break;
+                case 2://VA HACIA ARRIBA
+                    vagon->rectImag.y -=4;
+                    break;
+                case 3://VA HACIA ABAJO
+                    vagon->rectImag.y +=4;
+                    break;
+
+            }
+
             renderizarVagon(*vagon, juego.renderizador, juego.counter);
             NodoListaVagon = siguiente(juego.terreno->locomotora.listaVagones, NodoListaVagon);
+
         }
     }
 }
