@@ -52,6 +52,13 @@ void crearTerreno(Terreno& terreno){
     terreno.minas = leerArchivoMinas(lectorMinas);
     eliminarLector(lectorMinas);
 
+    cout << "lectura Comanda" << endl;
+    Lector lectorComanda;
+    crearLector(lectorComanda);
+    abrirArchivo(lectorComanda, "comanda.txt");
+    terreno.objetivoJuego = leerArchivoComandas(lectorComanda);
+    eliminarLector(lectorComanda);
+
     for(int i=0; i< ANCHO_TERRENO; i++){
         for(int j=0; j< ALTO_TERRENO; j++){
             terreno.matrizJuego[i][j] = 'T';
@@ -521,4 +528,33 @@ void imprimirMatriz(Terreno &t){
     }
 }
 
-
+bool verificarComanda(Terreno &t){
+    bool comandaCompletada = true;
+    Locomotora l;
+    l = getLocomotora(t);
+     //ITEMS -> oro=0, plata=1, bronce=2, platino=3, roca=4,
+    //recorro lista vagones para ver si se completa objetivo Juego
+    if (!listaVacia(t.objetivoJuego)){
+        NodoLista * ptrNodoObjetivos = primero(t.objetivoJuego);
+        while(ptrNodoObjetivos != finLista() && comandaCompletada){
+            int sumaItem = 0;
+            Comanda * comandaActual = (Comanda*) ptrNodoObjetivos->ptrDato;
+            Lista vagones = getListaVagones(l);
+            NodoLista * ptrNodoVagon = primero(vagones);
+            while(ptrNodoVagon != finLista()){
+                Vagon * vagonActual = (Vagon*) ptrNodoVagon->ptrDato;
+                cout << "Tengo vagon con tipo: " << getTipoVagon(*vagonActual)<<" y comanda es: " << getCodItem(*comandaActual)<<endl;
+                if (getTipoVagon(*vagonActual) == getCodItem(*comandaActual)){
+                    sumaItem=sumaItem + getCapVagonUsada(*vagonActual);
+                }
+                ptrNodoVagon = siguiente(vagones, ptrNodoVagon);
+            }
+            if (sumaItem < getCantidad(*comandaActual)){
+            //NO TENGO La CANTIDAD DE ITEMS Q NECESITO PARA EL ITEM
+                comandaCompletada = false;
+            }
+            ptrNodoObjetivos = siguiente(t.objetivoJuego, ptrNodoObjetivos);
+        }
+    }
+    return comandaCompletada;
+}

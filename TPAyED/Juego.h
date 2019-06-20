@@ -58,31 +58,31 @@ void chequearEstado(Juego &juego);
 PRE: Juego inicializado
 Post: Se ejecutan las funciones de renderizado de cada uno de los TDA que correspondan
 */
-void renderizarMinas(Juego &juego){
+void renderizarMinas(Juego &juego);
 
 /*
 PRE: Juego inicializado
 Post: Se ejecutan las funciones de renderizado de cada uno de los TDA que correspondan
 */
-void renderizarMonedas(Juego &juego){
+void renderizarMonedas(Juego &juego);
 
 /*
 PRE: Juego inicializado
 Post: Se ejecutan las funciones de renderizado de cada uno de los TDA que correspondan
 */
-void renderizarEstaciones(Juego &juego){
+void renderizarEstaciones(Juego &juego);
 
 /*
 PRE: Juego inicializado
 Post: Se ejecutan las funciones de renderizado de cada uno de los TDA que correspondan
 */
-void renderizarBandidos(Juego &juego){
+void renderizarBandidos(Juego &juego);
 
 /*
 PRE: Juego inicializado
 Post: Se ejecutan las funciones de renderizado de cada uno de los TDA que correspondan
 */
-void renderizarvagones(Juego &juego){
+void renderizarvagones(Juego &juego);
 /*
 PRE: Juego inicializado
 Post: retorna el estado activo o no del juego

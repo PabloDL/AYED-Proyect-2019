@@ -47,7 +47,7 @@ Parametros leerArchivoParametros(Lector & lector);
 PRE: Lector creado y archivo abierto  SE ESTA LEYENDO UN ARCHIVO DE COMANDAS /// ACA TIENE Q DEVOLVER UNA LISTA
 Post: se devuelve lista con instancias de Comandas con valores cargados
 */
-Comanda leerArchivoComandas(Lector & lector);
+Lista leerArchivoComandas(Lector & lector);
 /*
 PRE: Lector creado y archivo abierto  SE ESTA LEYENDO UN ARCHIVO DE MINAS /// ACA TIENE Q DEVOLVER UNA LISTA
 Post: se devuelve lista con instancias de Comandas con valores cargados

@@ -126,6 +126,10 @@ void chequearEstado(Juego &juego){
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "GAMEOVER", "No se puede salir del terreno!!!, intentelo nuevamente", NULL);
         juego.estaCorriendo=false;
     }
+    if (verificarComanda(*juego.terreno)){ //SI VERIFICR COMANDA=TRUE --> FIN DE JUEGO
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "FELICITACIONES GANASTE!!", "Juego completado", NULL);
+        juego.estaCorriendo=false;
+    }
 }
 
 void actualizar(Juego& juego){
@@ -200,8 +204,8 @@ void cargarTexturas(Juego& juego){
 }
 
 
-void chequearEstado(Juego &juego){
-}
+//void chequearEstado(Juego &juego){
+//}
 
 void renderizarMinas(Juego &juego){
     NodoLista * nodoActual = primero(juego.terreno->minas);

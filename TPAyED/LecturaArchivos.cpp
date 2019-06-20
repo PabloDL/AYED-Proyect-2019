@@ -45,24 +45,31 @@ Parametros leerArchivoParametros(Lector & lector){
     return parametros;
 }
 
-Comanda leerArchivoComandas(Lector & lector){
-    Comanda comanda;
-    string codItem;
-    string cantidad;
+Lista leerArchivoComandas(Lector & lector){
+    Lista comandas;
+    crearLista(comandas, compararListaComandas, eliminarComandaDeLista);
 
     if (lector.ficheroEntrada.is_open()) {
         while (!lector.ficheroEntrada.eof()){
+            Comanda* c = new Comanda;
+            string codItem;
+            string cantidad;
+            int cantInt;
+
             getline(lector.ficheroEntrada,codItem, ';');
             getline(lector.ficheroEntrada,cantidad);
-            stringstream  issCod(codItem);
-            issCod >> comanda.codItem;
+            //stringstream  issCod(codItem);
+            //issCod >> comanda.codItem;
             stringstream iss (cantidad);
-            iss >> comanda.cantidad;
-            toString(comanda);
-            // SE CARGA NUEVO ITEM EN LISTA DE COMANDAS
+            iss >> cantInt;
+
+            setCodItem(*c,codItem);
+            setCantidad(*c, cantInt);
+            adicionarPrincipio(comandas, c);
+            toString(*c);
         }
     }
-    return comanda;
+    return comandas;
 }
 
 Lista leerArchivoMinas(Lector & lector){
