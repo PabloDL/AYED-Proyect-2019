@@ -45,7 +45,7 @@ void actualizar(Juego &juego);
 PRE: Juego inicializado
 Post: Se ejecutan las funciones de renderizado de cada uno de los TDA que correspondan
 */
-void renderizar(Juego &juego);
+void renderizar(Juego &juego, int renderIndex);
 
 
 /*
@@ -82,7 +82,8 @@ void renderizarBandidos(Juego &juego);
 PRE: Juego inicializado
 Post: Se ejecutan las funciones de renderizado de cada uno de los TDA que correspondan
 */
-void renderizarvagones(Juego &juego);
+void renderizarvagones(Juego &juego, bool estaDetenida);
+
 /*
 PRE: Juego inicializado
 Post: retorna el estado activo o no del juego

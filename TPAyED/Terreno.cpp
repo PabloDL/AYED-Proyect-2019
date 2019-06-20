@@ -83,7 +83,7 @@ void crearTerreno(Terreno& terreno){
     //crear moneda -> no tienen q aparecer inmediatamente
     actualizarMonedas(terreno);
     //CREAR bandido  -> no tienen q aparecer inmediatamente
-    actualizarBandidos(terreno);
+    //actualizarBandidos(terreno);
     ////ACTUALIZAR EN MATRIZ POSICIONES DE ELEMENTOS
     actualizarMatrizJuego(terreno);
 }
@@ -247,11 +247,12 @@ void aparecerBandido(Terreno& terreno){
 
 //YA esta todo cargado, hay q actualizar
 void actualizarTerreno(Terreno& terreno){
+    //si es una iteracion de render solo va a actualizar la posicion de los objetos que se mueven
+    //no se chequea ninguna logica del juego durante iteraciones de render;
 
     //SI VUELVO A ENTRAR EL JUEGO VUELVE A ESTAR JUGABLE
 
 //    terreno.estadoJuego = JUGABLE;
-
     terreno.intervaloActual++;
     //Actualizar minas
     nuevaProduccionMinas(terreno);
@@ -262,10 +263,12 @@ void actualizarTerreno(Terreno& terreno){
     //avanzarLocomotora -> ACTUAR SI POSICION DE LOCOMOTORA O VAGONES ESTA EN ZONA DE CONFLI
     actualizarMatrizJuego(terreno);
     ////ACTUALIZAR EN MATRIZ SI APARECIO BANDIDO O MONEDA
+
     if (terreno.estadoJuego == JUGABLE)
         avanzarLocomotora(terreno);
     //REVISAR CAMBIOS
     chequearColisiones(terreno);
+
 }
 
 void avanzarLocomotora(Terreno &terreno){
@@ -280,15 +283,15 @@ void avanzarLocomotora(Terreno &terreno){
             moverPosicion(nuevaPosicion,getX(pTemp)-1,getY(pTemp));
             break;
         }
-        case 1: { //VA HACIA IZQUIERDA
+        case 1: { //VA HACIA DERECHA
             moverPosicion(nuevaPosicion,getX(pTemp)+1,getY(pTemp));
             break;
         }
-        case 2: { //VA HACIA IZQUIERDA
+        case 2: { //VA HACIA ARRIBA
             moverPosicion(nuevaPosicion,getX(pTemp),getY(pTemp)-1);
             break;
         }
-        case 3: { //VA HACIA IZQUIERDA
+        case 3: { //VA HACIA ABAJO
 /**<  */            moverPosicion(nuevaPosicion,getX(pTemp),getY(pTemp)+1);
             break;
         }

@@ -105,5 +105,5 @@ void cargarTexturasLocomotora(Locomotora& locomotora , SDL_Renderer *renderizado
 
 //pre debe existir una locomotora y tener cargadas las texturas
 //post: añade al renderizador las texturas de la locomotora en su posicion relativa
-void renderizarLocomotora(Locomotora& locomotora, SDL_Renderer *renderizador, int counter);
+void renderizarLocomotora(Locomotora& locomotora, SDL_Renderer *renderizador, int counter, bool estaDetenida);
 #endif // _locomotora_h_

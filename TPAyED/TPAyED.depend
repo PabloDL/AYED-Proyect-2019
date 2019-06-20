@@ -62,7 +62,7 @@
 	"Funciones.h"
 	"SDL_image.h"
 
-1560724240 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\main.cpp
+1561073915 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -84,12 +84,12 @@
 1560478757 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\cajas.h
 	<iostream>
 
-1560615230 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\juego.h
+1561071767 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\juego.h
 	<iostream>
 	"Terreno.h"
 	"SDL.h"
 
-1560724408 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\juego.cpp
+1561073821 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\juego.cpp
 	"Juego.h"
 	"Terreno.h"
 	"locomotora.h"
@@ -132,10 +132,10 @@
 	<iostream>
 	<stdlib.h>
 
-1560615230 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\locomotora.cpp
+1561073698 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\locomotora.cpp
 	"Locomotora.h"
 
-1560488468 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\locomotora.h
+1561071907 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\locomotora.h
 	<sstream>
 	"Lista.h"
 	"Posicion.h"
@@ -147,7 +147,7 @@
 1560274664 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\posicion.cpp
 	"Posicion.h"
 
-1560816338 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\terreno.h
+1561062472 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\terreno.h
 	<iostream>
 	<SDL_image.h>
 	"LecturaArchivos.h"
@@ -173,7 +173,7 @@
 	"SDL_image.h"
 	"Posicion.h"
 
-1560617546 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\terreno.cpp
+1561072396 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\terreno.cpp
 	"Terreno.h"
 	"Mina.h"
 
@@ -184,7 +184,7 @@
 1560478757 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\cajas.cpp
 	"Cajas.h"
 
-1560478757 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\pruebas.h
+1560816287 c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\pruebas.h
 	<iostream>
 	<windows.h>
 	"LecturaArchivos.h"
@@ -203,7 +203,7 @@
 1560615229 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\bandido.cpp
 	"Bandido.h"
 
-1560534432 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\pruebas.cpp
+1561062492 source:c:\users\kraven\documents\github\ayed-proyect-2019\tpayed\pruebas.cpp
 	"Pruebas.h"
 	"Funciones.h"
 

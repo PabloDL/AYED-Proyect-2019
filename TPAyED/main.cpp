@@ -34,7 +34,7 @@ int main( int argc, char* argv[]){
  //MAIN PRINCIPAL JUEGO
 
 
-    const int FPS = 10;
+    const int FPS = 30;
     const int FrameDelay = 5000/FPS;
     Uint32 frameStart;
     int frameTime;
@@ -48,8 +48,13 @@ int main( int argc, char* argv[]){
         manejarEventos(juego, evento);
         frameStart = SDL_GetTicks();
         //manejarEventos(juego);
+        int renderIteration = 0;
+        do
+        {
+            renderizar(juego, renderIteration);
+            renderIteration++;
+        }while(juego.terreno->estadoJuego == JUGABLE && renderIteration <10 );
         actualizar(juego);
-        renderizar(juego);
         chequearEstado(juego); // LO HACE DESPUES DE RENDERIZAR PARA SABER PORQUE PIERDE
 
         //imprimirMatriz(*juego.terreno);
