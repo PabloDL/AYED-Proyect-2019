@@ -122,12 +122,28 @@ void cargarTexturaVagon(Vagon& vagon, SDL_Renderer * renderizador){
     }
 }
 
-void renderizarVagon(Vagon& vagon, SDL_Renderer *renderizador, int counter){
+void renderizarVagon(Vagon& vagon, SDL_Renderer *renderizador, int counter, bool estaDetenida){
     int index = counter%10;
     Posicion p = getPosicion(vagon);
     vagon.rectImag.x = getX(p)*40;
     vagon.rectImag.y = getY(p)*40;
     vagon.rectImag.w = 40;
     vagon.rectImag.h = 40;
+    if(!estaDetenida){
+        switch(getDireccion(vagon)){
+            case 0://VA HACIA IZQUIERDA
+                vagon.rectImag.x -=4*counter;
+                break;
+            case 1://VA HACIA DERECHA
+                vagon.rectImag.x +=4*counter;
+                break;
+            case 2://VA HACIA ARRIBA
+                vagon.rectImag.y -=4*counter;
+                break;
+            case 3://VA HACIA ABAJO
+                vagon.rectImag.y +=4*counter;
+                break;
+        }
+    }
     SDL_RenderCopy(renderizador, vagon.texturas[index+(vagon.direccion*10)], NULL, &vagon.rectImag);
 }

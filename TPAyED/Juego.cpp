@@ -229,25 +229,7 @@ void renderizarvagones(Juego &juego, int counter, bool estaDetenida){
         NodoLista * NodoListaVagon = primero(juego.terreno->locomotora.listaVagones);
         while(NodoListaVagon != finLista()){
             Vagon * vagon = (Vagon*)NodoListaVagon->ptrDato;
-
-            if(!estaDetenida){
-                switch(getDireccion(*vagon)){
-                    case 0://VA HACIA IZQUIERDA
-                        vagon->rectImag.x -=4*counter;
-                        break;
-                    case 1://VA HACIA DERECHA
-                        vagon->rectImag.x +=4*counter;
-                        break;
-                    case 2://VA HACIA ARRIBA
-                        vagon->rectImag.y -=4*counter;
-                        break;
-                    case 3://VA HACIA ABAJO
-                        vagon->rectImag.y +=4*counter;
-                        break;
-                }
-            }
-
-            renderizarVagon(*vagon, juego.renderizador, juego.counter);
+            renderizarVagon(*vagon, juego.renderizador, counter, estaDetenida);
             NodoListaVagon = siguiente(juego.terreno->locomotora.listaVagones, NodoListaVagon);
 
         }

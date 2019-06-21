@@ -53,6 +53,6 @@ bool mismoTipo(Vagon& vagon,string tipoItem);
 
 
 void cargarTexturaVagon(Vagon& vagon, SDL_Renderer * renderizador);
-void renderizarVagon(Vagon& vagon, SDL_Renderer *renderizador, int counter);
+void renderizarVagon(Vagon& vagon, SDL_Renderer *renderizador, int counter, bool estaDetenida);
 
 #endif // _VAGON_H_
