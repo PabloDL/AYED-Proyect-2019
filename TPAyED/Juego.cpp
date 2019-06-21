@@ -120,6 +120,7 @@ void renderizar(Juego& juego, int renderIndex){
     renderizarMonedas(juego);
     renderizarEstaciones(juego);
     renderizarLocomotora(juego.terreno->locomotora, juego.renderizador, renderIndex, estaDetenida);
+    renderizarvagones(juego, renderIndex, estaDetenida);
 
     SDL_RenderPresent(juego.renderizador);
 
