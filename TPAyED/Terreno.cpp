@@ -150,7 +150,7 @@ cout << "elimino en Lista con: " << longitud(terreno.monedas) << "en iteracion "
     if (terreno.intervalosAparicionProximaMoneda == terreno.intervaloActual){
 cout << "agrego en Lista con: " << longitud(terreno.monedas) << "en iteracion " << terreno.intervaloActual <<endl;
         aparecerMoneda(terreno);
-        terreno.intervalosAparicionProximaMoneda = terreno.intervaloActual + 1 +rand()% (getIm(terreno.parametros)+terreno.intervaloActual);
+        terreno.intervalosAparicionProximaMoneda = terreno.intervaloActual + 1 +rand()% (getIm(terreno.parametros));
     }
 }
 
@@ -177,7 +177,7 @@ void actualizarBandidos(Terreno& terreno){
     //AGREGO SI CORRESPONDE UNA NUEVO BANDIDO
     if (terreno.intervalosAparicionProximoBandido == terreno.intervaloActual){
         aparecerBandido(terreno);
-        terreno.intervalosAparicionProximoBandido = terreno.intervaloActual + 1 +rand()% (getIb(terreno.parametros)+terreno.intervaloActual);
+        terreno.intervalosAparicionProximoBandido = terreno.intervaloActual + 1 +rand()% (getIb(terreno.parametros));
         cout << "proxima aparciacion bandido = " << terreno.intervalosAparicionProximoBandido << endl;
     }
 }

@@ -37,6 +37,7 @@ void crearMoneda(Moneda &moneda){
     moneda.textura=NULL;
     crearPosicion(moneda.posicion);
     moverPosicion(moneda.posicion, 0, 0);
+    moneda.textura = NULL;
 }
 
 void eliminarMoneda(Moneda &moneda){

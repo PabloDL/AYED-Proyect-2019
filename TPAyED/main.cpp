@@ -36,6 +36,7 @@ int main( int argc, char* argv[]){
 
     const int FPS = 60;
     const int FrameDelay = 5000/FPS;
+
     Uint32 frameStart;
     int frameTime;
     Uint32 interFrameStart;
@@ -72,7 +73,6 @@ int main( int argc, char* argv[]){
         if(FrameDelay > frameTime){
             SDL_Delay(FrameDelay - frameTime);
         }
-
 
     }
     //system("pause");
