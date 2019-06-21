@@ -131,28 +131,29 @@ bool corriendo(Juego& juego){
 }
 
 void cargarTexturas(Juego& juego){
-    cargarTexturasTerreno( *juego.terreno, juego.renderizador);
-    cargarTexturasLocomotora( juego.terreno->locomotora , juego.renderizador);
+    if (juego.counter < 1){
+        cargarTexturasTerreno( *juego.terreno, juego.renderizador);
 
-    NodoLista * nodoActual = primero(juego.terreno->minas);
-    while(nodoActual != finLista()){
-            Mina * mina = (Mina*)nodoActual->ptrDato;
-            cargarTexturaMina(*mina, juego.renderizador);
-            nodoActual = siguiente(juego.terreno->minas, nodoActual);
+        NodoLista * nodoActual = primero(juego.terreno->minas);
+        while(nodoActual != finLista()){
+                Mina * mina = (Mina*)nodoActual->ptrDato;
+                cargarTexturaMina(*mina, juego.renderizador);
+                nodoActual = siguiente(juego.terreno->minas, nodoActual);
+        }
+
+        NodoLista * NodoListaEstacion = primero(juego.terreno->estaciones);
+        while(NodoListaEstacion != finLista()){
+                Estacion * estacion = (Estacion*)NodoListaEstacion->ptrDato;
+                cargarTexturaEstacion(*estacion, juego.renderizador);
+                NodoListaEstacion = siguiente(juego.terreno->estaciones, NodoListaEstacion);
+        }
+        cargarTexturasLocomotora( juego.terreno->locomotora , juego.renderizador);
     }
-
     NodoLista * NodoListaMoneda = primero(juego.terreno->monedas);
     while(NodoListaMoneda != finLista()){
             Moneda * moneda = (Moneda*)NodoListaMoneda->ptrDato;
             cargarTexturaMoneda(*moneda, juego.renderizador);
             NodoListaMoneda = siguiente(juego.terreno->monedas, NodoListaMoneda);
-    }
-
-    NodoLista * NodoListaEstacion = primero(juego.terreno->estaciones);
-    while(NodoListaEstacion != finLista()){
-            Estacion * estacion = (Estacion*)NodoListaEstacion->ptrDato;
-            cargarTexturaEstacion(*estacion, juego.renderizador);
-            NodoListaEstacion = siguiente(juego.terreno->estaciones, NodoListaEstacion);
     }
 
     NodoLista * NodoListaBandido = primero(juego.terreno->bandidos);
@@ -171,9 +172,6 @@ void cargarTexturas(Juego& juego){
         }
     }
 }
-
-//void chequearEstado(Juego &juego){
-//}
 
 void renderizarMinas(Juego &juego){
     NodoLista * nodoActual = primero(juego.terreno->minas);
