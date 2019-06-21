@@ -34,25 +34,34 @@ int main( int argc, char* argv[]){
  //MAIN PRINCIPAL JUEGO
 
 
-    const int FPS = 30;
+    const int FPS = 60;
     const int FrameDelay = 5000/FPS;
     Uint32 frameStart;
     int frameTime;
+    Uint32 interFrameStart;
+    int interFrameTime;
     Juego juego;
     crearJuego(juego, "Juego", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
 
     SDL_Event evento;
-        SDL_PollEvent(&evento);
+    SDL_PollEvent(&evento);
 
     while(corriendo(juego)){
-        manejarEventos(juego, evento);
         frameStart = SDL_GetTicks();
+        manejarEventos(juego, evento);
         //manejarEventos(juego);
         int renderIteration = 0;
         do
         {
+            interFrameStart = SDL_GetTicks();
+
             renderizar(juego, renderIteration);
             renderIteration++;
+
+            interFrameTime = SDL_GetTicks() - interFrameStart;
+            if(FrameDelay > interFrameTime){
+                SDL_Delay(FrameDelay - interFrameTime);
+            }
         }while(juego.terreno->estadoJuego == JUGABLE && renderIteration <10 );
         actualizar(juego);
         chequearEstado(juego); // LO HACE DESPUES DE RENDERIZAR PARA SABER PORQUE PIERDE

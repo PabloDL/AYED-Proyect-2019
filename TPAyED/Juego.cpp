@@ -120,7 +120,6 @@ void renderizar(Juego& juego, int renderIndex){
     renderizarMonedas(juego);
     renderizarEstaciones(juego);
     renderizarLocomotora(juego.terreno->locomotora, juego.renderizador, renderIndex, estaDetenida);
-    renderizarvagones(juego, estaDetenida);
 
     SDL_RenderPresent(juego.renderizador);
 
@@ -136,9 +135,9 @@ void cargarTexturas(Juego& juego){
 
     NodoLista * nodoActual = primero(juego.terreno->minas);
     while(nodoActual != finLista()){
-            Mina * mina = (Mina*)nodoActual->ptrDato;
-            cargarTexturaMina(*mina, juego.renderizador);
-            nodoActual = siguiente(juego.terreno->minas, nodoActual);
+        Mina * mina = (Mina*)nodoActual->ptrDato;
+        cargarTexturaMina(*mina, juego.renderizador);
+        nodoActual = siguiente(juego.terreno->minas, nodoActual);
     }
 
     NodoLista * NodoListaMoneda = primero(juego.terreno->monedas);
@@ -218,26 +217,27 @@ void renderizarBandidos(Juego &juego){
     }
 }
 
-void renderizarvagones(Juego &juego, bool estaDetenida){
+void renderizarvagones(Juego &juego, int counter, bool estaDetenida){
     if (!listaVacia(juego.terreno->locomotora.listaVagones)) {
         NodoLista * NodoListaVagon = primero(juego.terreno->locomotora.listaVagones);
         while(NodoListaVagon != finLista()){
             Vagon * vagon = (Vagon*)NodoListaVagon->ptrDato;
 
-            switch(getDireccion(*vagon)){
-                case 0://VA HACIA IZQUIERDA
-                    vagon->rectImag.x -=4;
-                    break;
-                case 1://VA HACIA DERECHA
-                    vagon->rectImag.x +=4;
-                    break;
-                case 2://VA HACIA ARRIBA
-                    vagon->rectImag.y -=4;
-                    break;
-                case 3://VA HACIA ABAJO
-                    vagon->rectImag.y +=4;
-                    break;
-
+            if(!estaDetenida){
+                switch(getDireccion(*vagon)){
+                    case 0://VA HACIA IZQUIERDA
+                        vagon->rectImag.x -=4*counter;
+                        break;
+                    case 1://VA HACIA DERECHA
+                        vagon->rectImag.x +=4*counter;
+                        break;
+                    case 2://VA HACIA ARRIBA
+                        vagon->rectImag.y -=4*counter;
+                        break;
+                    case 3://VA HACIA ABAJO
+                        vagon->rectImag.y +=4*counter;
+                        break;
+                }
             }
 
             renderizarVagon(*vagon, juego.renderizador, juego.counter);

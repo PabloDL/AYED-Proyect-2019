@@ -38,6 +38,7 @@ void crearTerreno(Terreno& terreno){
     crearLista(terreno.estaciones, compararListaEstaciones, eliminarEstacionDeLista);
     crearLista(terreno.minas, compararListaMinas, eliminarMinasDeLista);
     crearLista(terreno.monedas, compararListaMonedas, eliminarMonedaDeLista);
+    terreno.texturas[10] = {nullptr};
 
     Lector lector;
     crearLector(lector);

@@ -33,6 +33,7 @@ void crearMina (Mina &mina){
     mina.seq4 = 1;
     mina.seq5 = 1;
     mina.seqActual=1;
+    mina.textura=NULL;
     crearCola(mina.cajas, eliminarCajaDeLista);
 }
 

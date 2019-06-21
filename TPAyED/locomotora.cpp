@@ -38,6 +38,7 @@ void crearLocomotora(Locomotora& locomotora){
    locomotora.posicion.x = 0;
    locomotora.posicion.y = 0;
    locomotora.direccion = 1;
+   locomotora.texturas[40]= {NULL};
    crearLista( locomotora.listaVagones, compararListaVagones , eliminarVagonesDeLista );
 }
 

@@ -44,6 +44,7 @@ void crearVagon(Vagon& vagon){
     vagon.capVagonUsada = 0; //logicamente el vagon va a estar vacio al crearse
     vagon.tipoVagon = "SIN DEFINIR"; //por defecto al crearse el vagon va a estar vacio y entonces su tipo esta indefinido
     vagon.velocidadV = velocidad;
+    vagon.texturas[10] = {NULL};
     crearLista( vagon.listaCajas , compararListaCajas , eliminarCajaDeLista); //la lista de caja empieza valiendo null
 }
 

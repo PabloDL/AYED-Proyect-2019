@@ -24,6 +24,7 @@ void crearBandido(Bandido &bandido){
     bandido.tiempoVida= 0;
     bandido.intervaloHastaAparicion= 0;
     bandido.areaCobertura= AREA_COBERTURA;
+    bandido.textura = NULL;
     bandido.codItem = 1 + rand()% (5); //GENERO RANDOM EL CODIGO
 }
 
@@ -33,7 +34,9 @@ void toString(Bandido &bandido){}
 
 
 void cargarTexturaBandido(Bandido& bandido, SDL_Renderer * renderizador){
-    bandido.textura = IMG_LoadTexture(renderizador, "assets/img/villano.png");
+    if(bandido.textura==NULL){
+        bandido.textura = IMG_LoadTexture(renderizador, "assets/img/villano.png");
+    }
 }
 
 void renderizarBandido(Bandido& bandidoActual, SDL_Renderer *renderizador){
