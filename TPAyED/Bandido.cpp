@@ -24,7 +24,6 @@ void crearBandido(Bandido &bandido){
     bandido.tiempoVida= 0;
     bandido.intervaloHastaAparicion= 0;
     bandido.areaCobertura= AREA_COBERTURA;
-    bandido.textura = NULL;
     bandido.codItem = 1 + rand()% (5); //GENERO RANDOM EL CODIGO
     bandido.textura = NULL;
 }

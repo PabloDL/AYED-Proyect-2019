@@ -1,3 +1,5 @@
+    #include <windows.h>
+
 #include "Juego.h"
 #include "Terreno.h"
 #include "locomotora.h"
@@ -120,7 +122,9 @@ void renderizar(Juego& juego, int renderIndex){
     renderizarMonedas(juego);
     renderizarEstaciones(juego);
     renderizarLocomotora(juego.terreno->locomotora, juego.renderizador, renderIndex, estaDetenida);
-    renderizarvagones(juego, renderIndex, estaDetenida);
+    renderizarvagones(juego,renderIndex, estaDetenida);
+
+    Sleep(30);
 
     SDL_RenderPresent(juego.renderizador);
 
@@ -140,13 +144,6 @@ void cargarTexturas(Juego& juego){
                 cargarTexturaMina(*mina, juego.renderizador);
                 nodoActual = siguiente(juego.terreno->minas, nodoActual);
         }
-    }
-
-    NodoLista * nodoActualMina = primero(juego.terreno->minas);
-    while(nodoActualMina != finLista()){
-        Mina * mina = (Mina*)nodoActualMina->ptrDato;
-        cargarTexturaMina(*mina, juego.renderizador);
-        nodoActualMina = siguiente(juego.terreno->minas, nodoActualMina);
 
         NodoLista * NodoListaEstacion = primero(juego.terreno->estaciones);
         while(NodoListaEstacion != finLista()){
@@ -155,7 +152,6 @@ void cargarTexturas(Juego& juego){
                 NodoListaEstacion = siguiente(juego.terreno->estaciones, NodoListaEstacion);
         }
         cargarTexturasLocomotora( juego.terreno->locomotora , juego.renderizador);
-
     }
     NodoLista * NodoListaMoneda = primero(juego.terreno->monedas);
     while(NodoListaMoneda != finLista()){
@@ -229,6 +225,23 @@ void renderizarvagones(Juego &juego, int counter, bool estaDetenida){
         NodoLista * NodoListaVagon = primero(juego.terreno->locomotora.listaVagones);
         while(NodoListaVagon != finLista()){
             Vagon * vagon = (Vagon*)NodoListaVagon->ptrDato;
+//
+//            switch(getDireccion(*vagon)){
+//                case 0://VA HACIA IZQUIERDA
+//                    vagon->rectImag.x -=4;
+//                    break;
+//                case 1://VA HACIA DERECHA
+//                    vagon->rectImag.x +=4;
+//                    break;
+//                case 2://VA HACIA ARRIBA
+//                    vagon->rectImag.y -=4;
+//                    break;
+//                case 3://VA HACIA ABAJO
+//                    vagon->rectImag.y +=4;
+//                    break;
+//
+//            }
+//
             renderizarVagon(*vagon, juego.renderizador, counter, estaDetenida);
             NodoListaVagon = siguiente(juego.terreno->locomotora.listaVagones, NodoListaVagon);
 

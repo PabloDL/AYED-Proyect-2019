@@ -44,7 +44,6 @@ void crearVagon(Vagon& vagon){
     vagon.capVagonUsada = 0; //logicamente el vagon va a estar vacio al crearse
     vagon.tipoVagon = "SIN DEFINIR"; //por defecto al crearse el vagon va a estar vacio y entonces su tipo esta indefinido
     vagon.velocidadV = velocidad;
-    vagon.texturas[10] = {NULL};
     crearLista( vagon.listaCajas , compararListaCajas , eliminarCajaDeLista); //la lista de caja empieza valiendo null
 
     for (int i = 0; i<40 ; i++ )
@@ -145,5 +144,7 @@ void renderizarVagon(Vagon& vagon, SDL_Renderer *renderizador, int counter, bool
                 break;
         }
     }
+
+
     SDL_RenderCopy(renderizador, vagon.texturas[index+(vagon.direccion*10)], NULL, &vagon.rectImag);
 }

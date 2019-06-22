@@ -82,7 +82,7 @@ void renderizarBandidos(Juego &juego);
 PRE: Juego inicializado
 Post: Se ejecutan las funciones de renderizado de cada uno de los TDA que correspondan
 */
-void renderizarvagones(Juego &juego, int counter, bool estaDetenida);
+void renderizarvagones(Juego &juego,int counter, bool estaDetenida);
 
 /*
 PRE: Juego inicializado

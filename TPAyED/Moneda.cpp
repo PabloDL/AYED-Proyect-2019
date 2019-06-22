@@ -34,7 +34,6 @@ void crearMoneda(Moneda &moneda){
     moneda.aparicion = 0;
     moneda.cantidad = 0;
     moneda.duracion = 0;
-    moneda.textura=NULL;
     crearPosicion(moneda.posicion);
     moverPosicion(moneda.posicion, 0, 0);
     moneda.textura = NULL;
@@ -47,9 +46,8 @@ void eliminarMoneda(Moneda &moneda){
 void toString(Moneda &moneda){}
 
 void cargarTexturaMoneda(Moneda& moneda, SDL_Renderer * renderizador){
-    if(moneda.textura == NULL){
+    if (moneda.textura == NULL)
         moneda.textura = IMG_LoadTexture(renderizador, "assets/img/moneda.png");
-    }
 }
 
 void renderizarMoneda(Moneda& monedaActual, SDL_Renderer *renderizador){
