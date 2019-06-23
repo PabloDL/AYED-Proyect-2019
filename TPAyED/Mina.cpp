@@ -33,12 +33,12 @@ void crearMina (Mina &mina){
     mina.seq4 = 1;
     mina.seq5 = 1;
     mina.seqActual=1;
-    mina.textura=NULL;
     crearCola(mina.cajas, eliminarCajaDeLista);
 }
 
 void eliminarMina (Mina &mina){
-// --->>    eliminarCola();
+    eliminarCola(mina.cajas);
+    SDL_DestroyTexture(mina.textura);
 }
 
 void toString(Mina &mina){
@@ -122,7 +122,6 @@ Cajas* proximaCaja(Mina &mina){
 }
 
 void eliminarProduccion(Mina &mina){
-    mina.cajas;
     eliminarCola(mina.cajas);
 }
 

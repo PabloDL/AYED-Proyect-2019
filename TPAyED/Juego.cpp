@@ -37,6 +37,14 @@ void crearJuego(Juego& juego, const char* title, int xpos, int ypos, int width, 
     }
 }
 
+void eliminarJuego(Juego &juego){
+    eliminarTerreno(*juego.terreno);
+    delete juego.terreno;
+
+    SDL_DestroyWindow(juego.ventana);
+    SDL_DestroyRenderer(juego.renderizador);
+}
+
 void salirJuego(Juego& juego){
     SDL_DestroyWindow(juego.ventana);
     SDL_DestroyRenderer(juego.renderizador);
@@ -124,7 +132,7 @@ void renderizar(Juego& juego, int renderIndex){
     renderizarLocomotora(juego.terreno->locomotora, juego.renderizador, renderIndex, estaDetenida);
     renderizarvagones(juego,renderIndex, estaDetenida);
 
-    Sleep(30);
+    Sleep(getTiempoEntreIntervalos(*(juego.terreno))*CONSTANTE_DE_TIEMPO);
 
     SDL_RenderPresent(juego.renderizador);
 

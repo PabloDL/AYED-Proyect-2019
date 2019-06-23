@@ -10,10 +10,10 @@ void setPosicion(Estacion &estacion, Posicion posicion){
 void crearEstacion(Estacion &estacion){
     crearPosicion(estacion.posicion);
     moverPosicion(estacion.posicion, 0, 0);
-    estacion.textura = NULL;
 }
 
 void eliminarEstacion(Estacion &estacion){
+    SDL_DestroyTexture(estacion.textura);
 }
 
 int entregarVagon(Estacion &estacion, int cantidadMonedas){
@@ -21,9 +21,7 @@ int entregarVagon(Estacion &estacion, int cantidadMonedas){
 }
 
 void cargarTexturaEstacion(Estacion& estacion, SDL_Renderer * renderizador){
-    if(estacion.textura == NULL){
-        estacion.textura = IMG_LoadTexture(renderizador, "assets/img/estacion4.png");
-    }
+    estacion.textura = IMG_LoadTexture(renderizador, "assets/img/estacion4.png");
 }
 
 void renderizarEstacion(Estacion& estacionActual, SDL_Renderer *renderizador){

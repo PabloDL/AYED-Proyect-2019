@@ -126,5 +126,8 @@ void cargarTexturasTerreno(Terreno& terreno, SDL_Renderer* renderizador);
 //PRE: Terreno Creado y inicializado,
 //POST: renderiza terreno
 void renderizarTerreno(Terreno& terreno,SDL_Renderer *renderizador);
+//PRE: Terreno Creado y inicializado, Archivo de parametros cargado
+//POST: Devuelve el tiempo sobre el cual se deben refrescar los dibujos en pantalla
+int getTiempoEntreIntervalos(Terreno& terreno);
 
 #endif // Terreno_h

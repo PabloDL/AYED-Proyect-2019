@@ -5,6 +5,8 @@
 #include "Terreno.h"
 #include "SDL.h"
 
+#define CONSTANTE_DE_TIEMPO 50
+
 using namespace std;
 
 typedef struct Juego{
@@ -22,7 +24,11 @@ PRE: Juego no existe
 Post:  se inicializan los atributos del juego
 */
 void crearJuego(Juego &juego, const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
-
+/*
+PRE: Juego existe y no fue destruido
+Post:  se liberan recursos juego
+*/
+void eliminarJuego(Juego &juego);
 /*
 PRE: el juego tiene que estar inicializado
 Post: libera la memoria al destruir los tda

@@ -92,7 +92,17 @@ void actualizarMatrizJuego(Terreno &terreno){
 
 }
 
-void eliminarTerreno(Terreno& terreno){}
+void eliminarTerreno(Terreno& terreno){
+     for (int i=0 ; i < 10;i++){
+        SDL_DestroyTexture(terreno.texturas[i]);
+    }
+
+    eliminarLista(terreno.minas);
+    eliminarLista(terreno.estaciones);
+    eliminarLista(terreno.monedas);
+    eliminarLista(terreno.bandidos);
+
+}
 
 void aparecerLocomotora(Terreno& terreno){
     crearLocomotora(terreno.locomotora);
@@ -560,4 +570,8 @@ bool verificarComanda(Terreno &t){
         }
     }
     return comandaCompletada;
+}
+
+int getTiempoEntreIntervalos(Terreno& terreno){
+    return getS(terreno.parametros);
 }

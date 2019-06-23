@@ -71,6 +71,10 @@ void eliminarVagon(Vagon& vagon){
         cursor = siguiente( vagon.listaCajas , cursor );
         eliminarNodo( vagon.listaCajas , previo);
     }
+
+    for (int i=0 ; i < 40;i++){
+        SDL_DestroyTexture(vagon.texturas[i]);
+    }
 }
 
 void cargarTexturaVagon(Vagon& vagon, SDL_Renderer * renderizador){

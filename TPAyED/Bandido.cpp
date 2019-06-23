@@ -28,7 +28,9 @@ void crearBandido(Bandido &bandido){
     bandido.textura = NULL;
 }
 
-void eliminarBandido(Bandido &bandido){}
+void eliminarBandido(Bandido &bandido){
+    SDL_DestroyTexture(bandido.textura);
+}
 
 void toString(Bandido &bandido){}
 

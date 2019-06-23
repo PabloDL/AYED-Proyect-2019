@@ -69,15 +69,17 @@ void agregarVagon(Locomotora& locomotora,int capVagon){
 
     if( listaVacia(locomotora.listaVagones) ){
         Posicion posNuevo = getPosicion(locomotora);
-        setX(posNuevo, getX(posNuevo)-1 );
+        setX(posNuevo, getX(posNuevo)/*-1 */);
         setPosicion(*ptrVagon, posNuevo);
+        setDireccion(*ptrVagon, getDireccion(locomotora));
         adicionarPrincipio( locomotora.listaVagones , ptrVagon );//se agrega a la lista de vagones
     }
     else{
 
         Posicion posNuevo = getPosicion(*(Vagon*)(ultimo(locomotora.listaVagones)->ptrDato));
-        setX(posNuevo, getX(posNuevo)-1 );
+        setX(posNuevo, getX(posNuevo)/*-1 */ );
         setPosicion(*ptrVagon, posNuevo);
+        setDireccion(*ptrVagon, getDireccion(locomotora));
         adicionarFinal( locomotora.listaVagones , ptrVagon  );
     }
 }
@@ -298,6 +300,10 @@ void eliminarLocomotora(Locomotora& locomotora){
         previo = cursor;
         cursor = siguiente( locomotora.listaVagones , cursor );
         eliminarNodo( locomotora.listaVagones , previo);
+    }
+
+     for (int i=0 ; i < 40;i++){
+        SDL_DestroyTexture(locomotora.texturas[i]);
     }
 }
 
