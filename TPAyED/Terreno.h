@@ -56,12 +56,33 @@ typedef struct Terreno{
 
 }Terreno;
 /*******************GETTERS Y SETTERS*******************/
+/*PRE: terreno creado
+  POST: setea locomotora a terreno
+*/
 void setLocomotora(Terreno & terreno, Locomotora & locomotora);
+/*PRE: terreno creado
+  POST: devuelve la locomotora del terreno
+*/
 Locomotora getLocomotora(Terreno & terreno);
+/*PRE: terreno creado
+  POST: devuelve la lista de bandidos del terreno
+*/
 Lista* getBandidos(Terreno & terreno);
+/*PRE: terreno creado
+  POST: setea bandidos a terreno
+*/
 void setBandidos(Terreno & terreno, Lista& bandidos);
+/*PRE: terreno creado
+  POST: devuelve la lista de monedas del terreno
+*/
 Lista* getMonedas(Terreno & terreno);
+/*PRE: terreno creado
+  POST: setea monedas a terreno
+*/
 void setMonedas(Terreno & terreno, Lista& monedas);
+/*PRE: terreno creado
+  POST: devuelve el estado actual del terreno
+*/
 Estados getEstado(Terreno & terreno);
 /***********************PRIMITIVAS*********************/
 //pre:

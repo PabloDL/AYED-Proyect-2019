@@ -98,11 +98,11 @@ void manejarEventos(Juego& juego, SDL_Event & event){
 
 void chequearEstado(Juego &juego){
     if (getEstado(*juego.terreno) == GAMEOVER_BANDIDO){
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "GAMEOVER", "Un bandido te elimino!!, intentelo nuevamente", NULL);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "GAMEOVER", "Un bandido te elimino!!, intentalo nuevamente", NULL);
         juego.estaCorriendo=false;
     }
     if (getEstado(*juego.terreno) == GAMEOVER_FUERALIMITES){
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "GAMEOVER", "No se puede salir del terreno!!!, intentelo nuevamente", NULL);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "GAMEOVER", "No se puede salir del terreno!!!, intentalo nuevamente", NULL);
         juego.estaCorriendo=false;
     }
     if (verificarComanda(*juego.terreno)){ //SI VERIFICR COMANDA=TRUE --> FIN DE JUEGO
