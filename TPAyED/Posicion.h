@@ -65,7 +65,13 @@ PRE: posicion creada
 Post: verifica si la posicion A esta respecto de B a una diferencia de "distancia"
 */
 bool enCercanias(Posicion &posA, Posicion &posB, int distancia);
-
+/*
+PRE: posicion A creada, posicion B creada, distancia mayor que 0
+Post: verifica si la posicion A esta respecto de B a una diferencia de "distancia" +1 (ya que la posicion que debera
+    verificar tiene que contemplar el proximo movimiento de la locomotora para que aparezca el bandido) y en caso
+    de estar devuelve la posicion posB pero alejada de posA la distancia +2 para que no haya colision
+    Si la posicion esta fuera de distancia devuelve posB ya que no debera alejar
+*/
 Posicion alejarPosicion(Posicion &posA,Posicion &posB, int distancia);
 
 #endif // __PARAMETROS_H__

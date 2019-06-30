@@ -40,7 +40,7 @@ typedef struct Terreno{
     Lista estaciones;
     Lista monedas;
     Lista bandidos;
-    /* la matriz tiene:
+    /* ELEMENTOS DE MATRIZ
     E=ESTACION, M=MINAS, L=LOCOMOTORA,B=BANDIDOS, m=MONEDAS,T=TERRENO VACIO  */
     char matrizJuego[ANCHO_TERRENO][ALTO_TERRENO];
     int intervaloActual;
@@ -71,22 +71,22 @@ void crearTerreno(Terreno& terreno);
 //post:Se elimina el terreno en cascada con los atributos internos
 //se usa al cerrar el juego
 void eliminarTerreno(Terreno& terreno);
-//pre:Terreno tiene que estar creado e inicializado
+//pre:Terreno tiene que estar creado e inicializado, archivo de parametros cargado
 //post: se posiciona la locomotora en el terreno
 void aparecerLocomotora(Terreno& terreno);
-//pre: Terreno tiene que estar creado e inicializado
+//pre: Terreno tiene que estar creado e inicializado, archivo de minas cargado
 //post: se posiciona una mina en el terreno
 void aparecerMina(Terreno& terreno);
-//pre:Terreno tiene que estar creado e inicializado
+//pre:Terreno tiene que estar creado e inicializado, archivo de parametros cargado
 //post:se posiciona una estacion en el terreno
 void aparecerEstacion(Terreno& terreno);
-//pre:Terreno tiene que estar creado e inicializado
+//pre:Terreno tiene que estar creado e inicializado, archivo de parametros cargado
 //post:se posiciona una moneda checkeando si es posible en el terreno
 void aparecerMoneda(Terreno& terreno);
-//pre:Terreno tiene que estar creado e inicializado
+//pre:Terreno tiene que estar creado e inicializado, archivo de parametros cargado
 //post: se posiciona una moneda checkeando si es posible en el terreno
 void aparecerBandido(Terreno& terreno);
-//pre:Terreno tiene que estar creado e inicializado
+//pre:Terreno tiene que estar creado e inicializado, archivo de parametros cargado
 //post: se devuelve nueva produccion de mina
 void nuevaProduccionMina(Terreno& terreno);
 /*
@@ -96,10 +96,6 @@ POST: Terreno actualizado, con movimientos de locomotora yproducciones de minas,
       SI ALGUNA DE LAS CONDICIONES DEL JUEGO CAMBIA MODIFICA VARIABLE ESTADO
 */
 void actualizarTerreno(Terreno& terreno);
-//PRE: Terreno Creado y inicializado
-//POST: Recore listas y redibuja si es necesario,
-//      Matriz actualizada con nuevos movimientos, revisa colisiones y de ser necesario aplica cambios
-void actualizarMatrizJuego(Terreno &terreno);
 //PRE: Terreno Creado y inicializado
 //POST: Avanza locomotora y sus vagones, verifica si algun vagon o la locomotora tienn una intercepciopn
 //y en tal caso efectua accion
@@ -136,6 +132,8 @@ void renderizarTerreno(Terreno& terreno,SDL_Renderer *renderizador);
 //PRE: Terreno Creado y inicializado, Archivo de parametros cargado
 //POST: Devuelve el tiempo sobre el cual se deben refrescar los dibujos en pantalla
 int getTiempoEntreIntervalos(Terreno& terreno);
-
+//PRE: Terreno Creado y inicializado
+//POST: Agrega mensajes que se quieren mostrar por pantalla del terreno al render
 void agregarMensajes(Terreno & terreno, SDL_Renderer *renderizador);
+
 #endif // Terreno_h

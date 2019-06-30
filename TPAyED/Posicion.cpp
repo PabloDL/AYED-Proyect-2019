@@ -52,22 +52,22 @@ bool enCercanias(Posicion &posA, Posicion &posB, int distancia){
 
 Posicion alejarPosicion(Posicion &posA,Posicion &posB, int distancia){
     Posicion pNueva;
-    if ((abs(getX(posA) - getX(posB)) <= distancia)){
+    if ((abs(getX(posA) - getX(posB)) <= distancia+1)){
         if (getX(posA)+distancia < ANCHO_TERRENO){ //SI LA POS EN X TIENE LUGAR LO CORRO A LA DERECHA
-            setX(pNueva,getX(posA)+distancia+1);
+            setX(pNueva,getX(posA)+distancia+2);
         }
         else
-            setX(pNueva,getX(posA)-distancia-1);
+            setX(pNueva,getX(posA)-distancia-2);
     }
     else
         setX(pNueva, getX(posB));
 
-    if ((abs(getY(posA) - getY(posB)) <= distancia)){
+    if ((abs(getY(posA) - getY(posB)) <= distancia+1)){
         if (getY(posA)+distancia < ALTO_TERRENO){ //SI LA POS EN X TIENE LUGAR LO CORRO A LA DERECHA
-            setY(pNueva,getY(posA)+distancia+1);
+            setY(pNueva,getY(posA)+distancia+2);
         }
         else
-            setY(pNueva,getX(posA)-distancia-1);
+            setY(pNueva,getX(posA)-distancia-2);
     }
     else
         setY(pNueva, getY(posB));

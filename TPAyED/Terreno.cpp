@@ -16,13 +16,6 @@ void setMonedas(Terreno & terreno, Lista& monedas){terreno.monedas=monedas;}
 
 Estados getEstado(Terreno & terreno){return terreno.estadoJuego;}
 
-/*
-crearTerreno(Terreno& terreno, int alto, int ancho){
-    aparecerLocomotora(terreno);
-    get
-}
-*/
-
 Locomotora getLocomotora(Terreno & terreno){return terreno.locomotora;}
 
 Lista* getBandidos(Terreno & terreno){return &terreno.bandidos;}
@@ -32,13 +25,15 @@ void setBandidos(Terreno & terreno, Lista& bandidos){terreno.bandidos=bandidos;}
 void crearTerreno(Terreno& terreno){
     //INICIALIZO MATRIZ DE JUEGO
     terreno.intervaloActual = 0;
+    //INICIALIZO JUEGO EN JUGABLE PARA QUE SE EMPIEZE A RENDERIZAR
     terreno.estadoJuego = JUGABLE;
     //INICIALIZO LISTAS
     crearLista(terreno.bandidos, compararListaBandidos, eliminarBandidoDeLista);
     crearLista(terreno.estaciones, compararListaEstaciones, eliminarEstacionDeLista);
     crearLista(terreno.minas, compararListaMinas, eliminarMinasDeLista);
     crearLista(terreno.monedas, compararListaMonedas, eliminarMonedaDeLista);
-
+    //LECTURA DE ARCHIVOS
+    cout << "Lectura Parametros" << endl;
     Lector lector;
     crearLector(lector);
     abrirArchivo(lector, "parametros.txt");
@@ -59,6 +54,7 @@ void crearTerreno(Terreno& terreno){
     terreno.objetivoJuego = leerArchivoComandas(lectorComanda);
     eliminarLector(lectorComanda);
 
+    //INICIALIZO MATRICES QUE SE USARAN PARA VERIFICAR COLISIONES Y TEXTURAS
     for(int i=0; i< ANCHO_TERRENO; i++){
         for(int j=0; j< ALTO_TERRENO; j++){
             terreno.matrizJuego[i][j] = 'T';
@@ -66,37 +62,26 @@ void crearTerreno(Terreno& terreno){
             //necesito numeros aleatorios para poder cargar texturas distintas en el fondo
         }
     }
+    //FIJO LOS VALORES DE INTERVALOS EN LOS QUE APARECERAN LA PRIMERA MONEDAS Y EL PRIMER BANDIDO
+    //SEGUN LOS PARAMETROS LEIDOS
     terreno.intervalosAparicionProximaMoneda = 1 + terreno.intervaloActual +rand()% (getIm(terreno.parametros)+terreno.intervaloActual);
     terreno.intervalosAparicionProximoBandido= 1 + terreno.intervaloActual +rand()% (getIb(terreno.parametros)+terreno.intervaloActual);
-/*
-    juego.locomotora.rectImag.y=juego.locomotora.f* 50;//coordenada de dibujo y
-    juego.locomotora.rectImag.x= juego.locomotora.c* 50;//coordenada de dibujo x
-    juego.locomotora.rectImag.w= 50;//ancho
-    juego.locomotora.rectImag.h= 50;//alto
-*/
-    //Crea minas segun archivo Minas.h
+
+    //SEGUN LOS ARCHIVOS CARGADOS CREO LAS MINAS Y LA ESTACION
     aparecerMina(terreno);
-    //APARECERESTACION
     aparecerEstacion(terreno);
-    //aparecer locomotora, ultima por si hay algo en su posicion lo creo en +1
+    //APAREZCO LOCOMOTORA EN JUEGO
     aparecerLocomotora(terreno);
-    //crear moneda -> no tienen q aparecer inmediatamente
+    //EN CASO DE QUE EL INTERVALO DE APARICION LO REQUIERA APAREZCO MONEDA EN TIEMPO 0
     actualizarMonedas(terreno);
-    //CREAR bandido  -> no tienen q aparecer inmediatamente
-    //actualizarBandidos(terreno);
-    ////ACTUALIZAR EN MATRIZ POSICIONES DE ELEMENTOS
-    actualizarMatrizJuego(terreno);
-}
-
-void actualizarMatrizJuego(Terreno &terreno){
-
 }
 
 void eliminarTerreno(Terreno& terreno){
+    //ELIMINO TEXTURAS DE TERRENO
      for (int i=0 ; i < 10;i++){
         SDL_DestroyTexture(terreno.texturas[i]);
     }
-
+    //ELIMINO LAS LISTAS CREADAS, CADA LISTA ELIMINA SU CONTENIDO LLAMANDO AL DESTRUCTOR
     eliminarLista(terreno.minas);
     eliminarLista(terreno.estaciones);
     eliminarLista(terreno.monedas);
@@ -105,15 +90,16 @@ void eliminarTerreno(Terreno& terreno){
 }
 
 void aparecerLocomotora(Terreno& terreno){
+    //CREO LOCOMOTORA
     crearLocomotora(terreno.locomotora);
 }
 
 void aparecerMina(Terreno& terreno){
-
     if (!listaVacia(terreno.minas )){
         NodoLista * ptrNodo = primero(terreno.minas);
         while (ptrNodo != finLista()){
             Mina * m = (Mina*) ptrNodo->ptrDato;
+            //ACTUALIZO EN MATRIZ LA POSICION DE LA MINA
             terreno.matrizJuego[getPosX(*m)][getPosY(*m)] = 'M';
             ptrNodo = siguiente(terreno.minas, ptrNodo);
         }
@@ -130,19 +116,19 @@ void aparecerEstacion(Terreno& terreno){
     setPosicion(*e, p);
 
     adicionarPrincipio(terreno.estaciones, e);
+    //ACTUALIZO EN MATRIZ LA POSICION DE ESTACION
     terreno.matrizJuego[getX(p)][getY(p)] = 'E';
 
 }
 
 void actualizarMonedas(Terreno& terreno){
-    //obtengo moneda si corresponde en intervalo, la agrego a la matriz e elimino
     NodoLista * ptrNodo = primero(terreno.monedas);
     bool eliminarNodoMoneda = false;
-     //RECORRO PARA SABER CUANDO SE LLEGA AL FINAL DEL TIEMPO
+     //RECORRO PARA SABER CUANDO SE LLEGA AL FINAL DEL TIEMPO POR CADA MONEDA
     while(!listaVacia(terreno.monedas) && ptrNodo != finLista()){
         Moneda * ptrMonedaActual = (Moneda*) ptrNodo->ptrDato;
         if (getAparicion(*ptrMonedaActual) + getDuracion(*ptrMonedaActual) == terreno.intervaloActual){
-                //Llego al final del tiempo de vida
+               //LA MONEDA LLEGO AL TIEMPO DE SU VIDA ENTONCES DEBE SER QUITADA DEL JUEGO
                Posicion p = getPosicion(*ptrMonedaActual);
                terreno.matrizJuego[getX(p)][getY(p)] = 'T';
                eliminarNodoMoneda = true;
@@ -150,28 +136,26 @@ void actualizarMonedas(Terreno& terreno){
         NodoLista * ptrNodoActual = ptrNodo;
         ptrNodo = siguiente(terreno.monedas, ptrNodo);
         if (eliminarNodoMoneda){
-//cout << "elimino en Lista con: " << longitud(terreno.monedas) << "en iteracion " << terreno.intervaloActual <<endl;
             eliminarNodo(terreno.monedas, ptrNodoActual);
             eliminarNodoMoneda = false;
         }
     }
-    //AGREGO SI CORRESPONDE UNA NUEVA MONEDA
+    //AGREGO SI CORRESPONDE SEGUN INTERVALO APARICION UNA NUEVA MONEDA
     if (terreno.intervalosAparicionProximaMoneda == terreno.intervaloActual){
-//cout << "agrego en Lista con: " << longitud(terreno.monedas) << "en iteracion " << terreno.intervaloActual <<endl;
         aparecerMoneda(terreno);
+        //SI AGREGUE MONEDA FIJO NUEVO TIEMPO DE APARICION
         terreno.intervalosAparicionProximaMoneda = terreno.intervaloActual + 1 +rand()% (getIm(terreno.parametros));
     }
 }
 
 void actualizarBandidos(Terreno& terreno){
-    //obtengo moneda si corresponde en intervalo, la agrego a la matriz e elimino
     NodoLista * ptrNodo = primero(terreno.bandidos);
     bool eliminarNodoBandido = false;
      //RECORRO PARA SABER CUANDO SE LLEGA AL FINAL DEL TIEMPO
     while(!listaVacia(terreno.bandidos) && ptrNodo != finLista()){
         Bandido * ptrBandidoActual = (Bandido*) ptrNodo->ptrDato;
         if (getIntervaloHastaAparicion(*ptrBandidoActual) + getTiempoVida(*ptrBandidoActual) == terreno.intervaloActual){
-                //Llego al final del tiempo de vida
+               //EL BANDIDO LLEGO AL TIEMPO DE SU VIDA ENTONCES DEBE SER QUITADO DEL JUEGO
                Posicion p = getPosicion(*ptrBandidoActual);
                terreno.matrizJuego[getX(p)][getY(p)] = 'T';
                eliminarNodoBandido = true;
@@ -186,26 +170,24 @@ void actualizarBandidos(Terreno& terreno){
     //AGREGO SI CORRESPONDE UNA NUEVO BANDIDO
     if (terreno.intervalosAparicionProximoBandido == terreno.intervaloActual){
         aparecerBandido(terreno);
+        //SI AGREGUE BANDIDO FIJO NUEVO TIEMPO DE APARICION
         terreno.intervalosAparicionProximoBandido = terreno.intervaloActual + 1 +rand()% (getIb(terreno.parametros));
-        //cout << "proxima aparciacion bandido = " << terreno.intervalosAparicionProximoBandido << endl;
     }
 }
 
 void nuevaProduccionMinas(Terreno& terreno){
-    //Recorro las listas de minas y agrego un item a cada elemento
+    //POR CADA INTERVALO AGREGO UNA PRODUCCION DE MINAS
     NodoLista * ptrNodo = primero(terreno.minas);;
     while(! listaVacia(terreno.minas) && ptrNodo != finLista()){
         Mina * minaActual = (Mina*) ptrNodo->ptrDato;
-        crearCaja(*minaActual); //Agrego caja a mina Actual
+        crearCaja(*minaActual);
         ptrNodo = siguiente(terreno.minas, ptrNodo);
     }
 }
 
 void aparecerMoneda(Terreno& terreno){
       //CREO RANDOM ENTRE IM (MAXIMO INTERVALO DE SEPARACION y EL INTERVALO ACTUAL)
-      //que sera el tiempo de aparacicion de una nueva moneda
       Moneda * nuevaMoneda = new Moneda;
-//    cout << "agregue moneda "<< endl;
       int aparicion = terreno.intervaloActual;
       int duracion= 1 + rand()% (getVm(terreno.parametros));
       int cantidad=1;
@@ -220,7 +202,7 @@ void aparecerMoneda(Terreno& terreno){
       setCantidad(*nuevaMoneda, cantidad);
       setPosicion(*nuevaMoneda, p);
 
-      //AGREGO A LISTA monedas Y A MATRIZ  //TODO VER PROBLEMAAPARENTE CUANDO VUELVE A AGEGAR NODO
+      //AGREGO A LISTA MONEDAS Y A MATRIZ
       if(listaVacia(terreno.monedas)){
         adicionarPrincipio(terreno.monedas,nuevaMoneda);
       }
@@ -232,8 +214,6 @@ void aparecerMoneda(Terreno& terreno){
 
 void aparecerBandido(Terreno& terreno){
       //CREO RANDOM ENTRE IM (MAXIMO INTERVALO DE SEPARACION y EL INTERVALO ACTUAL)
-      //que sera el tiempo de aparacicion de una nueva moneda
-      //int intervaloHastaAparicion; ??
       int aparicion=terreno.intervaloActual;
       int tiempoVida=1 + rand()% (getVb(terreno.parametros));
       int cantidad= 1 + rand()% (MAXIMO_ROBO_BANDIDO);
@@ -256,8 +236,8 @@ void aparecerBandido(Terreno& terreno){
         //SI LA LOCOMOTORA ESTA EN POSICION CREO EL BANDIDO CERCANO PERO NO EN LA MISMA POSICION
         //PARA QUE NO CAIGA EN EL MISMO LUGAR
         p = alejarPosicion(posLocomotora,p, getAreaCobertura(*nuevoBandido));
-        cout << "-->>>>>>>> ALEJO POSICION" << endl;
-        //system("pause");
+        cout << "Bandido creado en misma posicion que locomotora -> nueva posicion [" << getX(p)
+        << ";" <<getY(p) << "]" << endl;
       }
       setPosicion(*nuevoBandido, p);
       //AGREGO A LISTA BANDIDOS Y A MATRIZ
@@ -266,24 +246,14 @@ void aparecerBandido(Terreno& terreno){
 
 }
 
-//YA esta todo cargado, hay q actualizar
 void actualizarTerreno(Terreno& terreno){
     //si es una iteracion de render solo va a actualizar la posicion de los objetos que se mueven
     //no se chequea ninguna logica del juego durante iteraciones de render;
-
-    //SI VUELVO A ENTRAR EL JUEGO VUELVE A ESTAR JUGABLE
-
-//    terreno.estadoJuego = JUGABLE;
     terreno.intervaloActual++;
-    //Actualizar minas
+
     nuevaProduccionMinas(terreno);
-    //actualizar bandido //chequea si tiene q aparecer un bandido  o eliminar uno
     actualizarBandidos(terreno);
-    //actualizar monedas //chequea si tiene q aparecer una moneda  o eliminar uno
     actualizarMonedas(terreno);
-    //avanzarLocomotora -> ACTUAR SI POSICION DE LOCOMOTORA O VAGONES ESTA EN ZONA DE CONFLI
-    actualizarMatrizJuego(terreno);
-    ////ACTUALIZAR EN MATRIZ SI APARECIO BANDIDO O MONEDA
 
     if (terreno.estadoJuego == JUGABLE)
         avanzarLocomotora(terreno);
@@ -299,7 +269,7 @@ void avanzarLocomotora(Terreno &terreno){
     Locomotora locomotora = getLocomotora(terreno);
     Posicion pTemp = getPosicion(locomotora); //guardo posicion actual locomotora
     int dTemp = getDireccion(locomotora); //guardo direccion actual locomotora
-    switch (terreno.locomotora.direccion){   // IZQUIERDA,DERECHA,ARRIBA,ABAJO
+    switch (terreno.locomotora.direccion){
         case 0: { //VA HACIA IZQUIERDA
             moverPosicion(nuevaPosicion,getX(pTemp)-1,getY(pTemp));
             break;
@@ -313,7 +283,7 @@ void avanzarLocomotora(Terreno &terreno){
             break;
         }
         case 3: { //VA HACIA ABAJO
-/**<  */            moverPosicion(nuevaPosicion,getX(pTemp),getY(pTemp)+1);
+            moverPosicion(nuevaPosicion,getX(pTemp),getY(pTemp)+1);
             break;
         }
         default:
@@ -337,11 +307,8 @@ void avanzarLocomotora(Terreno &terreno){
             pTemp = posVagonAnterior;
             dTemp = dirVagonAnterior;
             ptrNodo = siguiente(vagones, ptrNodo);
-
-
         }
     }
-
 }
 
 void chequearColisiones(Terreno & terreno){
@@ -397,17 +364,12 @@ void chequearColisiones(Terreno & terreno){
             }
         }
         else if ( terreno.matrizJuego[getX(posLocomotora)][getY(posLocomotora)] == 'T'){
-            //no tengoque hacer nada ya avanzo locomotora
-            //PENSAR SI VA ACA O AFUERA -> TIene q ir afuera para que cuando en el juego
-            //se toca la tecla para avanzar avance antes de verificar posicion
         }
         //VEO COLISIONES CON BANDIDOS
         locomotoraEnRadarBandido(terreno);
         //VEO COLISIONES CON MONEDAS
         locomotoraRecoletaMonedas(terreno);
-
     }
-
 }
 
 void locomotoraEnRadarBandido(Terreno& terreno){
@@ -423,9 +385,7 @@ void locomotoraEnRadarBandido(Terreno& terreno){
             Bandido * bandido = (Bandido*) ptrNodoBandido->ptrDato;
             Posicion pBandido = getPosicion(*bandido);
             NodoLista * ptrBandidoEliminar;
-            //veo si hay algun tren o vagon esta en esa posicion
-            //cout << "bandido pos [" << getX(pBandido) <<";" <<getY(pBandido) << "]";
-            //cout << "VS [" << getX(pLocomotora) <<";" <<getY(pLocomotora) << "]";
+            //VERIFICA SI LOCOMOTORA O SUS VAGONES ESTAN EN CERCANIAS DEL RADAR
             pelear = enCercanias(pBandido, pLocomotora, getAreaCobertura(*bandido));
             if (!pelear){
                 Lista vagones = getListaVagones(terreno.locomotora);
@@ -436,16 +396,12 @@ void locomotoraEnRadarBandido(Terreno& terreno){
                     Vagon * vagon = (Vagon*) ptrNodo->ptrDato;
                     Posicion pVagon = getPosicion(*vagon);
                     pelear = enCercanias(pBandido, pVagon, getAreaCobertura(*bandido));
-              //      cout << "bandido pos [" << getX(pBandido) <<";" <<getY(pBandido) << "]";
-                //    cout << "VS [" << getX(pVagon) <<";" <<getY(pVagon) << "]";
                     ptrNodo = siguiente(vagones, ptrNodo);
                 }
             }
             if(pelear){ //PELEO CON BANDIDO
-                //adicionarPrincipio(bandidosAPelear,bandido);  //ADICIONO TODOS LOS BANDIDOS Q ESTAN CERCA
                 cout << "Colision con bandido, pos [" << getX(pBandido) <<";" <<getY(pBandido) << "]"
                      << "Solicita: " << getCantidad(*bandido) << "de " << getCodItem(*bandido)   << endl;
-                //LOCOMOTORA.PELEARCONBANDIDO(LOCOMOTORA,BANDIDO);
                 int alcanza = pagarBandido(terreno.locomotora, getCantidad(*bandido), getCodItem(*bandido));
                 if (alcanza==0){
                     bool locomotoraVacia = sacarVagon(terreno.locomotora);
@@ -453,7 +409,6 @@ void locomotoraEnRadarBandido(Terreno& terreno){
                         terreno.estadoJuego = GAMEOVER_BANDIDO;
                     }
                 }
-
                 ptrBandidoEliminar = ptrNodoBandido;
                 ptrNodoBandido = siguiente(*bandidos, ptrNodoBandido);
                 //ACTUALIZO MATRIZ CON NUEVO VALOR
@@ -483,7 +438,7 @@ void locomotoraRecoletaMonedas(Terreno& terreno){
         while(!listaVacia(*monedas) && ptrNodoMoneda != finLista()){
             Moneda * moneda = (Moneda*) ptrNodoMoneda->ptrDato;
             Posicion pMoneda = getPosicion(*moneda);
-            //veo si hay algun tren o vagon esta en esa posicion
+            //VERIFICA SI TREN O VAGON ESTA EN ESA POSICION
             encontrado = mismaPosicion(pMoneda,pLocomotora);
             NodoLista * ptrNodoEliminar;
             if (!encontrado){
@@ -498,12 +453,11 @@ void locomotoraRecoletaMonedas(Terreno& terreno){
                 }
             }
             if(encontrado){
-//                    obtenerMoneda(l,*moneda);  //VERIFICAR SI FUNCIONA
+                cout << "Locomotora recolecta moneda de -> " << getCantidad(*moneda) << endl;
                 obtenerMoneda(terreno.locomotora, (*moneda));  //OJO ESTA MAL HAY Q USAR PUNTEROS
                 encontrado=false;
                 //ELIMINAR MONEDAAAAAAAAAAAAAAA
                 ptrNodoEliminar = ptrNodoMoneda;
-//                cout << "ENCONTRO MONEDA!! AHORA TIENE: -> " << terreno.locomotora.monedasAdquiridas;
                 ptrNodoMoneda = siguiente(*monedas, ptrNodoMoneda);
                 terreno.matrizJuego[getX(pMoneda)][getY(pMoneda)] = 'T';
                 eliminarNodo(*monedas, ptrNodoEliminar); //SI ENCONTRE ELIMINO MONEDA
@@ -567,7 +521,6 @@ bool verificarComanda(Terreno &t){
             NodoLista * ptrNodoVagon = primero(vagones);
             while(ptrNodoVagon != finLista()){
                 Vagon * vagonActual = (Vagon*) ptrNodoVagon->ptrDato;
-                //cout << "Tengo vagon con tipo: " << getTipoVagon(*vagonActual)<<" y comanda es: " << getCodItem(*comandaActual)<<endl;
                 if (getTipoVagon(*vagonActual) == getCodItem(*comandaActual)){
                     sumaItem=sumaItem + getCapVagonUsada(*vagonActual);
                 }
