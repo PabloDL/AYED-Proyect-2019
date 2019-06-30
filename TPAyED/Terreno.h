@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #include "LecturaArchivos.h"
 #include "locomotora.h"
 #include "Lista.h"
@@ -47,6 +48,12 @@ typedef struct Terreno{
     SDL_Texture *texturas[10];
     SDL_Rect rectImag;
     int textureMap[ANCHO_TERRENO][ALTO_TERRENO];
+
+    TTF_Font* Sans ;
+    SDL_Color White ;
+    SDL_Surface* surfaceMessage ;
+    SDL_Texture* Message;
+
 }Terreno;
 /*******************GETTERS Y SETTERS*******************/
 void setLocomotora(Terreno & terreno, Locomotora & locomotora);
@@ -130,4 +137,5 @@ void renderizarTerreno(Terreno& terreno,SDL_Renderer *renderizador);
 //POST: Devuelve el tiempo sobre el cual se deben refrescar los dibujos en pantalla
 int getTiempoEntreIntervalos(Terreno& terreno);
 
+void agregarMensajes(Terreno & terreno, SDL_Renderer *renderizador);
 #endif // Terreno_h

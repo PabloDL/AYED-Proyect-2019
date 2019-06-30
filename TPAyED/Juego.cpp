@@ -1,4 +1,4 @@
-    #include <windows.h>
+#include <windows.h>
 
 #include "Juego.h"
 #include "Terreno.h"
@@ -116,7 +116,7 @@ void actualizar(Juego& juego){
     //AGREGAR FUNCIONES PARA ACTUALIZAR OBJETOS
     actualizarTerreno(*juego.terreno);
 
-    std::cout << "iteracion " << juego.counter << std::endl;
+  //  std::cout << "iteracion " << juego.counter << std::endl;
 }
 
 void renderizar(Juego& juego, int renderIndex){
@@ -131,6 +131,8 @@ void renderizar(Juego& juego, int renderIndex){
     renderizarEstaciones(juego);
     renderizarLocomotora(juego.terreno->locomotora, juego.renderizador, renderIndex, estaDetenida);
     renderizarvagones(juego,renderIndex, estaDetenida);
+
+  //  agregarMensajes(*(juego.terreno), juego.renderizador);
 
     Sleep(getTiempoEntreIntervalos(*(juego.terreno))*CONSTANTE_DE_TIEMPO);
 
@@ -197,7 +199,7 @@ void renderizarMinas(Juego &juego){
 void renderizarMonedas(Juego &juego){
      if (!listaVacia(juego.terreno->monedas)) {
         //cout << "Lista con: " << longitud(juego.terreno->monedas) << "en iteracion " << juego.terreno->intervaloActual <<endl;
-        imprimirListaMonedas(juego.terreno->monedas);
+//        imprimirListaMonedas(juego.terreno->monedas);
 
         NodoLista * NodoListaMoneda = primero(juego.terreno->monedas);
         while(NodoListaMoneda != finLista()){

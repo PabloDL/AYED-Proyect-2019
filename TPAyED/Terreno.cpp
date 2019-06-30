@@ -150,14 +150,14 @@ void actualizarMonedas(Terreno& terreno){
         NodoLista * ptrNodoActual = ptrNodo;
         ptrNodo = siguiente(terreno.monedas, ptrNodo);
         if (eliminarNodoMoneda){
-cout << "elimino en Lista con: " << longitud(terreno.monedas) << "en iteracion " << terreno.intervaloActual <<endl;
+//cout << "elimino en Lista con: " << longitud(terreno.monedas) << "en iteracion " << terreno.intervaloActual <<endl;
             eliminarNodo(terreno.monedas, ptrNodoActual);
             eliminarNodoMoneda = false;
         }
     }
     //AGREGO SI CORRESPONDE UNA NUEVA MONEDA
     if (terreno.intervalosAparicionProximaMoneda == terreno.intervaloActual){
-cout << "agrego en Lista con: " << longitud(terreno.monedas) << "en iteracion " << terreno.intervaloActual <<endl;
+//cout << "agrego en Lista con: " << longitud(terreno.monedas) << "en iteracion " << terreno.intervaloActual <<endl;
         aparecerMoneda(terreno);
         terreno.intervalosAparicionProximaMoneda = terreno.intervaloActual + 1 +rand()% (getIm(terreno.parametros));
     }
@@ -187,7 +187,7 @@ void actualizarBandidos(Terreno& terreno){
     if (terreno.intervalosAparicionProximoBandido == terreno.intervaloActual){
         aparecerBandido(terreno);
         terreno.intervalosAparicionProximoBandido = terreno.intervaloActual + 1 +rand()% (getIb(terreno.parametros));
-        cout << "proxima aparciacion bandido = " << terreno.intervalosAparicionProximoBandido << endl;
+        //cout << "proxima aparciacion bandido = " << terreno.intervalosAparicionProximoBandido << endl;
     }
 }
 
@@ -205,7 +205,7 @@ void aparecerMoneda(Terreno& terreno){
       //CREO RANDOM ENTRE IM (MAXIMO INTERVALO DE SEPARACION y EL INTERVALO ACTUAL)
       //que sera el tiempo de aparacicion de una nueva moneda
       Moneda * nuevaMoneda = new Moneda;
-    cout << "agregue moneda "<< endl;
+//    cout << "agregue moneda "<< endl;
       int aparicion = terreno.intervaloActual;
       int duracion= 1 + rand()% (getVm(terreno.parametros));
       int cantidad=1;
@@ -244,10 +244,21 @@ void aparecerBandido(Terreno& terreno){
       moverPosicion(p,x,y);
 
       Bandido * nuevoBandido = new Bandido;
+
       crearBandido(*nuevoBandido);
       setIntervaloHastaAparicion(*nuevoBandido, aparicion);
       setTiempoVida(*nuevoBandido, tiempoVida);
       setCantidad(*nuevoBandido, cantidad);
+
+      Posicion posLocomotora = getPosicion(terreno.locomotora);
+
+      if (enCercanias(posLocomotora, p, getAreaCobertura(*nuevoBandido))){
+        //SI LA LOCOMOTORA ESTA EN POSICION CREO EL BANDIDO CERCANO PERO NO EN LA MISMA POSICION
+        //PARA QUE NO CAIGA EN EL MISMO LUGAR
+        p = alejarPosicion(posLocomotora,p, getAreaCobertura(*nuevoBandido));
+        cout << "-->>>>>>>> ALEJO POSICION" << endl;
+        //system("pause");
+      }
       setPosicion(*nuevoBandido, p);
       //AGREGO A LISTA BANDIDOS Y A MATRIZ
       adicionarFinal(terreno.bandidos,nuevoBandido);
@@ -373,11 +384,11 @@ void chequearColisiones(Terreno & terreno){
                     if (cajaARecibir != NULL){  //SI ES NULL NO HAY PRODCCION
                         if (hayLugarParaCajaEnLocomotora(terreno.locomotora, getCapMaxima(*cajaARecibir), getCodItem(*cajaARecibir))){
                             almacenarCaja(terreno.locomotora, *cajaARecibir);
-                            cout << "hay lugar vacio produccion, almaceno" << cajaARecibir->cantitem << " de"
+                            cout << "Almaceno caja en Locomotora, recibo -> " << cajaARecibir->cantitem << " de"
                             << cajaARecibir->codItem<< endl;
                         }
                         else{ // SI NO HAY UGAR SE PENALIZA ELIMINANDO PRODUCCION
-                                cout << "no hay lugar vacio produccion"<< endl;
+                            cout << "Locomotora sin lugar -> Vacio produccion"<< endl;
                             eliminarProduccion(*minaActual);
                         }
                     }
@@ -413,8 +424,8 @@ void locomotoraEnRadarBandido(Terreno& terreno){
             Posicion pBandido = getPosicion(*bandido);
             NodoLista * ptrBandidoEliminar;
             //veo si hay algun tren o vagon esta en esa posicion
-            cout << "bandido pos [" << getX(pBandido) <<";" <<getY(pBandido) << "]";
-            cout << "VS [" << getX(pLocomotora) <<";" <<getY(pLocomotora) << "]";
+            //cout << "bandido pos [" << getX(pBandido) <<";" <<getY(pBandido) << "]";
+            //cout << "VS [" << getX(pLocomotora) <<";" <<getY(pLocomotora) << "]";
             pelear = enCercanias(pBandido, pLocomotora, getAreaCobertura(*bandido));
             if (!pelear){
                 Lista vagones = getListaVagones(terreno.locomotora);
@@ -425,15 +436,15 @@ void locomotoraEnRadarBandido(Terreno& terreno){
                     Vagon * vagon = (Vagon*) ptrNodo->ptrDato;
                     Posicion pVagon = getPosicion(*vagon);
                     pelear = enCercanias(pBandido, pVagon, getAreaCobertura(*bandido));
-                    cout << "bandido pos [" << getX(pBandido) <<";" <<getY(pBandido) << "]";
-                    cout << "VS [" << getX(pVagon) <<";" <<getY(pVagon) << "]";
+              //      cout << "bandido pos [" << getX(pBandido) <<";" <<getY(pBandido) << "]";
+                //    cout << "VS [" << getX(pVagon) <<";" <<getY(pVagon) << "]";
                     ptrNodo = siguiente(vagones, ptrNodo);
                 }
             }
             if(pelear){ //PELEO CON BANDIDO
                 //adicionarPrincipio(bandidosAPelear,bandido);  //ADICIONO TODOS LOS BANDIDOS Q ESTAN CERCA
-                cout << "ROBO ITEM LOCOMOTORA, bandido pos [" << getX(pBandido) <<";" <<getY(pBandido) << "]" << endl;
-////FALTAAAAAAAAAAAAAAAA PELEAR CON BANDIDO
+                cout << "Colision con bandido, pos [" << getX(pBandido) <<";" <<getY(pBandido) << "]"
+                     << "Solicita: " << getCantidad(*bandido) << "de " << getCodItem(*bandido)   << endl;
                 //LOCOMOTORA.PELEARCONBANDIDO(LOCOMOTORA,BANDIDO);
                 int alcanza = pagarBandido(terreno.locomotora, getCantidad(*bandido), getCodItem(*bandido));
                 if (alcanza==0){
@@ -556,7 +567,7 @@ bool verificarComanda(Terreno &t){
             NodoLista * ptrNodoVagon = primero(vagones);
             while(ptrNodoVagon != finLista()){
                 Vagon * vagonActual = (Vagon*) ptrNodoVagon->ptrDato;
-                cout << "Tengo vagon con tipo: " << getTipoVagon(*vagonActual)<<" y comanda es: " << getCodItem(*comandaActual)<<endl;
+                //cout << "Tengo vagon con tipo: " << getTipoVagon(*vagonActual)<<" y comanda es: " << getCodItem(*comandaActual)<<endl;
                 if (getTipoVagon(*vagonActual) == getCodItem(*comandaActual)){
                     sumaItem=sumaItem + getCapVagonUsada(*vagonActual);
                 }
@@ -575,3 +586,33 @@ bool verificarComanda(Terreno &t){
 int getTiempoEntreIntervalos(Terreno& terreno){
     return getS(terreno.parametros);
 }
+
+void agregarMensajes(Terreno & terreno, SDL_Renderer *renderizador){
+
+    if(TTF_Init()==-1) {
+        printf("TTF_Init: %s\n", TTF_GetError());
+        exit(2);
+    }
+    terreno.Sans = TTF_OpenFont("assets/fonts/CFFarWest-Regular.ttf", 8); //this opens a font style and sets a size
+    if(!terreno.Sans ) {
+        printf("TTF_OpenFont: %s\n", TTF_GetError());
+    }
+
+    terreno.White = {0,0,0,0};  // this is the color in rgb format, maxing out all would give you the color white, and it will be your text's color
+    terreno.surfaceMessage = TTF_RenderText_Solid(terreno.Sans, "COMANDA ES", terreno.White); // as TTF_RenderText_Solid could only be used on SDL_Surface then you have to create the surface first
+    terreno.Message = SDL_CreateTextureFromSurface(renderizador, terreno.surfaceMessage); //now you can convert it into a texture
+
+    SDL_Rect Message_rect; //create a rect
+    Message_rect.x = ANCHO_TERRENO*40;  //controls the rect's x coordinate
+    Message_rect.y = 0; // controls the rect's y coordinte
+    Message_rect.w = 100; // controls the width of the rect
+    Message_rect.h = 20; // controls the height of the rect
+
+    //Mind you that (0,0) is on the top left of the window/screen, think a rect as the text's box, that way it would be very simple to understance
+
+    //Now since it's a texture, you have to put RenderCopy in your game loop area, the area where the whole code executes
+
+    SDL_RenderCopy(renderizador, terreno.Message, NULL, &Message_rect); //you put the renderer's name first, the Message, the crop size(you can ignore this if you don't want to dabble with cropping), and the rect which is the size and coordinate of your texture
+    //Don't forget too free your surface and texture
+}
+

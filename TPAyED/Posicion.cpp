@@ -1,5 +1,7 @@
 #include "Posicion.h"
 
+#include "Terreno.h"
+
 /************GETTERS AND SETTERS*********************/
 int getX(Posicion &posicion){
     return posicion.x;
@@ -46,4 +48,29 @@ bool enCercanias(Posicion &posA, Posicion &posB, int distancia){
         cercano = true;
     }
     return cercano;
+}
+
+Posicion alejarPosicion(Posicion &posA,Posicion &posB, int distancia){
+    Posicion pNueva;
+    if ((abs(getX(posA) - getX(posB)) <= distancia)){
+        if (getX(posA)+distancia < ANCHO_TERRENO){ //SI LA POS EN X TIENE LUGAR LO CORRO A LA DERECHA
+            setX(pNueva,getX(posA)+distancia+1);
+        }
+        else
+            setX(pNueva,getX(posA)-distancia-1);
+    }
+    else
+        setX(pNueva, getX(posB));
+
+    if ((abs(getY(posA) - getY(posB)) <= distancia)){
+        if (getY(posA)+distancia < ALTO_TERRENO){ //SI LA POS EN X TIENE LUGAR LO CORRO A LA DERECHA
+            setY(pNueva,getY(posA)+distancia+1);
+        }
+        else
+            setY(pNueva,getX(posA)-distancia-1);
+    }
+    else
+        setY(pNueva, getY(posB));
+
+    return pNueva;
 }

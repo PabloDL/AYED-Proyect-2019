@@ -66,4 +66,6 @@ Post: verifica si la posicion A esta respecto de B a una diferencia de "distanci
 */
 bool enCercanias(Posicion &posA, Posicion &posB, int distancia);
 
+Posicion alejarPosicion(Posicion &posA,Posicion &posB, int distancia);
+
 #endif // __PARAMETROS_H__

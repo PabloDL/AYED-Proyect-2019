@@ -2,14 +2,14 @@
 
 
 /************GETTERS AND SETTERS*********************/
-int getCantidad(Bandido &bandido){}
+int getCantidad(Bandido &bandido){ return bandido.cantidad;}
 Posicion getPosicion(Bandido &bandido){ return bandido.posicion;}
 int getTiempoVida(Bandido &bandido){ return bandido.tiempoVida;}
 int getIntervaloHastaAparicion(Bandido &bandido){ return bandido.intervaloHastaAparicion;}
 int getAreaCobertura(Bandido &bandido){ return bandido.areaCobertura;}
-int getCodItem(Bandido &bandido) {return bandido.codItem;}
+int getCodItem(Bandido &bandido) { return bandido.codItem;}
 
-void setCantidad(Bandido &bandido, int cantidad){bandido.cantidad=MAXIMO_ROBO_BANDIDO;}
+void setCantidad(Bandido &bandido, int cantidad){bandido.cantidad=cantidad;}
 void setPosicion(Bandido &bandido, Posicion posicion){bandido.posicion=posicion;}
 void setTiempoVida(Bandido &bandido, int tiempoVida){bandido.tiempoVida=tiempoVida;}
 void setIntervaloHastaAparicion(Bandido &bandido, int intervaloHastaAparicion){bandido.intervaloHastaAparicion=intervaloHastaAparicion;}

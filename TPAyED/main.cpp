@@ -39,7 +39,7 @@ int main( int argc, char* argv[]){
     Uint32 frameStart;
     int frameTime;
     Juego juego;
-    crearJuego(juego, "Juego", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
+    crearJuego(juego, "Juego", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800/*900*/, 600, false);
 
     SDL_Event evento;
         SDL_PollEvent(&evento);

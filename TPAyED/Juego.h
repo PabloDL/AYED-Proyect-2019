@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Terreno.h"
 #include "SDL.h"
+#include <SDL_ttf.h>
 
 #define CONSTANTE_DE_TIEMPO 50
 
@@ -100,5 +101,7 @@ bool corriendo(Juego &juego);
 void cargarTexturas(Juego &juego);
 
 void chequearEstado(Juego &juego);
+
+void agregarMensajes(Juego &juego);
 
 #endif // Game_h
