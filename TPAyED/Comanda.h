@@ -26,12 +26,35 @@ typedef struct Comanda{
 }Comanda;
 
 /************GETTERS AND SETTERS*********************/
+/*
+PRE:  Comanda creada y cargados valores
+Post: devuelve valor de variable codItem de comanda
+*/
 string getCodItem(Comanda &comanda);
+/*
+PRE:  Comanda creada y cargados valores
+Post: devuelve valor de variable cantidad de comanda
+*/
 int getCantidad(Comanda &comanda);
+/*
+PRE:  Comanda creada y cargados valores
+Post: devuelve valor de variable completado de comanda
+*/
 bool getCompletado(Comanda &comanda);
-
+/*
+PRE:  Comanda creada y cargados valores
+Post: setea valor de variable codItem de comanda segun parametro codItem
+*/
 void setCodItem(Comanda &comanda, string codItem);
+/*
+PRE:  Comanda creada y cargados valores
+Post: setea valor de variable cantidad de comanda segun parametro cantidad
+*/
 void setCantidad(Comanda &comanda, int cantidad);
+/*
+PRE:  Comanda creada y cargados valores
+Post: setea valor de variable completado de comanda segun parametro completado
+*/
 void setCompletado(Comanda &comanda, bool completado);
 /***************************************************/
 /*

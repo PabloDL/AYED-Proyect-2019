@@ -9,7 +9,9 @@ void setCodItem(Comanda &comanda, string codItem){comanda.codItem = codItem;}
 void setCantidad(Comanda &comanda, int cantidad){comanda.cantidad = cantidad;}
 void setCompletado(Comanda &comanda, bool completado){comanda.completado=completado;}
 /***************************************************/
+
 void crearComanda(Comanda &comanda){}
+
 void eliminarComanda(Comanda &comanda){}
 
 void toString(Comanda &comanda){

@@ -1,5 +1,4 @@
 #include "Posicion.h"
-
 #include "Terreno.h"
 
 /************GETTERS AND SETTERS*********************/
@@ -24,14 +23,14 @@ void crearPosicion(Posicion &posicion){
     posicion.x = 0;
     posicion.y = 0;
 }
+
 void eliminarPosicion(Posicion &posicion){
 
 }
+
 void moverPosicion(Posicion &posicion, int x, int y){
     posicion.x = x;
     posicion.y = y;
-}
-bool esValidaPosicion(Posicion &posicion){ // ES DE TERRENO AL PARECER
 }
 
 bool mismaPosicion(Posicion &posA, Posicion &posB){

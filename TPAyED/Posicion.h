@@ -26,12 +26,25 @@ typedef struct Posicion{
 }Posicion;
 
 /************GETTERS AND SETTERS*********************/
+/*
+PRE:  Posicion creada
+Post: devuelve valor de variable x de posicion
+*/
 int getX(Posicion &posicion);
-
+/*
+PRE:  Posicion creada
+Post: devuelve valor de variable y de posicion
+*/
 int getY(Posicion &posicion);
-
+/*
+PRE:  Posicion creada
+Post: setea valor de variable x de posicion segun parametro x
+*/
 void setX(Posicion &posicion, int x);
-
+/*
+PRE:  Posicion creada
+Post: setea valor de variable y de posicion segun parametro y
+*/
 void setY(Posicion &posicion, int y);
 
 /***************************************************/
@@ -51,13 +64,10 @@ Post: libera recursos solicitados por posicion
 */
 void moverPosicion(Posicion &posicion, int x, int y);
 /*
-PRE: posicion creada
-Post: verifica si la posicion es valida en el juego, es
-    decir verifica que sea una posicion posible en el juego,
-    devuelve false si esta fuera del rango del juego
+PRE: posicion A y B creada
+Post: verifica si la posicion A es la misma que B (es decir tanto coordenadas X como Y son iguales)
+      si son iguales devuelve true sino false
 */
-bool esValidaPosicion(Posicion &posicion);
-
 bool mismaPosicion(Posicion &posA, Posicion &posB);
 
 /*
