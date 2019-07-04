@@ -1,6 +1,5 @@
 #include "Bandido.h"
 
-
 /************GETTERS AND SETTERS*********************/
 int getCantidad(Bandido &bandido){ return bandido.cantidad;}
 Posicion getPosicion(Bandido &bandido){ return bandido.posicion;}
@@ -48,4 +47,3 @@ void renderizarBandido(Bandido& bandidoActual, SDL_Renderer *renderizador){
         bandidoActual.rectImag.h = 40;
         SDL_RenderCopy(renderizador, bandidoActual.textura, NULL, &bandidoActual.rectImag);
 }
-

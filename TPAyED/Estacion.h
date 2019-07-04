@@ -27,7 +27,13 @@ typedef struct Estacion{
 }Estacion;
 
 /************GETTERS AND SETTERS*********************/
+/*PRE: Estacion creada
+  POST: devuelve la posicion de la estacion
+*/
 Posicion getPosicion(Estacion &estacion);
+/*PRE: Estacion creada
+  POST: setea la posicion de la estacion
+*/
 void setPosicion(Estacion &estacion, Posicion posicion);
 /***************************************************/
 /*
@@ -45,9 +51,15 @@ PRE: Estacion creada
 Post: calcula y devuelve peso que soporta vagon
 */
 int entregarVagon(Estacion &estacion, int cantidadMonedas);
-
-
+/*
+PRE: Estacion existente
+Post: Carga la textura a la Estacion y la relaciona al render
+*/
 void cargarTexturaEstacion(Estacion& estacion, SDL_Renderer * renderizador);
+/*
+PRE: Estacion existente
+Post: agrega la Estacion al render
+*/
 void renderizarEstacion(Estacion& estacionActual, SDL_Renderer *renderizador);
 
 #endif

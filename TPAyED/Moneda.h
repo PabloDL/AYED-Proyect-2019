@@ -58,8 +58,15 @@ PRE: Moneda existente y cargada
 Post: Muestra por pantalla los atributos
 */
 void toString(Moneda &moneda);
-
+/*
+PRE: Moneda existente
+Post: Carga la textura a la moneda y la relaciona al render
+*/
 void cargarTexturaMoneda(Moneda& moneda, SDL_Renderer * renderizador);
+/*
+PRE: Moneda existente
+Post: agrega moneda al render
+*/
 void renderizarMoneda(Moneda& monedaActual, SDL_Renderer *renderizador);
 
 
