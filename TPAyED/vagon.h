@@ -50,9 +50,11 @@ bool vagonVacio(Vagon& vagon);
 //pre: vagon creado y asignado con 1 o mas items
 //post: devuelte 1 si el vagon es del tipoItem o 0 si no es del tipoItem
 bool mismoTipo(Vagon& vagon,string tipoItem);
-
-
+//PRE: Terreno Creado y inicializado,
+//POST: Carga las texturas
 void cargarTexturaVagon(Vagon& vagon, SDL_Renderer * renderizador);
+//PRE: Terreno Creado y inicializado,
+//POST: renderiza terreno
 void renderizarVagon(Vagon& vagon, SDL_Renderer *renderizador, int counter, bool estaDetenida);
 
 #endif // _VAGON_H_

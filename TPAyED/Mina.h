@@ -35,26 +35,78 @@ typedef struct Mina{
     int seqActual;
 }Mina;
 /***********GETTERS AND SETTERS*********************/
+/*PRE: Mina creada
+  POST: devuelve la Posicion X de la mina pasada por parametro
+*/
 int getPosX(Mina &mina);
+/*PRE: Mina creada
+  POST: devuelve la Posicion Y de la mina pasada por parametro
+*/
 int getPosY(Mina &mina);
+/*PRE: Mina creada
+  POST: devuelve codItem de la mina pasada por parametro
+*/
 int getCodItem(Mina &mina);
+/*PRE: Mina creada
+  POST: devuelve codItem de la mina pasada por parametro
+*/
 int getIp(Mina &mina);
+/*PRE: Mina creada
+  POST: devuelve Intervalo produccion de la mina pasada por parametro
+*/
 int getSeq1(Mina &mina);
+/*PRE: Mina creada
+  POST: devuelve produccion seq1 de la mina pasada por parametro
+*/
 int getSeq2(Mina &mina);
+/*PRE: Mina creada
+  POST: devuelve produccion seq2 de la mina pasada por parametro
+*/
 int getSeq3(Mina &mina);
+/*PRE: Mina creada
+  POST: devuelve produccion seq3 de la mina pasada por parametro
+*/
 int getSeq4(Mina &mina);
+/*PRE: Mina creada
+  POST: devuelve produccion seq5 de la mina pasada por parametro
+*/
 int getSeq5(Mina &mina);
-
+/*PRE: Mina creada
+  POST: setea PosX a la mina pasada por parametro
+*/
 void setPosX(Mina &mina, int posX);
+/*PRE: Mina creada
+  POST: setea PosY a la mina pasada por parametro
+*/
 void setPosY(Mina &mina, int posY);
+/*PRE: Mina creada
+  POST: setea codItem a la mina pasada por parametro
+*/
 void setCodItem(Mina &mina, int codItem);
+/*PRE: Mina creada
+  POST: setea IP a la mina pasada por parametro
+*/
 void setIp(Mina &mina, int ip);
+/*PRE: Mina creada
+  POST: setea Seq1 a la mina pasada por parametro
+*/
 void setSeq1(Mina &mina, int seq1);
+/*PRE: Mina creada
+  POST: setea Seq2 a la mina pasada por parametro
+*/
 void setSeq2(Mina &mina, int seq2);
+/*PRE: Mina creada
+  POST: setea Seq3 a la mina pasada por parametro
+*/
 void setSeq3(Mina &mina, int seq3);
+/*PRE: Mina creada
+  POST: setea Seq4 a la mina pasada por parametro
+*/
 void setSeq4(Mina &mina, int seq4);
+/*PRE: Mina creada
+  POST: setea Seq5 a la mina pasada por parametro
+*/
 void setSeq5(Mina &mina, int seq5);
-
 /***************************************************/
 
 /*

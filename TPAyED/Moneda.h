@@ -33,14 +33,37 @@ typedef struct Moneda{
 }Moneda;
 
 /************GETTERS AND SETTERS*********************/
+/*PRE: Moneda creada
+  POST: devuelve la posicion de la moneda pasado por parametro
+*/
 Posicion getPosicion(Moneda &moneda);
+/*PRE: Moneda creada
+  POST: devuelve la cantidad de la moneda pasado por parametro
+*/
 int getCantidad(Moneda &moneda);
+/*PRE: Moneda creada
+  POST: devuelve la aparicion de la moneda pasado por parametro
+*/
 int getAparicion(Moneda &moneda);
+/*PRE: Moneda creada
+  POST: devuelve la duracion de la moneda pasado por parametro
+*/
 int getDuracion(Moneda &moneda);
-
+/*PRE: moneda creada
+  POST: setea posicion a la moneda
+*/
 void setPosicion(Moneda &moneda, Posicion &posicion);
+/*PRE: moneda creada
+  POST: setea aparicion a la moneda
+*/
 void setAparicion(Moneda &moneda, int duracion);
+/*PRE: moneda creada
+  POST: setea duracion a la moneda
+*/
 void setDuracion(Moneda &moneda, int aparicion);
+/*PRE: moneda creada
+  POST: setea Cantidad a la moneda
+*/
 void setCantidad(Moneda &moneda, int cantidad);
 /***************************************************/
 /*
@@ -69,6 +92,4 @@ Post: agrega moneda al render
 */
 void renderizarMoneda(Moneda& monedaActual, SDL_Renderer *renderizador);
 
-
 #endif
-
